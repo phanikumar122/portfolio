@@ -73,6 +73,7 @@ export function ProjectVisual({ type, compact = false }: ProjectVisualProps) {
           <div className="skilltern-foot"><span><b>transparent</b> rules</span><span>skills → fit → apply <ArrowUpRight size={12} /></span></div>
         </>
       )}
+      <span className="visual-spotlight" />
       <span className="visual-ambient visual-ambient--one" />
       <span className="visual-ambient visual-ambient--two" />
       <span className="visual-sheen" />

@@ -31,7 +31,7 @@ function GalleryProject({ project, index, onOpen }: { project: Project; index: n
   return (
     <Reveal delay={index * 0.06} className={`gallery-project gallery-project--${project.accent}`}>
       <button className="visual-button" type="button" onClick={() => onOpen(project)} aria-label={`View ${project.title} case study`}><TiltCard className="project-tilt"><ProjectVisual type={project.visual} compact /></TiltCard></button>
-      <div className="gallery-project-copy"><div><h3>{project.title}</h3><p>{project.description}</p></div><button className="text-link" type="button" onClick={() => onOpen(project)}>View detail <ArrowUpRight size={14} /></button></div>
+      <div className="gallery-project-copy"><div><h3>{project.title}</h3><p>{project.description}</p></div><button className="text-link" type="button" onClick={() => onOpen(project)} aria-label={`View ${project.title} details`}>View detail <ArrowUpRight size={14} /></button></div>
       <div className="gallery-footer"><div className="stack-tags">{project.stack.slice(0, 3).map((item) => <span key={item}>{item}</span>)}</div><ProjectLinks project={project} /></div>
     </Reveal>
   )

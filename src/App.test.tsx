@@ -11,6 +11,9 @@ describe('portfolio experience', () => {
     expect(screen.getAllByRole('button', { name: /view .* case study/i })).toHaveLength(portfolio.projects.length)
     expect(screen.getByText('Vinnakota Phani Kumar')).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /i build useful applications/i })).toBeInTheDocument()
+    portfolio.projects.filter((project) => !project.featured).forEach((project) => {
+      expect(screen.getByRole('button', { name: `View ${project.title} details` })).toBeInTheDocument()
+    })
   })
 
   it('gives every section a shared reveal surface and every project a 3D visual stage', () => {
