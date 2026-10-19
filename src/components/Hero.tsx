@@ -5,6 +5,8 @@ import { useReducedMotion } from '../hooks/useReducedMotion'
 import { Reveal } from './Reveal'
 import { SectionReveal } from './SectionReveal'
 
+const portraitSrc = './phani.jpg'
+
 export function Hero() {
   const reducedMotion = useReducedMotion()
 
@@ -45,7 +47,7 @@ export function Hero() {
             <div className="portrait-glow" />
             <div className="portrait-card">
               <div className="portrait-card-top"><span>PK / 01</span><span>Building</span></div>
-              <img src="/phani.jpg" alt="Portrait of Vinnakota Phani Kumar" />
+              <img src={portraitSrc} alt="Portrait of Vinnakota Phani Kumar" />
               
             </div>
           </motion.div>

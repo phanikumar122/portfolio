@@ -41,7 +41,9 @@ describe('portfolio experience', () => {
     const user = userEvent.setup()
     render(<App />)
 
-    expect(screen.getByRole('img', { name: 'Portrait of Vinnakota Phani Kumar' })).toBeInTheDocument()
+    const portrait = screen.getByRole('img', { name: 'Portrait of Vinnakota Phani Kumar' })
+    expect(portrait).toBeInTheDocument()
+    expect(portrait).toHaveAttribute('src', './phani.jpg')
     const tabs = screen.getAllByRole('tab')
     expect(tabs[0]).toHaveAttribute('aria-selected', 'true')
     expect(tabs[0]).toHaveAttribute('aria-controls', 'skill-panel-01')
