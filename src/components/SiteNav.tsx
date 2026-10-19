@@ -5,6 +5,7 @@ import { portfolio } from '../data/portfolio'
 export function SiteNav() {
   const [menuOpen, setMenuOpen] = useState(false)
   const menuButtonRef = useRef<HTMLButtonElement>(null)
+  const menuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
@@ -23,7 +24,37 @@ export function SiteNav() {
     return () => document.body.classList.remove('menu-is-open')
   }, [menuOpen])
 
-  const closeMenu = () => setMenuOpen(false)
+  useEffect(() => {
+    if (!menuOpen) return
+
+    const focusable = () => Array.from(menuRef.current?.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])') ?? [])
+    const firstLink = focusable()[0]
+    firstLink?.focus()
+
+    const handleTab = (event: KeyboardEvent) => {
+      if (event.key !== 'Tab') return
+      const items = focusable()
+      if (!items.length) return
+      const first = items[0]
+      const last = items[items.length - 1]
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault()
+        first.focus()
+      }
+    }
+
+    document.addEventListener('keydown', handleTab)
+    return () => document.removeEventListener('keydown', handleTab)
+  }, [menuOpen])
+
+  const closeMenu = () => {
+    setMenuOpen(false)
+    menuButtonRef.current?.focus()
+  }
 
   return (
     <header className="site-nav">
@@ -39,7 +70,7 @@ export function SiteNav() {
 
         <div className="nav-actions">
           <a className="nav-social" href={portfolio.person.github} target="_blank" rel="noreferrer" aria-label="GitHub profile"><Github size={16} /></a>
-          <a className="nav-contact" href="#contact">Let&apos;s connect <Mail size={14} /></a>
+           <a className="nav-contact" href="#contact">Contact <Mail size={14} /></a>
           <button
             ref={menuButtonRef}
             className="menu-toggle"
@@ -54,19 +85,19 @@ export function SiteNav() {
         </div>
       </div>
 
-      <div id="mobile-navigation" className={`mobile-nav ${menuOpen ? 'is-open' : ''}`} aria-hidden={!menuOpen}>
-        <div className="mobile-nav-top"><span>navigate / 00</span><span>close with esc</span></div>
+      <div id="mobile-navigation" ref={menuRef} className={`mobile-nav ${menuOpen ? 'is-open' : ''}`} aria-hidden={!menuOpen}>
+        <div className="mobile-nav-top"><span>navigation</span><span>close with esc</span></div>
         <nav aria-label="Mobile navigation">
-          {portfolio.navigation.map((item, index) => (
-            <a key={item.href} href={item.href} tabIndex={menuOpen ? 0 : -1} onClick={closeMenu}>
-              <span>0{index + 1}</span>{item.label}
+          {portfolio.navigation.map((item) => (
+           <a key={item.href} href={item.href} tabIndex={menuOpen ? 0 : -1} onClick={closeMenu}>
+              {item.label}
             </a>
           ))}
         </nav>
         <div className="mobile-nav-footer">
-          <a href={portfolio.person.linkedin} target="_blank" rel="noreferrer"><Linkedin size={15} /> LinkedIn</a>
-          <a href={portfolio.person.github} target="_blank" rel="noreferrer"><Github size={15} /> GitHub</a>
-          <a href={`mailto:${portfolio.person.email}`}><Mail size={15} /> Email</a>
+           <a href={portfolio.person.linkedin} target="_blank" rel="noreferrer" tabIndex={menuOpen ? 0 : -1} onClick={closeMenu}><Linkedin size={15} /> LinkedIn</a>
+           <a href={portfolio.person.github} target="_blank" rel="noreferrer" tabIndex={menuOpen ? 0 : -1} onClick={closeMenu}><Github size={15} /> GitHub</a>
+           <a href={`mailto:${portfolio.person.email}`} tabIndex={menuOpen ? 0 : -1} onClick={closeMenu}><Mail size={15} /> Email</a>
         </div>
       </div>
     </header>

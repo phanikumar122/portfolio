@@ -25,3 +25,32 @@ Object.defineProperty(window, 'IntersectionObserver', {
   writable: true,
   value: MockIntersectionObserver,
 })
+
+// Mock HTMLCanvasElement.prototype.getContext for JSDOM
+HTMLCanvasElement.prototype.getContext = (() => ({
+  fillRect: () => {},
+  clearRect: () => {},
+  getImageData: () => ({ data: new Array(4) }),
+  putImageData: () => {},
+  createImageData: () => [],
+  setTransform: () => {},
+  drawImage: () => {},
+  save: () => {},
+  fillText: () => {},
+  restore: () => {},
+  beginPath: () => {},
+  moveTo: () => {},
+  lineTo: () => {},
+  closePath: () => {},
+  stroke: () => {},
+  translate: () => {},
+  scale: () => {},
+  rotate: () => {},
+  arc: () => {},
+  fill: () => {},
+  clip: () => {},
+  createRadialGradient: () => ({
+    addColorStop: () => {},
+  }),
+})) as any
+

@@ -1,8 +1,8 @@
 # Vinnakota Phani Kumar — Portfolio
 
-A dark editorial portfolio for **Vinnakota Phani Kumar**, a Computer Science Engineer interested in full-stack software, cloud systems, and agentic AI.
+A warm editorial portfolio for **Vinnakota Phani Kumar**, a Computer Science Engineer interested in full-stack software, cloud systems, and agentic AI.
 
-The experience is built around a “Signal Systems” visual language: technical grids, a restrained signal-lime accent, project-specific abstract visuals, and motion that helps the reader move through the work without blocking the page.
+The experience is built around a calm editorial visual language: warm paper surfaces, deep ink panels, a restrained chartreuse accent, project-specific abstract visuals, and motion that helps the reader move through the work without blocking the page.
 
 ## Stack
 

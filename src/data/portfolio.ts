@@ -7,15 +7,9 @@ export type ProjectVisual =
   | 'syllabus'
   | 'skilltern'
 
-export interface ExternalLink {
-  label: string
-  url: string
-}
-
 export interface Project {
   id: string
   title: string
-  eyebrow: string
   description: string
   problem: string
   features: string[]
@@ -61,9 +55,9 @@ export const portfolio = {
   },
   navigation: [
     { label: 'About', href: '#about' },
-    { label: 'Expertise', href: '#expertise' },
-    { label: 'Work', href: '#work' },
-    { label: 'Credentials', href: '#credentials' },
+    { label: 'Skills', href: '#expertise' },
+    { label: 'Projects', href: '#work' },
+    { label: 'Certificates', href: '#credentials' },
   ],
   skills: [
     {
@@ -73,19 +67,19 @@ export const portfolio = {
       skills: ['Java', 'C++', 'Python', 'JavaScript', 'React', 'Flutter', 'Figma', 'UI/UX principles', 'Node.js', 'Express.js', 'Spring Boot', 'REST APIs'],
     },
     {
-      title: 'Store',
+      title: 'Data',
       index: '02',
       description: 'Data foundations that make applications useful, queryable, and dependable.',
       skills: ['MongoDB', 'MySQL', 'Data modeling', 'ETL pipelines', 'Analytics workflows'],
     },
     {
-      title: 'Scale',
+      title: 'Systems',
       index: '03',
       description: 'Infrastructure and distributed patterns for systems that need room to move.',
       skills: ['AWS', 'Docker', 'Linux', 'Git', 'CI/CD', 'System Design', 'Microservices', 'Apache Kafka', 'Security', 'Real-time services'],
     },
     {
-      title: 'Reason',
+      title: 'Agentic AI',
       index: '04',
       description: 'Agentic building blocks that connect language models to useful actions and context.',
       skills: ['LLM integration', 'Retrieval-Augmented Generation (RAG)', 'Tool use', 'Tokenization', 'Loop engineering'],
@@ -95,7 +89,6 @@ export const portfolio = {
     {
       id: 'mentora',
       title: 'Mentora',
-      eyebrow: 'Academic communication, made legible',
       description: 'A full-stack educational platform connecting students, teachers, and administrators through one shared academic workspace.',
       problem: 'Academic workflows often scatter announcements, assignments, attendance, study material, and conversations across disconnected tools.',
       features: ['Role-based student, teacher, and admin portals', 'Assignments, grading, attendance, and feedback', 'Discussion forums, notice board, and study materials', 'STOMP over WebSockets for real-time messaging'],
@@ -109,7 +102,6 @@ export const portfolio = {
     {
       id: 'transport',
       title: 'Public Transport Demand Prediction',
-      eyebrow: 'Data warehouse → decision surface',
       description: 'A multi-modal transport analytics pipeline that brings bus, rail, and air data together for demand analysis and prediction.',
       problem: 'Transport planning needs a common view of demand across modes, routes, time, anomalies, and operational context.',
       features: ['ETL pipeline across APSRTC, rail, and flight data', 'MySQL dimensional warehouse and OLAP operations', 'K-Means route clustering and Isolation Forest anomaly detection', 'Regression model comparison, SHAP analysis, and reusable predictions'],
@@ -123,7 +115,6 @@ export const portfolio = {
     {
       id: 'goodfind',
       title: 'GoodFind',
-      eyebrow: 'Commerce as an operating system',
       description: 'A polished commerce SaaS frontend combining an editorial storefront, merchant console, and onboarding experience.',
       problem: 'A modern commerce product has to make discovery, purchase, operations, and brand configuration feel like one coherent system.',
       features: ['Editorial multi-category storefront and product discovery', 'Cart, wishlist, checkout, orders, and account flows', 'Merchant inventory, order, category, and coupon operations', 'SaaS landing page and multi-step merchant onboarding'],
@@ -137,7 +128,6 @@ export const portfolio = {
     {
       id: 'docviewer',
       title: 'docviewer',
-      eyebrow: 'A local-first document workspace',
       description: 'A browser-based file library, document viewer, PDF toolkit, image converter, and editor where processing stays on the device.',
       problem: 'Everyday document work is often fragmented across upload-heavy tools that make simple transformations feel unnecessarily remote.',
       features: ['Universal file library backed by IndexedDB', 'PDF, image, DOCX, spreadsheet, text, and Markdown viewing', 'Local PDF merge, split, rotate, watermark, and export tools', 'Sanitised previews and a clear no-preview fallback'],
@@ -150,7 +140,6 @@ export const portfolio = {
     {
       id: 'rehabilitation',
       title: 'Smart Hand Rehabilitation',
-      eyebrow: 'Embedded feedback, in real time',
       description: 'A sensor-based glove and companion mobile app for monitoring finger movement and delivering haptic feedback during rehabilitation exercises.',
       problem: 'A physical gesture becomes more useful when the sensing, feedback, and mobile monitoring loop are designed together.',
       features: ['Individual finger movement tracking with flex sensors', 'Force sensing and finger-specific vibration feedback', 'OLED status display for angles and pressure', 'Bluetooth data exchange with a Flutter companion app'],
@@ -163,7 +152,6 @@ export const portfolio = {
     {
       id: 'syllabus-ai',
       title: 'Syllabi-AI',
-      eyebrow: 'From raw syllabus to next action',
       description: 'An AI-assisted study platform that turns syllabus material into personalized plans with progress tracking and a focused learning interface.',
       problem: 'A syllabus is a map, but it does not automatically become a sequence of manageable next steps for a learner.',
       features: ['Syllabus analysis and personalized study-plan generation', 'Progress tracking across planned learning', 'Modern SaaS-style learning interface', 'Firebase-backed application foundation with Gemini integration'],
@@ -177,7 +165,6 @@ export const portfolio = {
     {
       id: 'skilltern',
       title: 'SkillTern',
-      eyebrow: 'Transparent opportunity matching',
       description: 'A role-based internship platform that matches student profiles with opportunities using a clear, deterministic rules engine.',
       problem: 'Students and companies need a faster way to compare skills, eligibility, preferences, and open opportunities without opaque ranking.',
       features: ['Student, company, and admin workflows', 'Skill, CGPA, degree, and study-year eligibility checks', 'Location and internship-type preference bonuses', 'Application tracking and company-side candidate views'],
@@ -201,7 +188,6 @@ export const portfolio = {
   ] satisfies Achievement[],
   education: {
     institution: 'Prasad V Potluri Siddhartha Institute of Technology',
-    label: 'Education',
   },
 } as const
 

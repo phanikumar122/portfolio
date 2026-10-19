@@ -10,8 +10,15 @@ describe('portfolio experience', () => {
 
     expect(screen.getAllByRole('button', { name: /view .* case study/i })).toHaveLength(portfolio.projects.length)
     expect(screen.getByText('Vinnakota Phani Kumar')).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: /ideas into intelligent experiences/i })).toBeInTheDocument()
-    expect(screen.getByRole('img', { name: /animated 3d system field/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /i build useful applications/i })).toBeInTheDocument()
+  })
+
+  it('gives every section a shared reveal surface and every project a 3D visual stage', () => {
+    const { container } = render(<App />)
+
+    expect(container.querySelectorAll('main > section')).toHaveLength(9)
+    expect(container.querySelectorAll('.project-tilt')).toHaveLength(portfolio.projects.length)
+    expect(container.querySelectorAll('.project-visual[aria-hidden="true"]')).toHaveLength(portfolio.projects.length)
   })
 
   it('opens and closes an accessible project detail dialog', async () => {
@@ -30,6 +37,28 @@ describe('portfolio experience', () => {
     expect(trigger).toHaveFocus()
   })
 
+  it('shows the portrait and switches the selected skills group', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+
+    expect(screen.getByRole('img', { name: 'Portrait of Vinnakota Phani Kumar' })).toBeInTheDocument()
+    const tabs = screen.getAllByRole('tab')
+    expect(tabs[0]).toHaveAttribute('aria-selected', 'true')
+    expect(tabs[0]).toHaveAttribute('aria-controls', 'skill-panel-01')
+    expect(tabs[0]).toHaveAttribute('tabindex', '0')
+    expect(screen.getByRole('tabpanel')).toHaveAttribute('aria-labelledby', 'skill-tab-01')
+
+    await user.click(tabs[1])
+    expect(tabs[1]).toHaveAttribute('aria-selected', 'true')
+    expect(tabs[0]).toHaveAttribute('tabindex', '-1')
+    expect(screen.getByRole('tabpanel')).toHaveTextContent('Data')
+    expect(screen.getByRole('tabpanel')).toHaveAttribute('aria-labelledby', 'skill-tab-02')
+
+    await user.keyboard('{ArrowDown}')
+    expect(tabs[2]).toHaveAttribute('aria-selected', 'true')
+    expect(tabs[2]).toHaveFocus()
+  })
+
   it('opens the mobile menu and closes it after selecting a section', async () => {
     const user = userEvent.setup()
     render(<App />)
@@ -37,9 +66,9 @@ describe('portfolio experience', () => {
 
     await user.click(menuButton)
     expect(menuButton).toHaveAttribute('aria-expanded', 'true')
-    expect(screen.getByRole('link', { name: /01 about/i })).toBeVisible()
+    expect(screen.getAllByRole('link', { name: /^about$/i })[0]).toBeVisible()
 
-    await user.click(screen.getByRole('link', { name: /01 about/i }))
+    await user.click(screen.getAllByRole('link', { name: /^about$/i })[1] || screen.getAllByRole('link', { name: /^about$/i })[0])
     expect(menuButton).toHaveAttribute('aria-expanded', 'false')
   })
 
@@ -52,6 +81,18 @@ describe('portfolio experience', () => {
     fireEvent.click(copyButton)
 
     expect(writeText).toHaveBeenCalledWith(portfolio.person.email)
-    await waitFor(() => expect(screen.getByRole('button', { name: /copied to clipboard/i })).toBeInTheDocument())
+    await waitFor(() => expect(screen.getByRole('button', { name: /^copied$/i })).toBeInTheDocument())
+  })
+
+  it('reports when copying is not available', async () => {
+    const writeText = vi.fn().mockRejectedValue(new Error('Clipboard unavailable'))
+    Object.defineProperty(window.navigator, 'clipboard', { configurable: true, value: { writeText } })
+    render(<App />)
+
+    const copyButton = screen.getByRole('button', { name: /copy email/i })
+    fireEvent.click(copyButton)
+    expect(writeText).toHaveBeenCalledWith(portfolio.person.email)
+
+    await waitFor(() => expect(screen.getByRole('button', { name: /copy failed/i })).toBeInTheDocument())
   })
 })

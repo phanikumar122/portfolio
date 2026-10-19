@@ -1,4 +1,4 @@
-import { ArrowUpRight, Bot, Database, FileText, Hand, LockKeyhole, Route, Sparkles } from 'lucide-react'
+import { ArrowUpRight, Bot, FileText, Hand, LockKeyhole, Route, Sparkles } from 'lucide-react'
 import type { ProjectVisual as ProjectVisualType } from '../data/portfolio'
 
 interface ProjectVisualProps {
@@ -12,7 +12,7 @@ function MiniLine({ width, className = '' }: { width: string; className?: string
 
 export function ProjectVisual({ type, compact = false }: ProjectVisualProps) {
   return (
-    <div className={`project-visual project-visual--${type} ${compact ? 'project-visual--compact' : ''}`} aria-hidden="true">
+    <div className={`project-visual project-visual--${type} ${compact ? 'project-visual--compact' : ''}`} data-visual={type} aria-hidden="true">
       {type === 'mentora' && (
         <>
           <div className="visual-window-bar"><span /><span /><span /><b>mentora / portal</b></div>
@@ -36,7 +36,6 @@ export function ProjectVisual({ type, compact = false }: ProjectVisualProps) {
             <svg viewBox="0 0 300 100" preserveAspectRatio="none"><path d="M0 65 C30 51, 38 73, 63 53 S90 37, 116 57 S145 73, 170 41 S203 33, 224 42 S262 67, 300 14" /></svg>
             <div className="chart-x"><span>bus</span><span>rail</span><span>air</span><span>route signal</span></div>
           </div>
-          <div className="transport-pills"><span>ETL</span><span>OLAP</span><span>ML</span><span>SHAP</span></div>
         </>
       )}
       {type === 'goodfind' && (
@@ -74,6 +73,9 @@ export function ProjectVisual({ type, compact = false }: ProjectVisualProps) {
           <div className="skilltern-foot"><span><b>transparent</b> rules</span><span>skills → fit → apply <ArrowUpRight size={12} /></span></div>
         </>
       )}
+      <span className="visual-ambient visual-ambient--one" />
+      <span className="visual-ambient visual-ambient--two" />
+      <span className="visual-sheen" />
     </div>
   )
 }
