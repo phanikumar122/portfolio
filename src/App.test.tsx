@@ -11,6 +11,7 @@ describe('portfolio experience', () => {
     expect(screen.getAllByRole('button', { name: /view .* case study/i })).toHaveLength(portfolio.projects.length)
     expect(screen.getByText('Vinnakota Phani Kumar')).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /ideas into intelligent experiences/i })).toBeInTheDocument()
+    expect(screen.getByRole('img', { name: /animated 3d system field/i })).toBeInTheDocument()
   })
 
   it('opens and closes an accessible project detail dialog', async () => {

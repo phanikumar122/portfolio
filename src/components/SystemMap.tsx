@@ -1,20 +1,19 @@
-import { motion } from 'motion/react'
-import { useState } from 'react'
+import { useState, type CSSProperties, type PointerEvent } from 'react'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 
 const nodes = [
-  { label: 'interface', x: 18, y: 29, delay: 0.1 },
-  { label: 'api', x: 52, y: 18, delay: 0.25 },
-  { label: 'data', x: 78, y: 34, delay: 0.4 },
-  { label: 'cloud', x: 70, y: 73, delay: 0.55 },
-  { label: 'agent', x: 34, y: 78, delay: 0.7 },
+  { label: 'interface', className: 'orbit-node--interface', depth: 'orbit-node--front' },
+  { label: 'api', className: 'orbit-node--api', depth: 'orbit-node--back' },
+  { label: 'data', className: 'orbit-node--data', depth: 'orbit-node--front' },
+  { label: 'cloud', className: 'orbit-node--cloud', depth: 'orbit-node--back' },
+  { label: 'agent', className: 'orbit-node--agent', depth: 'orbit-node--front' },
 ]
 
 export function SystemMap() {
   const reducedMotion = useReducedMotion()
   const [pointer, setPointer] = useState({ x: 50, y: 50 })
 
-  const handlePointerMove = (event: React.PointerEvent<SVGSVGElement>) => {
+  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
     if (reducedMotion) return
     const bounds = event.currentTarget.getBoundingClientRect()
     setPointer({
@@ -23,52 +22,55 @@ export function SystemMap() {
     })
   }
 
+  const stageStyle = {
+    '--pointer-x': `${(pointer.x - 50) * 0.12}deg`,
+    '--pointer-y': `${(pointer.y - 50) * -0.1}deg`,
+  } as CSSProperties
+
   return (
-    <div className="system-map-wrap">
+    <div className="system-map-wrap orbit-wrap">
       <div className="map-heading">
         <span>System / 001</span>
-        <span className="map-live"><i /> live map</span>
+        <span className="map-live"><i /> live field</span>
       </div>
-      <svg
-        className="system-map"
-        viewBox="0 0 100 100"
+      <div
+        className={`orbit-stage ${reducedMotion ? 'is-reduced' : ''}`}
+        style={stageStyle}
         role="img"
-        aria-label="An abstract map connecting interface, API, data, cloud, and agent systems"
+        aria-label="An animated 3D system field connecting interface, API, data, cloud, and agent systems"
         onPointerMove={handlePointerMove}
       >
-        <defs>
-          <pattern id="map-grid" width="8" height="8" patternUnits="userSpaceOnUse">
-            <path d="M 8 0 L 0 0 0 8" fill="none" stroke="currentColor" strokeWidth="0.12" />
-          </pattern>
-          <filter id="node-glow">
-            <feGaussianBlur stdDeviation="1.4" result="blur" />
-            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-          </filter>
-        </defs>
-        <rect width="100" height="100" fill="url(#map-grid)" opacity=".45" />
-        <g className="map-orbit" style={{ transform: `translate(${(pointer.x - 50) * 0.03}px, ${(pointer.y - 50) * 0.03}px)` }}>
-          <circle cx="50" cy="50" r="21" fill="none" stroke="currentColor" strokeWidth=".25" strokeDasharray="1 3" />
-          <circle cx="50" cy="50" r="32" fill="none" stroke="currentColor" strokeWidth=".15" />
-          <path d="M18 29 52 18 78 34 70 73 34 78 18 29ZM52 18 70 73M18 29 70 73M78 34 34 78" fill="none" stroke="currentColor" strokeWidth=".22" opacity=".72" />
-          <path d="M50 0v100M0 50h100" stroke="currentColor" strokeWidth=".14" opacity=".48" />
-          <circle cx="50" cy="50" r="7.5" fill="var(--surface-strong)" stroke="var(--accent)" strokeWidth=".55" />
-          <circle cx="50" cy="50" r="2.4" fill="var(--accent)" filter="url(#node-glow)" />
-          <text x="50" y="62" textAnchor="middle" className="map-core-label">phani.systems</text>
-          {nodes.map((node) => (
-            <g key={node.label} transform={`translate(${node.x} ${node.y})`}>
-              <circle r="3.4" fill="var(--surface-strong)" stroke="var(--accent)" strokeWidth=".45" />
-              <motion.circle
-                r="1.3"
-                fill="var(--accent)"
-                filter="url(#node-glow)"
-                animate={reducedMotion ? undefined : { opacity: [0.45, 1, 0.45], r: [1.1, 1.6, 1.1] }}
-                transition={reducedMotion ? undefined : { duration: 2.8, delay: node.delay, repeat: Infinity, ease: 'easeInOut' }}
-              />
-              <text x="5" y="1" className="map-node-label">{node.label}</text>
-            </g>
-          ))}
-        </g>
-      </svg>
+        <div className="orbit-stars" />
+        <div className="orbit-scene">
+          <div className="orbit-halo orbit-halo--outer" />
+          <div className="orbit-halo orbit-halo--inner" />
+          <div className="orbit-ring orbit-ring--horizontal" />
+          <div className="orbit-ring orbit-ring--vertical" />
+          <div className="orbit-ring orbit-ring--diagonal" />
+          <div className="orbit-grid-plane" />
+          <div className="orbit-track orbit-track--one" />
+          <div className="orbit-track orbit-track--two" />
+          <div className="orbit-track orbit-track--three" />
+          <div className="orbit-core">
+            <div className="core-glow" />
+            <div className="core-sphere"><span>PK</span></div>
+            <span className="core-label">phani.systems</span>
+          </div>
+          <div className="orbit-node-layer">
+            {nodes.map((node, index) => (
+              <div key={node.label} className={`orbit-node ${node.className} ${node.depth}`}>
+                <span className="node-pulse" />
+                <span className="node-shell"><i>{String(index + 1).padStart(2, '0')}</i></span>
+                <span className="node-label">{node.label}</span>
+              </div>
+            ))}
+          </div>
+          <div className="orbit-satellite orbit-satellite--one" />
+          <div className="orbit-satellite orbit-satellite--two" />
+        </div>
+        <div className="orbit-caption orbit-caption--left">5 connected layers</div>
+        <div className="orbit-caption orbit-caption--right">3D / live state</div>
+      </div>
       <div className="map-footer">
         <span>input → context → action</span>
         <span>05 nodes / 01 system</span>
