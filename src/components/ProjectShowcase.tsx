@@ -1,4 +1,4 @@
-import { ArrowUpRight, ExternalLink, Github, Terminal } from 'lucide-react'
+import { ArrowUpRight, ExternalLink, Github } from 'lucide-react'
 import { useState } from 'react'
 import type { Project } from '../data/portfolio'
 import { portfolio } from '../data/portfolio'
@@ -8,14 +8,14 @@ import { ProjectVisual } from './ProjectVisual'
 import { SectionReveal } from './SectionReveal'
 import { TiltCard } from './TiltCard'
 
-const projectDomainLabels: Record<string, string> = {
-  mentora: 'FULL-STACK OS · WEBSOCKETS',
-  transport: 'PREDICTIVE ML · SHAP PIPELINE',
-  goodfind: 'CURATED STOREFRONT · STATE SYNC',
-  docviewer: 'ON-DEVICE ENGINE · LOCAL PRIVACY',
-  rehabilitation: 'IOT FIRMWARE · BLE SENSORS',
-  syllabus: 'AGENTIC AI · GEMINI RAG',
-  skilltern: 'DETERMINISTIC MATCHING · EDTECH',
+const projectCategories: Record<string, string> = {
+  mentora: 'Full-Stack Platform',
+  transport: 'Machine Learning',
+  goodfind: 'E-Commerce Frontend',
+  docviewer: 'Browser Tools',
+  rehabilitation: 'IoT & Firmware',
+  syllabus: 'Study Platform',
+  skilltern: 'Web Application',
 }
 
 function ProjectCard({
@@ -29,11 +29,11 @@ function ProjectCard({
   total: number
   onOpen: (project: Project) => void
 }) {
-  const domainLabel = projectDomainLabels[project.id] || 'ENGINEERING ARCHITECTURE'
+  const category = projectCategories[project.id] || 'Software Engineering'
 
   return (
     <Reveal delay={index * 0.05} className="project-editorial-card">
-      {/* Visual HUD Stage — First Class 3D Interactive Console */}
+      {/* Visual Product Stage */}
       <div className="project-stage-col">
         <button
           className="visual-button"
@@ -47,30 +47,17 @@ function ProjectCard({
         </button>
       </div>
 
-      {/* Engineering Blueprint Content Column */}
+      {/* Project Information Column */}
       <div className="project-content-col">
         <div className="project-card-header">
           <div className="project-meta-line">
             <span className="project-index-code">
-              PROJECT {String(index + 1).padStart(2, '0')}
+              {String(index + 1).padStart(2, '0')}
             </span>
-            <span className="project-domain-tag">{domainLabel}</span>
+            <span className="project-domain-tag">{category}</span>
           </div>
           <h3 className="project-card-title">{project.title}</h3>
           <p className="project-card-desc">{project.description}</p>
-        </div>
-
-        {/* Core Architectural Highlights */}
-        <div className="project-highlights-box">
-          <span className="highlights-caption">ARCHITECTURAL HIGHLIGHTS</span>
-          <ul className="highlights-list">
-            {project.features.slice(0, 2).map((feature, featureIndex) => (
-              <li key={featureIndex} className="highlight-item">
-                <span className="highlight-bullet">—</span>
-                <span>{feature}</span>
-              </li>
-            ))}
-          </ul>
         </div>
 
         {/* Tech Stack Chips */}
@@ -82,7 +69,7 @@ function ProjectCard({
           ))}
         </div>
 
-        {/* Action Triggers */}
+        {/* Actions */}
         <div className="project-actions-row">
           <a
             href={project.github}
@@ -130,7 +117,7 @@ export function ProjectShowcase() {
         <Reveal delay={0.08} className="section-title-wrap">
           <h2 id="work-title">Selected<br /><em>projects.</em></h2>
           <p className="section-lead-desc">
-            Seven production systems, distributed backends, ML forecasting pipelines, and autonomous agent loops engineered with uncompromising technical rigor.
+            Applications, tools, and platforms built with clean architecture and modern engineering standards.
           </p>
         </Reveal>
       </div>

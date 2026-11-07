@@ -143,7 +143,7 @@ export const portfolio = {
       description: 'A sensor-based glove and companion mobile app for monitoring finger movement and delivering haptic feedback during rehabilitation exercises.',
       problem: 'A physical gesture becomes more useful when the sensing, feedback, and mobile monitoring loop are designed together.',
       features: ['Individual finger movement tracking with flex sensors', 'Force sensing and finger-specific vibration feedback', 'OLED status display for angles and pressure', 'Bluetooth data exchange with a Flutter companion app'],
-      stack: ['Flutter', 'Dart', 'Arduino / ESP32', 'Bluetooth', 'Flex sensors', 'OLED'],
+      stack: ['Flutter', 'Dart', 'Arduino & ESP32', 'Bluetooth', 'Flex sensors', 'OLED'],
       github: 'https://github.com/phanikumar122/Smart-Hand-Rehabilitation',
       visual: 'rehabilitation',
       featured: false,
