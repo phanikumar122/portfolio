@@ -51,7 +51,7 @@ export function ProjectDialog({ project, onClose }: ProjectDialogProps) {
   return (
     <div className="dialog-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose() }}>
       <div className="project-dialog" role="dialog" aria-modal="true" aria-labelledby="project-dialog-title" ref={dialogRef}>
-         <div className="dialog-topline"><span>details / {project.id}</span><button ref={closeButtonRef} type="button" className="icon-button" aria-label="Close project details" onClick={onClose}><X size={18} /></button></div>
+         <div className="dialog-topline"><span>Case Study Specification · {project.title}</span><button ref={closeButtonRef} type="button" className="icon-button" aria-label="Close project details" onClick={onClose}><X size={18} /></button></div>
         <div className="dialog-grid">
           <div className="dialog-visual"><ProjectVisual type={project.visual} /></div>
           <div className="dialog-copy">

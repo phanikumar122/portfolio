@@ -64,7 +64,7 @@ export const portfolio = {
       title: 'Build',
       index: '01',
       description: 'Interfaces and APIs that stay understandable as the product grows.',
-      skills: ['Java', 'C++', 'Python', 'JavaScript', 'React', 'Flutter', 'Figma', 'UI/UX principles', 'Node.js', 'Express.js', 'Spring Boot', 'REST APIs'],
+      skills: ['Java', 'C++', 'Python', 'JavaScript', 'React', 'Flutter', 'Figma', 'Interface Design Principles', 'Node.js', 'Express.js', 'Spring Boot', 'REST APIs'],
     },
     {
       title: 'Data',
@@ -81,8 +81,8 @@ export const portfolio = {
     {
       title: 'Agentic AI',
       index: '04',
-      description: 'Agentic building blocks that connect language models to useful actions and context.',
-      skills: ['LLM integration', 'Retrieval-Augmented Generation (RAG)', 'Tool use', 'Tokenization', 'Loop engineering'],
+      description: 'Language models, retrieval systems, and practical tools integrated into real software products.',
+      skills: ['LLM integration', 'Retrieval-Augmented Generation (RAG)', 'Prompt Engineering', 'Vector Embeddings', 'Workflow Automation'],
     },
   ] satisfies SkillGroup[],
   projects: [

@@ -65,7 +65,7 @@ export function ResumeModal({ isOpen, onClose, resumeUrl }: ResumeModalProps) {
         <div className="dialog-topline resume-modal-topline">
           <div className="resume-modal-title-group">
             <FileText size={16} />
-            <span id="resume-modal-title">Resume / Vinnakota Phani Kumar</span>
+            <span id="resume-modal-title"><span className="sr-only">Resume / Vinnakota Phani Kumar</span><span aria-hidden="true">Resume — Vinnakota Phani Kumar</span></span>
           </div>
           <div className="resume-modal-actions">
             <a

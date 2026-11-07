@@ -45,8 +45,8 @@ h1, h2, h3, p { margin-top: 0; }
 em { color: var(--accent); font-style: normal; }
 .section-title-wrap p { max-width: 480px; margin: 24px 0 0; color: var(--muted); font-size: 16px; line-height: 1.6; }
 .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-size: 11px; line-height: 1.25; }
-.eyebrow::before { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); content: ''; }
-.status-dot { display: inline-block; width: 7px; height: 7px; margin-right: 8px; border-radius: 50%; background: var(--accent); }
+
+
 
 
 /* Navigation */
@@ -203,9 +203,9 @@ em { color: var(--accent); font-style: normal; }
 .finger--3 { top: 19px; left: 108px; height: 137px; transform: rotate(3deg); }
 .finger--4 { top: 32px; left: 143px; height: 126px; transform: rotate(19deg); }
 .finger--5 { top: 59px; left: 173px; height: 99px; transform: rotate(38deg); }
-.pulse { position: absolute; width: 8px; height: 8px; border: 1px solid var(--accent); border-radius: 50%; background: var(--accent); }
-.pulse--a { top: 63px; left: 101px; }
-.pulse--b { right: 69px; bottom: 77px; }
+
+
+
 .glove-readings { display: flex; justify-content: center; gap: 18px; font-size: 9px; }
 .glove-readings span { display: flex; flex-direction: column; gap: 5px; }
 .glove-readings small { font-size: 8px; }

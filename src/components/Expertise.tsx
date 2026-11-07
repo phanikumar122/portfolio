@@ -12,7 +12,7 @@ const domainMeta: Record<string, { icon: typeof Code2; subtitle: string; focus: 
     icon: Code2,
     subtitle: 'Frontend & API Engineering',
     focus: 'Modular component hierarchies, strict TypeScript contracts, sub-second TTFB, and responsive fluid interfaces.',
-    tag: 'UI/UX & Web Architecture',
+    tag: 'Interface Design & Web Systems',
   },
   Data: {
     icon: Database,
@@ -27,10 +27,10 @@ const domainMeta: Record<string, { icon: typeof Code2; subtitle: string; focus: 
     tag: 'Cloud & Distributed Systems',
   },
   'Agentic AI': {
-    icon: Sparkles,
-    subtitle: 'Autonomous Systems & LLMs',
-    focus: 'Multi-turn agent loops, prompt orchestration, retrieval-augmented generation (RAG), and deterministic tool-calling.',
-    tag: 'Intelligent Agent Engineering',
+    icon: Cpu,
+    subtitle: 'Applied Machine Learning & LLMs',
+    focus: 'Integrating language models, retrieval pipelines (RAG), vector search indexes, and verified application APIs.',
+    tag: 'Intelligent Software Engineering',
   },
 }
 
@@ -143,7 +143,7 @@ export function Expertise() {
                       <div>
                         <div className="panel-kicker-bar">
                           <span className="panel-kicker-tag">{meta.tag}</span>
-                          <span className="panel-kicker-index">SPEC // {group.index}</span>
+                          <span className="panel-kicker-index">DOMAIN {group.index}</span>
                         </div>
                         <h3 className="panel-domain-title">
                           <Icon size={24} className="panel-domain-title-icon" aria-hidden="true" />
@@ -176,7 +176,6 @@ export function Expertise() {
                             variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0 } }}
                             transition={{ duration: reducedMotion ? 0 : 0.22, ease: [0.22, 1, 0.36, 1] }}
                           >
-                            <span className="tech-chip-slash">/</span>
                             <span className="tech-chip-name">{skill}</span>
                           </motion.div>
                         ))}

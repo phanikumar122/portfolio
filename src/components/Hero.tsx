@@ -64,7 +64,7 @@ export function Hero() {
           <motion.div className="portrait-stage" initial={reducedMotion ? undefined : { opacity: 0, scale: .94, y: 22 }} animate={reducedMotion ? undefined : { opacity: 1, scale: 1, y: 0 }} transition={{ duration: 1, delay: .22, ease: [0.22, 1, 0.36, 1] }}>
             <div className="portrait-glow" />
             <div className="portrait-card">
-              <div className="portrait-card-top"><span>PK / 01</span><span>Building</span></div>
+              <div className="portrait-card-top"><span>Phani Kumar</span><span>Software Engineer</span></div>
               <img
                 src={portraitSrc}
                 alt="Portrait of Vinnakota Phani Kumar"

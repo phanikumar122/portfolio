@@ -52,7 +52,7 @@ function ProjectCard({
         <div className="project-card-header">
           <div className="project-meta-line">
             <span className="project-index-code">
-              {String(index + 1).padStart(2, '0')} // {String(total).padStart(2, '0')}
+              PROJECT {String(index + 1).padStart(2, '0')}
             </span>
             <span className="project-domain-tag">{domainLabel}</span>
           </div>
@@ -66,7 +66,7 @@ function ProjectCard({
           <ul className="highlights-list">
             {project.features.slice(0, 2).map((feature, featureIndex) => (
               <li key={featureIndex} className="highlight-item">
-                <span className="highlight-bullet">/</span>
+                <span className="highlight-bullet">—</span>
                 <span>{feature}</span>
               </li>
             ))}
