@@ -119,4 +119,26 @@ describe('portfolio experience', () => {
     await user.click(toggleButton)
     expect(document.documentElement.classList.contains('dark')).toBe(!initialDark)
   })
+
+  it('opens and closes the in-page resume preview modal', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+
+    const resumeBtn = screen.getByRole('button', { name: /^view resume$/i })
+    await user.click(resumeBtn)
+
+    const modal = screen.getByRole('dialog', { name: /resume \/ vinnakota phani kumar/i })
+    expect(modal).toBeInTheDocument()
+
+    const closeBtn = screen.getByRole('button', { name: /^close resume preview$/i })
+    await user.click(closeBtn)
+    expect(screen.queryByRole('dialog', { name: /resume \/ vinnakota phani kumar/i })).not.toBeInTheDocument()
+  })
+
+  it('renders the hero status pill and social profile cards', () => {
+    render(<App />)
+    expect(screen.getByText(/available for opportunities/i)).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /connect on linkedin/i })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /follow on github/i })).toBeInTheDocument()
+  })
 })

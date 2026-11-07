@@ -2,18 +2,34 @@ import { ArrowDownRight, ArrowUpRight, Github, Linkedin } from 'lucide-react'
 import { motion } from 'motion/react'
 import { portfolio } from '../data/portfolio'
 import { useReducedMotion } from '../hooks/useReducedMotion'
+import { useTypewriter } from '../hooks/useTypewriter'
 import { Reveal } from './Reveal'
 import { SectionReveal } from './SectionReveal'
 import portraitSrc from '../assets/phani.jpg'
 
+const ROLES = [
+  'Full-Stack Developer',
+  'Cloud & Systems Enthusiast',
+  'Agentic AI Developer',
+  'Software Engineer',
+]
+
 export function Hero() {
   const reducedMotion = useReducedMotion()
+  const typedRole = useTypewriter(ROLES)
+  const displayRole = reducedMotion ? 'Full-Stack Developer' : typedRole
 
   return (
     <SectionReveal className="hero section-shell" id="top" aria-labelledby="hero-title">
-      
       <div className="hero-grid">
         <div className="hero-copy">
+          <Reveal delay={0.06} className="hero-status-pill">
+            <span className="hero-status-dot" />
+            <span className="hero-status-text">Available for opportunities</span>
+            <span className="hero-status-divider">•</span>
+            <span className="hero-status-location">India</span>
+          </Reveal>
+
           <motion.h1
             id="hero-title"
             className="hero-title"
@@ -23,9 +39,16 @@ export function Hero() {
           >
             I build<br /><span>useful</span><br />Applications.
           </motion.h1>
+
           <Reveal delay={0.16} className="hero-summary">
-            <p>I&apos;m {portfolio.person.shortName}. I build full-stack products, cloud systems, and AI tools.</p>
+            <div className="hero-role-line" aria-live="polite">
+              <span className="hero-prefix">I&apos;m {portfolio.person.shortName} — </span>
+              <strong className="hero-typed-role">{displayRole}</strong>
+              {!reducedMotion && <span className="hero-cursor" aria-hidden="true">|</span>}
+            </div>
+            <p className="hero-description">Building high-performance web applications, robust cloud backends, and intelligent digital systems.</p>
           </Reveal>
+
           <Reveal delay={0.24} className="hero-cta-row">
             <a className="button button--primary" href="#work">View projects <ArrowDownRight size={16} /></a>
             <a className="button button--quiet" href="#contact">Contact <ArrowUpRight size={16} /></a>
@@ -54,7 +77,6 @@ export function Hero() {
                 {...{ fetchpriority: 'high' }}
                 decoding="async"
               />
-              
             </div>
           </motion.div>
         </Reveal>
