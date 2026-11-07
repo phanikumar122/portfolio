@@ -708,32 +708,9 @@ html.dark .capability-panel {
   box-shadow: 10px 10px 0 rgba(185, 227, 94, 0.2);
 }
 .panel-headline-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 24px;
-  padding-bottom: 24px;
+  padding-bottom: 20px;
   border-bottom: 1px solid var(--line);
-  margin-bottom: 26px;
-}
-.panel-kicker-bar {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font: 10px var(--mono);
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.panel-kicker-tag {
-  color: var(--lime-deep);
-  font-weight: 700;
-}
-html.dark .panel-kicker-tag {
-  color: var(--lime);
-}
-.panel-kicker-index {
-  color: var(--muted);
+  margin-bottom: 24px;
 }
 .panel-domain-title {
   display: flex;
@@ -742,14 +719,8 @@ html.dark .panel-kicker-tag {
   font-size: clamp(28px, 3.5vw, 40px);
   font-weight: 700;
   letter-spacing: -.04em;
-  margin: 0 0 10px;
+  margin: 0 0 8px;
   color: var(--text);
-}
-.panel-domain-title-icon {
-  color: var(--lime-deep);
-}
-html.dark .panel-domain-title-icon {
-  color: var(--lime);
 }
 .panel-title-dot {
   color: var(--lime-deep);
@@ -763,43 +734,12 @@ html.dark .panel-title-dot {
   line-height: 1.6;
   color: var(--muted);
   margin: 0;
-  max-width: 520px;
-}
-.panel-count-badge {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  white-space: nowrap;
-}
-.count-large {
-  font-size: 38px;
-  font-family: var(--mono);
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1;
-}
-.count-label {
-  font: 10px var(--mono);
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-top: 4px;
-}
-.matrix-topline {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font: 11px var(--mono);
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 14px;
+  max-width: 580px;
 }
 .capability-skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
   gap: 10px;
-  margin-bottom: 26px;
 }
 .skill-tech-chip {
   display: flex;
@@ -826,30 +766,6 @@ html.dark .skill-tech-chip:hover {
   background: var(--lime);
   color: #121815;
   border-color: var(--lime);
-}
-
-.panel-engineering-footer {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 16px 20px;
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  background: var(--bg-raised);
-}
-.footer-focus-label {
-  font: 10px var(--mono);
-  font-weight: 700;
-  letter-spacing: .08em;
-  color: var(--text);
-  white-space: nowrap;
-  margin-top: 2px;
-}
-.footer-focus-text {
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--muted);
-  margin: 0;
 }
 
 /* ------------------------------------------------------------------------- */
