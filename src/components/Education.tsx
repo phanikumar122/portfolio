@@ -22,7 +22,7 @@ export function Education() {
             </div>
             <div className="education-timeline-box">
               <Calendar size={15} />
-              <span>2021 — 2025</span>
+              <span>2024 — 2028</span>
             </div>
           </div>
 
