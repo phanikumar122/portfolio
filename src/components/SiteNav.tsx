@@ -1,11 +1,17 @@
-import { Github, Linkedin, Mail, Menu, X } from 'lucide-react'
+import { Github, Linkedin, Mail, Menu, Moon, Sun, X } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { portfolio } from '../data/portfolio'
+import { useActiveSection } from '../hooks/useActiveSection'
+import { useTheme } from '../hooks/useTheme'
+
+const sectionIds = portfolio.navigation.map((item) => item.href.slice(1))
 
 export function SiteNav() {
   const [menuOpen, setMenuOpen] = useState(false)
   const menuButtonRef = useRef<HTMLButtonElement>(null)
   const menuRef = useRef<HTMLDivElement>(null)
+  const { theme, toggle } = useTheme()
+  const activeSection = useActiveSection(sectionIds)
 
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
@@ -65,10 +71,28 @@ export function SiteNav() {
         </a>
 
         <nav className="desktop-nav" aria-label="Primary navigation">
-          {portfolio.navigation.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}
+          {portfolio.navigation.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className={activeSection === item.href ? 'is-active' : undefined}
+              aria-current={activeSection === item.href ? 'true' : undefined}
+            >
+              {item.label}
+            </a>
+          ))}
         </nav>
 
         <div className="nav-actions">
+          <button
+            type="button"
+            className="theme-toggle nav-theme"
+            onClick={toggle}
+            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            aria-pressed={theme === 'dark'}
+          >
+            {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+          </button>
           <a className="nav-social" href={portfolio.person.github} target="_blank" rel="noreferrer" aria-label="GitHub profile"><Github size={16} /></a>
            <a className="nav-contact" href="#contact">Contact <Mail size={14} /></a>
           <button
@@ -98,6 +122,9 @@ export function SiteNav() {
            <a href={portfolio.person.linkedin} target="_blank" rel="noreferrer" tabIndex={menuOpen ? 0 : -1} onClick={closeMenu}><Linkedin size={15} /> LinkedIn</a>
            <a href={portfolio.person.github} target="_blank" rel="noreferrer" tabIndex={menuOpen ? 0 : -1} onClick={closeMenu}><Github size={15} /> GitHub</a>
            <a href={`mailto:${portfolio.person.email}`} tabIndex={menuOpen ? 0 : -1} onClick={closeMenu}><Mail size={15} /> Email</a>
+           <button type="button" className="theme-toggle" onClick={toggle} tabIndex={menuOpen ? 0 : -1} aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}>
+             {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />} {theme === 'dark' ? 'Light' : 'Dark'}
+           </button>
         </div>
       </div>
     </header>

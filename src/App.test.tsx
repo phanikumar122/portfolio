@@ -46,7 +46,7 @@ describe('portfolio experience', () => {
 
     const portrait = screen.getByRole('img', { name: 'Portrait of Vinnakota Phani Kumar' })
     expect(portrait).toBeInTheDocument()
-    expect(portrait).toHaveAttribute('src', './phani.jpg')
+    expect(portrait.getAttribute('src')).toMatch(/phani.*\.jpg|data:image|phani/i)
     const tabs = screen.getAllByRole('tab')
     expect(tabs[0]).toHaveAttribute('aria-selected', 'true')
     expect(tabs[0]).toHaveAttribute('aria-controls', 'skill-panel-01')
@@ -99,5 +99,24 @@ describe('portfolio experience', () => {
     expect(writeText).toHaveBeenCalledWith(portfolio.person.email)
 
     await waitFor(() => expect(screen.getByRole('button', { name: /copy failed/i })).toBeInTheDocument())
+  })
+
+  it('provides identifiable section landmarks for navigation anchors', () => {
+    const { container } = render(<App />)
+    const expectedIds = ['top', 'about', 'expertise', 'work', 'philosophy', 'education', 'credentials', 'achievements', 'contact']
+    expectedIds.forEach((id) => {
+      expect(container.querySelector(`#${id}`)).not.toBeNull()
+    })
+  })
+
+  it('toggles dark theme on button click', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+    const toggleButton = screen.getAllByRole('button', { name: /switch to (dark|light) mode/i })[0]
+    expect(toggleButton).toBeInTheDocument()
+
+    const initialDark = document.documentElement.classList.contains('dark')
+    await user.click(toggleButton)
+    expect(document.documentElement.classList.contains('dark')).toBe(!initialDark)
   })
 })

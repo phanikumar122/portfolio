@@ -4,8 +4,7 @@ import { portfolio } from '../data/portfolio'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { Reveal } from './Reveal'
 import { SectionReveal } from './SectionReveal'
-
-const portraitSrc = './phani.jpg'
+import portraitSrc from '../assets/phani.jpg'
 
 export function Hero() {
   const reducedMotion = useReducedMotion()
@@ -32,9 +31,9 @@ export function Hero() {
             <a className="button button--quiet" href="#contact">Contact <ArrowUpRight size={16} /></a>
           </Reveal>
           <Reveal delay={0.28} className="hero-proof-row">
-            <div><strong>07</strong><span>Projects</span></div>
-            <div><strong>04</strong><span>Skills</span></div>
-            <div><strong>01</strong><span>Focus</span></div>
+            <div><strong>{String(portfolio.projects.length).padStart(2, '0')}</strong><span>Projects</span></div>
+            <div><strong>{String(portfolio.achievements.length).padStart(2, '0')}</strong><span>Hackathon wins</span></div>
+            <div><strong>{String(portfolio.credentials.length).padStart(2, '0')}</strong><span>Certificates</span></div>
           </Reveal>
           <Reveal delay={0.32} className="hero-socials">
             <span className="mono-label">Links</span>
@@ -47,7 +46,14 @@ export function Hero() {
             <div className="portrait-glow" />
             <div className="portrait-card">
               <div className="portrait-card-top"><span>PK / 01</span><span>Building</span></div>
-              <img src={portraitSrc} alt="Portrait of Vinnakota Phani Kumar" />
+              <img
+                src={portraitSrc}
+                alt="Portrait of Vinnakota Phani Kumar"
+                width={640}
+                height={806}
+                {...{ fetchpriority: 'high' }}
+                decoding="async"
+              />
               
             </div>
           </motion.div>

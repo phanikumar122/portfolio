@@ -5,7 +5,7 @@ import { SectionReveal } from './SectionReveal'
 
 export function Education() {
   return (
-    <SectionReveal className="education section-shell section-padding" aria-labelledby="education-title">
+    <SectionReveal className="education section-shell section-padding" id="education" aria-labelledby="education-title">
       <div className="section-heading"><Reveal delay={0.08} className="section-title-wrap"><h2 id="education-title">My<br /><em>education.</em></h2></Reveal></div>
       <Reveal className="education-card">
         <div className="education-mark"><BookOpen size={22} /></div>

@@ -11,7 +11,7 @@ const buildSteps = [
 
 export function Philosophy() {
   return (
-    <SectionReveal className="philosophy section-shell section-padding" aria-labelledby="philosophy-title">
+    <SectionReveal className="philosophy section-shell section-padding" id="philosophy" aria-labelledby="philosophy-title">
       <div className="philosophy-intro">
          <Reveal delay={0.08}><h2 id="philosophy-title">My<br /><em>approach.</em></h2></Reveal>
       </div>

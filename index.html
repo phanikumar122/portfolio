@@ -3,17 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#f4f2ec" />
+    <meta name="theme-color" content="#f4f2ec" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#101614" media="(prefers-color-scheme: dark)" />
     <meta name="description" content="Portfolio of Vinnakota Phani Kumar, a Computer Science Engineer building full-stack software, cloud systems, and intelligent digital experiences." />
+    <link rel="canonical" href="https://phani-kumar.dev/" />
     <meta property="og:title" content="Vinnakota Phani Kumar — Computer Science Engineer" />
     <meta property="og:description" content="Full-stack engineering, cloud systems, and intelligent digital experiences." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/og-card.svg" />
+    <meta property="og:url" content="https://phani-kumar.dev/" />
+    <meta property="og:image" content="https://phani-kumar.dev/og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Vinnakota Phani Kumar — Computer Science Engineer" />
     <meta name="twitter:description" content="Full-stack engineering, cloud systems, and intelligent digital experiences." />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="twitter:image" content="https://phani-kumar.dev/og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <title>Vinnakota Phani Kumar — Computer Science Engineer</title>
+    <script>
+      // Set the theme before first paint to avoid a flash of the wrong palette.
+      (function () {
+        try {
+          var stored = localStorage.getItem('portfolio-theme');
+          var dark = stored ? stored === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.classList.add('dark');
+        } catch (e) {}
+      })();
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Vinnakota Phani Kumar",
+        "jobTitle": "Computer Science Engineer",
+        "url": "https://phani-kumar.dev/",
+        "email": "mailto:phanivinnakota122@gmail.com",
+        "sameAs": [
+          "https://github.com/phanikumar122",
+          "https://www.linkedin.com/in/phani-kumar-999022375/"
+        ]
+      }
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>

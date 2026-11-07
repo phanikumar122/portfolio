@@ -51,7 +51,7 @@ export const portfolio = {
     email: 'phanivinnakota122@gmail.com',
     github: 'https://github.com/phanikumar122',
     linkedin: 'https://www.linkedin.com/in/phani-kumar-999022375/',
-    resumeUrl: null as string | null,
+    resumeUrl: './resume.pdf',
   },
   navigation: [
     { label: 'About', href: '#about' },

@@ -93,12 +93,14 @@ All personal and portfolio content is centralized in:
 src/data/portfolio.ts
 ```
 
-Edit the `portfolio.person`, `skills`, `projects`, `credentials`, `achievements`, and `education` objects there. The optional resume field is currently:
+Edit the `portfolio.person`, `skills`, `projects`, `credentials`, `achievements`, and `education` objects there. The resume is served from `public/resume.pdf` and linked via `portfolio.person.resumeUrl` — drop a real resume PDF at that path to replace the placeholder.
 
-```ts
-resumeUrl: null
-```
+## Theming
 
-When a real resume URL is available, replace `null` with that URL and add a link in the navigation/contact UI if desired. No resume URL has been invented.
+A light/dark toggle lives in the navbar. The palette is tokenized in `src/styles/tokens.css` (`html.dark` overrides) with the dark overrides at the end of `src/styles/redesign.css`. The choice persists in `localStorage` and follows the OS preference on first visit.
+
+## Contact form
+
+The contact section ships a working form. Leave `FORMSPREE_ENDPOINT` in `src/components/Contact.tsx` blank to fall back to the visitor's mail app, or paste a [Formspree](https://formspree.io) endpoint to send submissions straight to the inbox.
 
 Project descriptions and stacks were written from the supplied GitHub READMEs, repository metadata, and supplied live links. Project visuals are intentionally generated treatments, not claimed screenshots.

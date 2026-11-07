@@ -42,7 +42,7 @@ export function Expertise() {
   return (
     <SectionReveal className="expertise section-shell section-padding" id="expertise" aria-labelledby="expertise-title">
       <div className="section-heading section-heading--split">
-        <Reveal delay={0.08} className="section-title-wrap"><h2 id="expertise-title">My<br/><em><br></br>skills.</em></h2></Reveal>
+        <Reveal delay={0.08} className="section-title-wrap"><h2 id="expertise-title">My<br /><em>skills.</em></h2></Reveal>
       </div>
       <div className="expertise-map">
         <div className="expertise-tabs" role="tablist" aria-label="Technical expertise groups" aria-orientation="vertical">

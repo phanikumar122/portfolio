@@ -56,3 +56,31 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Dark theme — warm ink surfaces, paper text, same lime accent. */
+html.dark {
+  --bg: #101614;
+  --bg-raised: #161d1a;
+  --surface: #1d2622;
+  --surface-strong: #27312c;
+  --surface-hover: #222b26;
+
+  --line: #2c3733;
+  --line-soft: #26302c;
+  --line-glow: rgba(185, 227, 94, 0.28);
+
+  --text: #eceee6;
+  --muted: #a4b0a6;
+  --faint: #6f7d72;
+
+  --accent: #b9e35e;
+  --accent-dark: #93b844;
+  --accent-soft: rgba(185, 227, 94, 0.16);
+  --accent-glow: rgba(185, 227, 94, 0.32);
+
+  --shadow-sm: 0 6px 18px rgba(0, 0, 0, 0.28);
+  --shadow-md: 0 18px 48px rgba(0, 0, 0, 0.36), 0 2px 6px rgba(0, 0, 0, 0.22);
+  --shadow-lg: 0 28px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+
+  color-scheme: dark;
+}

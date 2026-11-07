@@ -12,7 +12,7 @@ function ProjectLinks({ project }: { project: Project }) {
   return (
     <div className="project-links">
        <a href={project.github} target="_blank" rel="noreferrer" aria-label={`${project.title} code`}><Github size={14} /> code</a>
-       {project.live && <a href={project.live} target="_blank" rel="noreferrer" aria-label={`${project.title} demo`}><ExternalLink size={14} /> Live Url</a>}
+       {project.live && <a href={project.live} target="_blank" rel="noreferrer" aria-label={`${project.title} demo`}><ExternalLink size={14} /> Live demo</a>}
     </div>
   )
 }
