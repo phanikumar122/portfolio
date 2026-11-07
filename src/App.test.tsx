@@ -109,15 +109,9 @@ describe('portfolio experience', () => {
     })
   })
 
-  it('toggles dark theme on button click', async () => {
-    const user = userEvent.setup()
+  it('enforces dark theme across the website', () => {
     render(<App />)
-    const toggleButton = screen.getAllByRole('button', { name: /switch to (dark|light) mode/i })[0]
-    expect(toggleButton).toBeInTheDocument()
-
-    const initialDark = document.documentElement.classList.contains('dark')
-    await user.click(toggleButton)
-    expect(document.documentElement.classList.contains('dark')).toBe(!initialDark)
+    expect(document.documentElement.classList.contains('dark')).toBe(true)
   })
 
   it('opens and closes the in-page resume preview modal', async () => {

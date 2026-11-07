@@ -1,75 +1,5 @@
 :root {
-  /* Core Semantic Palette — Light Theme (Warm Paper, Deep Charcoal Ink, Dark Chartreuse) */
-  --bg: #f5f3ec;
-  --bg-raised: #fbfaf6;
-  --surface: #ffffff;
-  --surface-strong: #ebe8de;
-  --surface-hover: #edeae0;
-
-  /* Editorial Aliases */
-  --paper: #f5f3ec;
-  --paper-bright: #ffffff;
-  --ink: #121815;
-  --ink-soft: #232d28;
-  --ink-muted: #546059;
-  --lime: #b9e35e;
-  --lime-deep: #435e16;
-  --lime-fixed: #b9e35e;
-  --ink-fixed: #121815;
-  --paper-fixed: #f5f3ec;
-
-  /* Borders & Dividers */
-  --line: rgba(18, 24, 21, 0.14);
-  --line-soft: rgba(18, 24, 21, 0.08);
-  --line-glow: rgba(185, 227, 94, 0.35);
-
-  /* Typography Colors (WCAG AAA High Contrast) */
-  --text: #121815;
-  --muted: #546059;
-  --faint: #78857d;
-
-  /* Accent Colors */
-  --accent: #435e16;
-  --accent-dark: #32470f;
-  --accent-soft: rgba(185, 227, 94, 0.2);
-  --accent-glow: rgba(185, 227, 94, 0.4);
-
-  /* Secondary Accents */
-  --violet: #5a61cc;
-  --orchid: #8f65be;
-  --cyan: #1a8f94;
-  --teal: #337d6a;
-  --rose: #cb6550;
-  --amber: #b08625;
-  --orange: #c4682c;
-  --blue: #405ec4;
-
-  /* Typography & Layout Metrics */
-  --display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, 'Courier New', monospace;
-  --shell: min(1140px, calc(100% - 64px));
-  --gutter: clamp(24px, 4vw, 56px);
-  --radius: 16px;
-  --radius-sm: 8px;
-  --radius-lg: 24px;
-  --radius-full: 9999px;
-
-  /* Elevation Shadows */
-  --shadow-sm: 0 4px 16px rgba(18, 24, 21, 0.06);
-  --shadow-md: 0 12px 36px rgba(18, 24, 21, 0.09), 0 2px 6px rgba(18, 24, 21, 0.04);
-  --shadow-lg: 0 24px 64px rgba(18, 24, 21, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.7);
-
-  font-family: var(--display);
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Core Semantic Palette — Dark Theme (Obsidian Ink, Elevated Dark Surface, Neon Chartreuse) */
-html.dark {
+  /* Core Semantic Palette — Obsidian Dark Theme (Exclusive) */
   --bg: #0f1412;
   --bg-raised: #151d19;
   --surface: #1a231f;
@@ -104,10 +34,43 @@ html.dark {
   --accent-soft: rgba(185, 227, 94, 0.16);
   --accent-glow: rgba(185, 227, 94, 0.32);
 
+  /* Secondary Accents */
+  --violet: #8288f5;
+  --orchid: #a982d6;
+  --cyan: #3fc5cb;
+  --teal: #4eb59c;
+  --rose: #e67f6b;
+  --amber: #cca23d;
+  --orange: #dc7e42;
+  --blue: #5d7ce6;
+
+  /* Typography & Layout Metrics */
+  --display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, 'Courier New', monospace;
+  --shell: min(1140px, calc(100% - 64px));
+  --gutter: clamp(24px, 4vw, 56px);
+  --radius: 16px;
+  --radius-sm: 8px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
   /* Elevation Shadows */
   --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.36);
   --shadow-md: 0 16px 44px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.25);
   --shadow-lg: 0 24px 72px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.06);
 
+  color-scheme: dark;
+  font-family: var(--display);
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, html.dark {
+  background: #0f1412;
+  color: #f4f6ef;
   color-scheme: dark;
 }

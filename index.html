@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#f4f2ec" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#101614" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#0f1412" />
+    <meta name="color-scheme" content="dark" />
     <meta name="description" content="Portfolio of Vinnakota Phani Kumar, a Computer Science Engineer building full-stack software, cloud systems, and intelligent digital experiences." />
     <link rel="canonical" href="https://phani-kumar.dev/" />
     <meta property="og:title" content="Vinnakota Phani Kumar — Computer Science Engineer" />
@@ -25,7 +25,7 @@
       (function () {
         try {
           var stored = localStorage.getItem('portfolio-theme');
-          var dark = stored ? stored === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+          var dark = true;
           if (dark) document.documentElement.classList.add('dark');
         } catch (e) {}
       })();
