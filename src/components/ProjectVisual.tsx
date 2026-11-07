@@ -81,9 +81,9 @@ export function ProjectVisual({ type, compact = false }: ProjectVisualProps) {
               <h4>Curated Objects with a Point of View</h4>
             </div>
             <div className="goodfind-inventory-row">
-              <div className="inventory-pill"><span>01</span> Arc Lighting</div>
-              <div className="inventory-pill"><span>02</span> Ceramic Forms</div>
-              <div className="inventory-pill"><span>03</span> Minimalist Desk</div>
+              <div className="inventory-chip"><span>01</span> Arc Lighting</div>
+              <div className="inventory-chip"><span>02</span> Ceramic Forms</div>
+              <div className="inventory-chip"><span>03</span> Minimalist Desk</div>
             </div>
           </div>
           <div className="hud-footer">
