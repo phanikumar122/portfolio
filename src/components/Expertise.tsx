@@ -1,4 +1,4 @@
-import { ChevronDown, Code2, Database, Network, Sparkles } from 'lucide-react'
+import { ChevronRight, Code2, Database, Network, Sparkles } from 'lucide-react'
 import { motion } from 'motion/react'
 import { useRef, useState } from 'react'
 import type { KeyboardEvent } from 'react'
@@ -11,6 +11,7 @@ const iconByTitle: Record<string, typeof Code2> = {
   Build: Code2,
   Data: Database,
   Systems: Network,
+  'Agentic AI': Sparkles,
   AI: Sparkles,
 }
 
@@ -42,10 +43,14 @@ export function Expertise() {
   return (
     <SectionReveal className="expertise section-shell section-padding" id="expertise" aria-labelledby="expertise-title">
       <div className="section-heading section-heading--split">
-        <Reveal delay={0.08} className="section-title-wrap"><h2 id="expertise-title">My<br /><em>skills.</em></h2></Reveal>
+        <Reveal delay={0.08} className="section-title-wrap">
+          <h2 id="expertise-title">Technical<br /><em>capabilities.</em></h2>
+          <p className="section-lead-desc">Core competencies across frontend engineering, distributed cloud backends, and autonomous agent loops.</p>
+        </Reveal>
       </div>
-      <div className="expertise-map">
-        <div className="expertise-tabs" role="tablist" aria-label="Technical expertise groups" aria-orientation="vertical">
+
+      <div className="expertise-editorial-layout">
+        <div className="expertise-nav-row" role="tablist" aria-label="Technical expertise groups" aria-orientation="horizontal">
           {portfolio.skills.map((group, index) => {
             const Icon = iconByTitle[group.title] ?? Code2
             const isActive = active === index
@@ -56,7 +61,7 @@ export function Expertise() {
               <button
                 key={group.title}
                 ref={(element) => { tabRefs.current[index] = element }}
-                className={`expertise-tab ${isActive ? 'is-active' : ''}`}
+                className={`expertise-segment-btn ${isActive ? 'is-active' : ''}`}
                 type="button"
                 role="tab"
                 id={tabId}
@@ -66,48 +71,67 @@ export function Expertise() {
                 onClick={() => selectSkill(index)}
                 onKeyDown={handleTabKeyDown}
               >
-                <span className="tab-index">{group.index}</span>
-                <span className="tab-icon" aria-hidden="true"><Icon size={17} /></span>
-                <span className="tab-copy"><span className="tab-title">{group.title}</span><span className="tab-caption">{group.skills.length} capabilities</span></span>
-                <span className="tab-arrow" aria-hidden="true"><ChevronDown size={15} /></span>
+                <span className="segment-index">{group.index}</span>
+                <span className="segment-icon" aria-hidden="true"><Icon size={16} /></span>
+                <span className="segment-title">{group.title}</span>
+                <span className="segment-count">{group.skills.length}</span>
               </button>
             )
           })}
         </div>
+
         <div className="expertise-panel-shell">
           {portfolio.skills.map((group, index) => {
             const isActive = active === index
             const panelId = `skill-panel-${group.index}`
 
             return (
-              <div key={group.title} className="expertise-panel" id={panelId} role="tabpanel" aria-labelledby={`skill-tab-${group.index}`} aria-live="polite" hidden={!isActive}>
+              <div
+                key={group.title}
+                className="expertise-panel"
+                id={panelId}
+                role="tabpanel"
+                aria-labelledby={`skill-tab-${group.index}`}
+                aria-live="polite"
+                hidden={!isActive}
+              >
                 {isActive && (
                   <motion.div
                     className="expertise-panel-stage"
-                    initial={reducedMotion ? false : { opacity: 0, y: 18 }}
+                    initial={reducedMotion ? false : { opacity: 0, y: 14 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    
-                    <div className="panel-content"><h3>{group.title}<span>.</span></h3><p>{group.description}</p></div>
+                    <div className="panel-editorial-header">
+                      <div>
+                        <span className="panel-domain-index">DOMAIN {group.index}</span>
+                        <h3>{group.title}<span>.</span></h3>
+                        <p>{group.description}</p>
+                      </div>
+                      <div className="panel-summary-stat">
+                        <strong>{String(group.skills.length).padStart(2, '0')}</strong>
+                        <span>Verified Technologies</span>
+                      </div>
+                    </div>
+
                     <motion.div
                       className="skill-list"
                       initial={reducedMotion ? false : 'hidden'}
                       animate="visible"
-                      variants={{ hidden: {}, visible: { transition: { delayChildren: 0.12, staggerChildren: 0.045 } } }}
+                      variants={{ hidden: {}, visible: { transition: { delayChildren: 0.08, staggerChildren: 0.03 } } }}
                     >
                       {group.skills.map((skill) => (
                         <motion.span
                           key={skill}
-                          variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0 } }}
-                          transition={{ duration: reducedMotion ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] }}
+                          className="skill-tech-item"
+                          variants={{ hidden: { opacity: 0, y: 6 }, visible: { opacity: 1, y: 0 } }}
+                          transition={{ duration: reducedMotion ? 0 : 0.25, ease: [0.22, 1, 0.36, 1] }}
                         >
+                          <span className="tech-item-mark">/</span>
                           {skill}
                         </motion.span>
                       ))}
                     </motion.div>
-                    
-                    
                   </motion.div>
                 )}
               </div>

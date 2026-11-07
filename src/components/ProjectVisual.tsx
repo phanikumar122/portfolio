@@ -1,4 +1,4 @@
-import { ArrowUpRight, Bot, FileText, Hand, LockKeyhole, Route, Sparkles } from 'lucide-react'
+import { Activity, ArrowUpRight, Bot, Cpu, Database, FileText, Globe, Layers, Lock, ShieldCheck, Sparkles, Terminal, Wifi } from 'lucide-react'
 import type { ProjectVisual as ProjectVisualType } from '../data/portfolio'
 
 interface ProjectVisualProps {
@@ -6,76 +6,205 @@ interface ProjectVisualProps {
   compact?: boolean
 }
 
-function MiniLine({ width, className = '' }: { width: string; className?: string }) {
-  return <span className={`mini-line ${className}`} style={{ width }} />
-}
-
 export function ProjectVisual({ type, compact = false }: ProjectVisualProps) {
   return (
-    <div className={`project-visual project-visual--${type} ${compact ? 'project-visual--compact' : ''}`} data-visual={type} aria-hidden="true">
+    <div
+      className={`project-visual project-visual--${type} ${compact ? 'project-visual--compact' : ''}`}
+      data-visual={type}
+      aria-hidden="true"
+    >
       {type === 'mentora' && (
-        <>
-          <div className="visual-window-bar"><span /><span /><span /><b>mentora / portal</b></div>
-          <div className="mentora-layout">
-            <div className="visual-sidebar"><MiniLine width="62%" /><MiniLine width="82%" /><MiniLine width="52%" /><MiniLine width="70%" /></div>
-            <div className="mentora-main">
-              <div className="visual-kicker">Good morning, student</div>
-              <div className="visual-title">Your academic<br /><em>workspace.</em></div>
-              <div className="visual-stat-row"><div><small>attendance</small><strong>↗ tracking</strong></div><div><small>assignments</small><strong>04 active</strong></div></div>
-              <div className="message-stream"><span className="stream-dot" /><span>New discussion in Data Structures</span><ArrowUpRight size={13} /></div>
+        <div className="visual-hud visual-hud--mentora">
+          <div className="hud-topline">
+            <span className="hud-label"><Globe size={13} /> mentora.app / academic-os</span>
+            <span className="hud-status-badge"><span className="hud-live-dot" /> STOMP Active</span>
+          </div>
+          <div className="hud-body mentora-grid">
+            <div className="mentora-card mentora-card--active">
+              <span className="mentora-tag">Active Sprint</span>
+              <strong>Data Structures & Algos</strong>
+              <div className="mentora-metric">
+                <span>Attendance</span>
+                <b>94.8%</b>
+              </div>
+            </div>
+            <div className="mentora-card">
+              <span className="mentora-tag">Workspace</span>
+              <strong>Cloud Architectures</strong>
+              <div className="mentora-metric">
+                <span>Assignments</span>
+                <b>04 / 04 Submitted</b>
+              </div>
             </div>
           </div>
-        </>
-      )}
-      {type === 'transport' && (
-        <>
-          <div className="transport-label"><Route size={14} /> DEMAND / MULTI-MODAL</div>
-          <div className="transport-chart">
-            <div className="chart-y"><span>high</span><span>low</span></div>
-            <div className="chart-bars"><i style={{ height: '47%' }} /><i style={{ height: '72%' }} /><i style={{ height: '38%' }} /><i style={{ height: '86%' }} /><i style={{ height: '62%' }} /><i style={{ height: '94%' }} /><i style={{ height: '55%' }} /><i style={{ height: '76%' }} /></div>
-            <svg viewBox="0 0 300 100" preserveAspectRatio="none"><path d="M0 65 C30 51, 38 73, 63 53 S90 37, 116 57 S145 73, 170 41 S203 33, 224 42 S262 67, 300 14" /></svg>
-            <div className="chart-x"><span>bus</span><span>rail</span><span>air</span><span>route signal</span></div>
+          <div className="hud-footer">
+            <span className="hud-footer-note">WebSocket message bus: Connected</span>
+            <span className="hud-footer-role">Role: Admin / Faculty / Student</span>
           </div>
-        </>
+        </div>
       )}
+
+      {type === 'transport' && (
+        <div className="visual-hud visual-hud--transport">
+          <div className="hud-topline">
+            <span className="hud-label"><Terminal size={13} /> apsrtc-demand / olap-pipeline</span>
+            <span className="hud-status-badge">Model: XGBoost + SHAP</span>
+          </div>
+          <div className="transport-stats-row">
+            <div><small>ACCURACY</small><strong>94.2%</strong></div>
+            <div><small>ANOMALY SCORE</small><strong>0.04</strong></div>
+            <div><small>MODES</small><strong>Bus · Rail · Air</strong></div>
+          </div>
+          <div className="transport-wave-box">
+            <svg viewBox="0 0 300 80" preserveAspectRatio="none" className="transport-svg">
+              <path d="M0,60 C40,40 70,70 110,35 C150,5 180,55 220,25 C260,-5 280,30 300,10" fill="none" stroke="currentColor" strokeWidth="2.5" />
+            </svg>
+            <div className="transport-x-axis">
+              <span>06:00 (Peak)</span>
+              <span>12:00 (Normal)</span>
+              <span>18:00 (Peak)</span>
+              <span>23:00 (Low)</span>
+            </div>
+          </div>
+        </div>
+      )}
+
       {type === 'goodfind' && (
-        <>
-          <div className="goodfind-top"><span>GOODFIND</span><span>store / 004</span><span>bag (02)</span></div>
-          <div className="goodfind-copy"><small>THE NEW EVERYDAY</small><strong>Objects<br />with a point<br /><i>of view.</i></strong><span className="visual-button-cta">explore collection <ArrowUpRight size={13} /></span></div>
-          <div className="goodfind-product-grid"><div className="product product--one"><span>01</span><b>arc lamp</b></div><div className="product product--two"><span>02</span><b>linen form</b></div><div className="product product--three"><span>03</span><b>stoneware</b></div></div>
-        </>
+        <div className="visual-hud visual-hud--goodfind">
+          <div className="hud-topline">
+            <span className="hud-label"><Layers size={13} /> goodfind.store / merchant-console</span>
+            <span className="hud-status-badge">Live Storefront</span>
+          </div>
+          <div className="goodfind-mock-body">
+            <div className="goodfind-hero-banner">
+              <span className="banner-kicker">EDITORIAL STOREFRONT</span>
+              <h4>Curated Objects with a Point of View</h4>
+            </div>
+            <div className="goodfind-inventory-row">
+              <div className="inventory-pill"><span>01</span> Arc Lighting</div>
+              <div className="inventory-pill"><span>02</span> Ceramic Forms</div>
+              <div className="inventory-pill"><span>03</span> Minimalist Desk</div>
+            </div>
+          </div>
+          <div className="hud-footer">
+            <span>TanStack Query + Zustand store sync</span>
+            <b>Bag: 2 items ($184)</b>
+          </div>
+        </div>
       )}
+
       {type === 'docviewer' && (
-        <>
-          <div className="docviewer-header"><FileText size={16} /><span>local library</span><LockKeyhole size={14} /></div>
-          <div className="docviewer-grid"><div className="doc-card doc-card--pdf"><span>PDF</span><strong>brief.pdf</strong><small>2.4 MB</small></div><div className="doc-card doc-card--doc"><span>MD</span><strong>notes.md</strong><small>edited today</small></div><div className="doc-card doc-card--csv"><span>CSV</span><strong>routes.csv</strong><small>48 rows</small></div><div className="doc-card doc-card--img"><span>IMG</span><strong>cover.svg</strong><small>vector</small></div></div>
-          <div className="docviewer-foot"><span>everything stays here</span><LockKeyhole size={12} /></div>
-        </>
+        <div className="visual-hud visual-hud--docviewer">
+          <div className="hud-topline">
+            <span className="hud-label"><FileText size={13} /> local-doc-engine / indexeddb</span>
+            <span className="hud-status-badge"><Lock size={12} /> 100% Private (On-Device)</span>
+          </div>
+          <div className="docviewer-matrix">
+            <div className="doc-tile doc-tile--pdf">
+              <span className="doc-ext">PDF</span>
+              <strong>technical_spec.pdf</strong>
+              <small>Merge / Split / Watermark</small>
+            </div>
+            <div className="doc-tile doc-tile--code">
+              <span className="doc-ext">MD</span>
+              <strong>architecture_notes.md</strong>
+              <small>Instant Local Parse</small>
+            </div>
+            <div className="doc-tile doc-tile--data">
+              <span className="doc-ext">CSV</span>
+              <strong>traffic_metrics.csv</strong>
+              <small>Client-Side Table</small>
+            </div>
+          </div>
+          <div className="hud-footer">
+            <span>Zero server upload · PDF.js & pdf-lib</span>
+            <b>IndexedDB Sync</b>
+          </div>
+        </div>
       )}
+
       {type === 'rehabilitation' && (
-        <>
-          <div className="glove-label"><Hand size={16} /> SENSOR LOOP / 06</div>
-          <div className="glove-graphic"><div className="glove-palm" /><i className="finger finger--1" /><i className="finger finger--2" /><i className="finger finger--3" /><i className="finger finger--4" /><i className="finger finger--5" /><div className="pulse pulse--a" /><div className="pulse pulse--b" /></div>
-          <div className="glove-readings"><span><small>flex</small> 38°</span><span><small>pressure</small> 0.42</span><span><small>bluetooth</small> paired</span></div>
-        </>
+        <div className="visual-hud visual-hud--rehab">
+          <div className="hud-topline">
+            <span className="hud-label"><Cpu size={13} /> esp32-sensor-loop / ble-5.0</span>
+            <span className="hud-status-badge"><Wifi size={12} /> Paired (Flutter App)</span>
+          </div>
+          <div className="rehab-telemetry-grid">
+            <div className="telemetry-bar-unit">
+              <span>Thumb</span>
+              <div className="bar-track"><i style={{ width: '42%' }} /></div>
+              <strong>42°</strong>
+            </div>
+            <div className="telemetry-bar-unit">
+              <span>Index</span>
+              <div className="bar-track"><i style={{ width: '82%' }} /></div>
+              <strong>82°</strong>
+            </div>
+            <div className="telemetry-bar-unit">
+              <span>Middle</span>
+              <div className="bar-track"><i style={{ width: '65%' }} /></div>
+              <strong>65°</strong>
+            </div>
+            <div className="telemetry-bar-unit">
+              <span>Force</span>
+              <div className="bar-track"><i style={{ width: '74%' }} /></div>
+              <strong>0.74N</strong>
+            </div>
+          </div>
+          <div className="hud-footer">
+            <span>Haptic feedback: 120Hz impulse</span>
+            <b>OLED Display synced</b>
+          </div>
+        </div>
       )}
+
       {type === 'syllabus' && (
-        <>
-          <div className="syllabus-header"><span>syllabi.ai</span><span>your next 7 days</span></div>
-          <div className="syllabus-layout"><div className="syllabus-ring"><div><strong>62</strong><small>% mapped</small></div></div><div className="syllabus-list"><div className="syllabus-item is-done"><span>01</span><b>Foundations</b><i>done</i></div><div className="syllabus-item is-active"><span>02</span><b>Data structures</b><i>next</i></div><div className="syllabus-item"><span>03</span><b>Systems thinking</b><i>queued</i></div></div></div>
-          <div className="ai-note"><Bot size={14} /> plan generated from your syllabus</div>
-        </>
+        <div className="visual-hud visual-hud--syllabus">
+          <div className="hud-topline">
+            <span className="hud-label"><Bot size={13} /> syllabi.ai / gemini-parser</span>
+            <span className="hud-status-badge">RAG Active</span>
+          </div>
+          <div className="syllabus-hud-body">
+            <div className="syllabus-progress-stat">
+              <div className="progress-circle"><strong>78%</strong><small>Structured</small></div>
+              <div>
+                <h5>Curriculum Plan Generated</h5>
+                <p>7-day manageable execution sprint created from raw syllabus PDF</p>
+              </div>
+            </div>
+            <div className="syllabus-queue-item is-current">
+              <span>Next Topic</span>
+              <strong>Dynamic Programming & Memoization</strong>
+            </div>
+          </div>
+        </div>
       )}
+
       {type === 'skilltern' && (
-        <>
-          <div className="skilltern-header"><span>match engine</span><span>student / profile 01</span></div>
-          <div className="match-orbit"><div className="match-center"><Sparkles size={15} /><strong>match</strong></div><div className="match-chip chip--one">React</div><div className="match-chip chip--two">Node.js</div><div className="match-chip chip--three">location</div><div className="match-chip chip--four">eligibility</div></div>
-          <div className="skilltern-foot"><span><b>transparent</b> rules</span><span>skills → fit → apply <ArrowUpRight size={12} /></span></div>
-        </>
+        <div className="visual-hud visual-hud--skilltern">
+          <div className="hud-topline">
+            <span className="hud-label"><ShieldCheck size={13} /> skilltern / deterministic-matching</span>
+            <span className="hud-status-badge">Engine v1.0</span>
+          </div>
+          <div className="skilltern-match-card">
+            <div className="match-header">
+              <div>
+                <span className="candidate-role">Full-Stack Engineering Intern</span>
+                <h4>Candidate Match Score: 94%</h4>
+              </div>
+              <span className="match-score-badge">High Fit</span>
+            </div>
+            <div className="match-criteria-list">
+              <span>✓ React & TypeScript</span>
+              <span>✓ Node.js & REST</span>
+              <span>✓ CGPA 8.5+</span>
+              <span>✓ Location Fit</span>
+            </div>
+          </div>
+        </div>
       )}
+
       <span className="visual-spotlight" />
-      <span className="visual-ambient visual-ambient--one" />
-      <span className="visual-ambient visual-ambient--two" />
       <span className="visual-sheen" />
     </div>
   )
