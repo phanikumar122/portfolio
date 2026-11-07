@@ -1,5 +1,5 @@
-import { ChevronRight, Code2, Database, Network, Sparkles } from 'lucide-react'
-import { motion } from 'motion/react'
+import { Code2, Cpu, Database, Network, Sparkles, Terminal } from 'lucide-react'
+import { motion, AnimatePresence } from 'motion/react'
 import { useRef, useState } from 'react'
 import type { KeyboardEvent } from 'react'
 import { portfolio } from '../data/portfolio'
@@ -7,12 +7,31 @@ import { useReducedMotion } from '../hooks/useReducedMotion'
 import { Reveal } from './Reveal'
 import { SectionReveal } from './SectionReveal'
 
-const iconByTitle: Record<string, typeof Code2> = {
-  Build: Code2,
-  Data: Database,
-  Systems: Network,
-  'Agentic AI': Sparkles,
-  AI: Sparkles,
+const domainMeta: Record<string, { icon: typeof Code2; subtitle: string; focus: string; tag: string }> = {
+  Build: {
+    icon: Code2,
+    subtitle: 'Frontend & API Engineering',
+    focus: 'Modular component hierarchies, strict TypeScript contracts, sub-second TTFB, and responsive fluid interfaces.',
+    tag: 'UI/UX & Web Architecture',
+  },
+  Data: {
+    icon: Database,
+    subtitle: 'Storage & Analytics Pipelines',
+    focus: 'ACID transactional integrity, normalized relational schemas, NoSQL document modeling, and streaming ETL workflows.',
+    tag: 'Persistence & Pipeline Engine',
+  },
+  Systems: {
+    icon: Network,
+    subtitle: 'Infrastructure & Cloud Services',
+    focus: 'Containerized microservices, distributed messaging with Kafka, Linux automation, and production-grade CI/CD pipelines.',
+    tag: 'Cloud & Distributed Systems',
+  },
+  'Agentic AI': {
+    icon: Sparkles,
+    subtitle: 'Autonomous Systems & LLMs',
+    focus: 'Multi-turn agent loops, prompt orchestration, retrieval-augmented generation (RAG), and deterministic tool-calling.',
+    tag: 'Intelligent Agent Engineering',
+  },
 }
 
 export function Expertise() {
@@ -40,19 +59,24 @@ export function Expertise() {
     }
   }
 
+  const currentGroup = portfolio.skills[active]
+  const currentMeta = domainMeta[currentGroup.title] || domainMeta.Build
+
   return (
     <SectionReveal className="expertise section-shell section-padding" id="expertise" aria-labelledby="expertise-title">
       <div className="section-heading section-heading--split">
         <Reveal delay={0.08} className="section-title-wrap">
           <h2 id="expertise-title">Technical<br /><em>capabilities.</em></h2>
-          <p className="section-lead-desc">Core competencies across frontend engineering, distributed cloud backends, and autonomous agent loops.</p>
+          <p className="section-lead-desc">Systematic engineering capabilities across frontend architectures, distributed backends, data infrastructure, and autonomous agent loops.</p>
         </Reveal>
       </div>
 
-      <div className="expertise-editorial-layout">
-        <div className="expertise-nav-row" role="tablist" aria-label="Technical expertise groups" aria-orientation="horizontal">
+      <div className="capabilities-console">
+        {/* Left Rail: 4 Architectural Domain Tabs */}
+        <div className="capabilities-rail" role="tablist" aria-label="Technical expertise groups" aria-orientation="vertical">
           {portfolio.skills.map((group, index) => {
-            const Icon = iconByTitle[group.title] ?? Code2
+            const meta = domainMeta[group.title] || domainMeta.Build
+            const Icon = meta.icon
             const isActive = active === index
             const tabId = `skill-tab-${group.index}`
             const panelId = `skill-panel-${group.index}`
@@ -61,7 +85,7 @@ export function Expertise() {
               <button
                 key={group.title}
                 ref={(element) => { tabRefs.current[index] = element }}
-                className={`expertise-segment-btn ${isActive ? 'is-active' : ''}`}
+                className={`capability-domain-card ${isActive ? 'is-active' : ''}`}
                 type="button"
                 role="tab"
                 id={tabId}
@@ -71,24 +95,37 @@ export function Expertise() {
                 onClick={() => selectSkill(index)}
                 onKeyDown={handleTabKeyDown}
               >
-                <span className="segment-index">{group.index}</span>
-                <span className="segment-icon" aria-hidden="true"><Icon size={16} /></span>
-                <span className="segment-title">{group.title}</span>
-                <span className="segment-count">{group.skills.length}</span>
+                <div className="domain-card-header">
+                  <span className="domain-index-num">DOMAIN {group.index}</span>
+                  <span className="domain-skill-count">{group.skills.length} TECHS</span>
+                </div>
+                <div className="domain-card-body">
+                  <span className="domain-icon-box" aria-hidden="true">
+                    <Icon size={18} />
+                  </span>
+                  <div className="domain-card-titles">
+                    <strong className="domain-primary-title">{group.title}</strong>
+                    <span className="domain-subtitle">{meta.subtitle}</span>
+                  </div>
+                </div>
+                <div className="domain-card-active-line" aria-hidden="true" />
               </button>
             )
           })}
         </div>
 
-        <div className="expertise-panel-shell">
+        {/* Right Stage: Active Domain Deep-Dive Tabpanel */}
+        <div className="capabilities-stage">
           {portfolio.skills.map((group, index) => {
             const isActive = active === index
             const panelId = `skill-panel-${group.index}`
+            const meta = domainMeta[group.title] || domainMeta.Build
+            const Icon = meta.icon
 
             return (
               <div
                 key={group.title}
-                className="expertise-panel"
+                className="capability-panel"
                 id={panelId}
                 role="tabpanel"
                 aria-labelledby={`skill-tab-${group.index}`}
@@ -97,41 +134,59 @@ export function Expertise() {
               >
                 {isActive && (
                   <motion.div
-                    className="expertise-panel-stage"
-                    initial={reducedMotion ? false : { opacity: 0, y: 14 }}
+                    className="capability-panel-inner"
+                    initial={reducedMotion ? false : { opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <div className="panel-editorial-header">
+                    <div className="panel-headline-row">
                       <div>
-                        <span className="panel-domain-index">DOMAIN {group.index}</span>
-                        <h3>{group.title}<span>.</span></h3>
-                        <p>{group.description}</p>
+                        <div className="panel-kicker-bar">
+                          <span className="panel-kicker-tag">{meta.tag}</span>
+                          <span className="panel-kicker-index">SPEC // {group.index}</span>
+                        </div>
+                        <h3 className="panel-domain-title">
+                          <Icon size={24} className="panel-domain-title-icon" aria-hidden="true" />
+                          <span>{group.title}</span>
+                          <em className="panel-title-dot">.</em>
+                        </h3>
+                        <p className="panel-domain-desc">{group.description}</p>
                       </div>
-                      <div className="panel-summary-stat">
-                        <strong>{String(group.skills.length).padStart(2, '0')}</strong>
-                        <span>Verified Technologies</span>
+                      <div className="panel-count-badge">
+                        <strong className="count-large">{String(group.skills.length).padStart(2, '0')}</strong>
+                        <span className="count-label">Production Tools</span>
                       </div>
                     </div>
 
-                    <motion.div
-                      className="skill-list"
-                      initial={reducedMotion ? false : 'hidden'}
-                      animate="visible"
-                      variants={{ hidden: {}, visible: { transition: { delayChildren: 0.08, staggerChildren: 0.03 } } }}
-                    >
-                      {group.skills.map((skill) => (
-                        <motion.span
-                          key={skill}
-                          className="skill-tech-item"
-                          variants={{ hidden: { opacity: 0, y: 6 }, visible: { opacity: 1, y: 0 } }}
-                          transition={{ duration: reducedMotion ? 0 : 0.25, ease: [0.22, 1, 0.36, 1] }}
-                        >
-                          <span className="tech-item-mark">/</span>
-                          {skill}
-                        </motion.span>
-                      ))}
-                    </motion.div>
+                    <div className="panel-matrix-section">
+                      <div className="matrix-topline">
+                        <span className="matrix-title">CORE TECHNOLOGIES & FRAMEWORKS</span>
+                        <span className="matrix-counter">{group.skills.length} Items Verified</span>
+                      </div>
+                      <motion.div
+                        className="capability-skills-grid"
+                        initial={reducedMotion ? false : 'hidden'}
+                        animate="visible"
+                        variants={{ hidden: {}, visible: { transition: { delayChildren: 0.05, staggerChildren: 0.025 } } }}
+                      >
+                        {group.skills.map((skill) => (
+                          <motion.div
+                            key={skill}
+                            className="skill-tech-chip"
+                            variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0 } }}
+                            transition={{ duration: reducedMotion ? 0 : 0.22, ease: [0.22, 1, 0.36, 1] }}
+                          >
+                            <span className="tech-chip-slash">/</span>
+                            <span className="tech-chip-name">{skill}</span>
+                          </motion.div>
+                        ))}
+                      </motion.div>
+                    </div>
+
+                    <div className="panel-engineering-footer">
+                      <div className="footer-focus-label">ARCHITECTURAL FOCUS:</div>
+                      <p className="footer-focus-text">{meta.focus}</p>
+                    </div>
                   </motion.div>
                 )}
               </div>
