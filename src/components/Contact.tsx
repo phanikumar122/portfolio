@@ -49,8 +49,17 @@ export function Contact() {
     <SectionReveal className="contact section-shell section-padding" id="contact" aria-labelledby="contact-title">
       <div className="contact-grid">
         <div className="contact-intro">
-          <Reveal delay={0.08}><h2 id="contact-title">Let&apos;s<br /><em>connect.</em></h2></Reveal>
-          <Reveal delay={0.16}><p>Have an engineering role, a software project, or an idea? Send a note below or reach out directly across any of my channels.</p></Reveal>
+          <Reveal delay={0.08}>
+            <h2 id="contact-title">
+              Let&apos;s<br />
+              <em>connect.</em>
+            </h2>
+          </Reveal>
+          <Reveal delay={0.16}>
+            <p className="contact-description">
+              Have an engineering opportunity, a software product, or an idea? Send a message directly or connect across any of my professional channels.
+            </p>
+          </Reveal>
           <Reveal delay={0.2} className="contact-intro-actions">
             {portfolio.person.resumeUrl && (
               <a className="button button--quiet contact-resume" href={portfolio.person.resumeUrl} target="_blank" rel="noreferrer">
@@ -69,11 +78,10 @@ export function Contact() {
             >
               <div className="social-card-header">
                 <span className="social-card-icon"><Linkedin size={18} /></span>
-                <span className="social-card-badge">Network</span>
+                <span className="social-card-arrow"><ArrowUpRight size={14} /></span>
               </div>
               <strong className="social-card-title">LinkedIn</strong>
-              <span className="social-card-handle">phani-kumar</span>
-              <span className="social-card-action">Connect <ArrowUpRight size={13} /></span>
+              <span className="social-card-handle">phani-kumar-999022375</span>
             </a>
 
             <a
@@ -85,11 +93,10 @@ export function Contact() {
             >
               <div className="social-card-header">
                 <span className="social-card-icon"><Github size={18} /></span>
-                <span className="social-card-badge">Code</span>
+                <span className="social-card-arrow"><ArrowUpRight size={14} /></span>
               </div>
               <strong className="social-card-title">GitHub</strong>
               <span className="social-card-handle">phanikumar122</span>
-              <span className="social-card-action">Repositories <ArrowUpRight size={13} /></span>
             </a>
 
             <a
@@ -99,11 +106,10 @@ export function Contact() {
             >
               <div className="social-card-header">
                 <span className="social-card-icon"><Mail size={18} /></span>
-                <span className="social-card-badge">Inbox</span>
+                <span className="social-card-arrow"><ArrowUpRight size={14} /></span>
               </div>
               <strong className="social-card-title">Direct Email</strong>
-              <span className="social-card-handle">phanivinnakota122</span>
-              <span className="social-card-action">Write message <ArrowUpRight size={13} /></span>
+              <span className="social-card-handle">{portfolio.person.email}</span>
             </a>
           </Reveal>
         </div>

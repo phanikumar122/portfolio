@@ -135,9 +135,8 @@ describe('portfolio experience', () => {
     expect(screen.queryByRole('dialog', { name: /resume \/ vinnakota phani kumar/i })).not.toBeInTheDocument()
   })
 
-  it('renders the hero status pill and social profile cards', () => {
+  it('renders the hero role presentation and social profile cards', () => {
     render(<App />)
-    expect(screen.getByText(/available for opportunities/i)).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /connect on linkedin/i })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /follow on github/i })).toBeInTheDocument()
   })

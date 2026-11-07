@@ -394,7 +394,7 @@ em { color: var(--lime-deep); text-shadow: none; }
 .expertise-panel .panel-content { flex: 1; margin: 0 0 32px; padding-top: clamp(48px, 8vw, 96px); }
 .skill-list { border-top-color: rgba(244, 242, 236, .16); color: var(--paper-fixed); }
 .skill-list span,
-.stack-tags span { border-color: rgba(244, 242, 236, .14); border-radius: 999px; background: rgba(255, 255, 255, .06); color: inherit; }
+.stack-tags span { border-color: rgba(244, 242, 236, .14); border-radius: var(--radius-sm); background: rgba(255, 255, 255, .06); color: inherit; }
 .skill-list span:hover,
 .stack-tags span:hover { border-color: var(--lime); background: rgba(185, 227, 94, .12); }
 .panel-signal { color: var(--ink-muted-fixed); }
@@ -671,7 +671,7 @@ em { color: var(--lime-deep); text-shadow: none; }
 .dialog-block ul { color: var(--muted); }
 .dialog-block { border-top-color: var(--line); }
 .dialog-block li::before { background: var(--lime-deep); box-shadow: none; }
-.dialog-stack > div span { border-color: var(--line); border-radius: 999px; background: var(--paper); color: var(--ink); }
+.dialog-stack > div span { border-color: var(--line); border-radius: var(--radius-sm); background: var(--paper); color: var(--ink); }
 
 /* Responsive layout */
 @media (max-width: 900px) {
@@ -1220,7 +1220,7 @@ html.dark .contact-form textarea { background: var(--surface); color: var(--text
   padding: 6px 14px;
   margin-bottom: 18px;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   background: var(--surface);
   font: 11px var(--mono);
   letter-spacing: .06em;
@@ -1542,3 +1542,394 @@ html.dark .resume-dialog {
   background: var(--bg-raised);
   border-color: var(--line);
 }
+
+
+/* ========================================================================= */
+/* EDITORIAL REDESIGN: ALIGNMENT & STREAMLINED UI (NO PILLS / NO FLUFF)      */
+/* ========================================================================= */
+
+.section-shell {
+  width: min(calc(100% - 64px), 1140px);
+  margin-inline: auto;
+}
+.section-padding {
+  padding-block: clamp(72px, 8vw, 116px);
+}
+.section-heading--split {
+  margin-bottom: clamp(36px, 5vw, 56px);
+}
+.section-title-wrap h2 {
+  font-size: clamp(42px, 5.8vw, 76px);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 0.98;
+}
+
+/* 1. About Editorial Section */
+.about-editorial-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(44px, 5vw, 68px);
+}
+.about-top-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.9fr) minmax(0, 1.4fr);
+  gap: clamp(36px, 6vw, 80px);
+  align-items: start;
+}
+.about-lead-statement {
+  font-size: clamp(22px, 2.7vw, 34px);
+  line-height: 1.25;
+  letter-spacing: -0.035em;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+.about-sub-statement {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 0;
+}
+.about-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  border-top: 1px solid var(--line);
+  padding-top: 36px;
+}
+.about-pillar {
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--paper-bright);
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+.about-pillar:hover {
+  transform: translateY(-3px);
+  border-color: var(--ink);
+  box-shadow: 6px 6px 0 var(--lime);
+}
+.pillar-num {
+  font: 12px var(--mono);
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: var(--lime-deep);
+  margin-bottom: 16px;
+}
+.about-pillar h3 {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -.03em;
+  margin: 0 0 10px;
+  color: var(--ink);
+}
+.about-pillar p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* 2. Skills: Clean Monospace Grid (No Pills) */
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  border-top: 1px solid rgba(244, 242, 236, .14);
+  padding-top: 24px;
+}
+.skill-list span {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border: 1px solid rgba(244, 242, 236, .14);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, .05);
+  color: var(--paper-fixed);
+  font: 11px var(--mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  transition: all .2s ease;
+}
+.skill-list span:hover {
+  border-color: var(--lime);
+  background: rgba(185, 227, 94, .16);
+  color: var(--lime);
+  transform: translateY(-2px);
+}
+
+/* 3. Projects: Typographic Stack & Sharp Action Links */
+.project-index-num {
+  font: 10px var(--mono);
+  letter-spacing: .1em;
+  color: var(--lime-deep);
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 8px;
+  display: block;
+}
+.project-stack-line {
+  font: 12px var(--mono);
+  letter-spacing: .04em;
+  color: var(--muted);
+}
+.project-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--paper-bright);
+  color: var(--ink);
+  font: 11px var(--mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  transition: all .2s ease;
+  cursor: pointer;
+}
+.project-action-link:hover {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--lime);
+  transform: translateY(-2px);
+}
+.project-action-link--live {
+  border-color: var(--lime-deep);
+  color: var(--lime-deep);
+}
+.project-action-link--live:hover {
+  background: var(--lime-deep);
+  border-color: var(--lime-deep);
+  color: #fff;
+}
+.subheading-title {
+  font: 12px var(--mono);
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.subheading-desc {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* 4. Philosophy: 4-Column Principles Grid */
+.philosophy-editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.philosophy-principle-card {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--paper-bright);
+  box-shadow: var(--shadow-sm);
+  transition: transform .25s ease, border-color .25s ease;
+}
+.philosophy-principle-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--ink);
+  box-shadow: 6px 6px 0 var(--lime);
+}
+.principle-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+.principle-number {
+  font: 12px var(--mono);
+  font-weight: 700;
+  color: var(--lime-deep);
+}
+.principle-icon {
+  color: var(--muted);
+}
+.principle-title {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -.03em;
+  color: var(--ink);
+  margin: 0 0 10px;
+}
+.principle-detail {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* 5. Education: Prestigious Academic Card */
+.education-editorial-card {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 36px;
+  padding: clamp(28px, 4vw, 44px);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius-sm);
+  background: var(--paper-bright);
+  box-shadow: 10px 10px 0 var(--lime);
+}
+.education-degree-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+.education-badge-clean {
+  font: 10px var(--mono);
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--lime-deep);
+  display: block;
+  margin-bottom: 6px;
+}
+.education-degree-title {
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 600;
+  letter-spacing: -.03em;
+  color: var(--ink);
+  margin: 0 0 6px;
+}
+.education-institution-name {
+  font-size: 15px;
+  color: var(--muted);
+  margin: 0;
+}
+.education-timeline-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font: 11px var(--mono);
+  color: var(--ink);
+  white-space: nowrap;
+}
+.education-coursework-block {
+  padding-top: 22px;
+}
+.education-coursework-label {
+  font: 11px var(--mono);
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 8px;
+}
+.education-coursework-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink);
+  margin: 0;
+}
+.education-card-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  padding-left: 28px;
+  border-left: 1px solid var(--line);
+}
+.education-stat-unit {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.education-stat-unit strong {
+  font-size: 22px;
+  color: var(--ink);
+  letter-spacing: -.03em;
+}
+.education-stat-unit span {
+  font: 10px var(--mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.education-contact-link {
+  width: 100%;
+  justify-content: center;
+}
+
+/* 6. Clean Social Profile Cards (No Pills) */
+.social-profile-card {
+  border-radius: var(--radius-sm);
+}
+.social-profile-card:hover {
+  box-shadow: 6px 6px 0 var(--lime);
+}
+
+/* Responsive Overrides */
+@media (max-width: 900px) {
+  .about-top-grid { grid-template-columns: 1fr; gap: 24px; }
+  .about-pillars-grid { grid-template-columns: 1fr; }
+  .philosophy-editorial-grid { grid-template-columns: repeat(2, 1fr); }
+  .education-editorial-card { grid-template-columns: 1fr; }
+  .education-card-side { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 20px; }
+}
+@media (max-width: 620px) {
+  .philosophy-editorial-grid { grid-template-columns: 1fr; }
+  .education-degree-row { flex-direction: column; }
+}
+
+/* Dark theme overrides */
+html.dark .about-pillar,
+html.dark .philosophy-principle-card,
+html.dark .education-editorial-card {
+  background: var(--bg-raised);
+  border-color: var(--line);
+}
+html.dark .about-pillar:hover,
+html.dark .philosophy-principle-card:hover {
+  border-color: var(--lime);
+  box-shadow: 6px 6px 0 rgba(185, 227, 94, .25);
+}
+html.dark .education-editorial-card {
+  box-shadow: 10px 10px 0 rgba(185, 227, 94, .22);
+}
+html.dark .project-action-link {
+  background: var(--surface);
+  border-color: var(--line);
+  color: var(--text);
+}
+html.dark .project-action-link:hover {
+  background: var(--lime);
+  border-color: var(--lime);
+  color: var(--ink-fixed);
+}
+html.dark .project-action-link--live {
+  color: var(--lime);
+  border-color: rgba(185, 227, 94, .4);
+}
+html.dark .subheading-title {
+  color: var(--text);
+}
+html.dark .education-badge-clean,
+html.dark .pillar-num,
+html.dark .principle-number,
+html.dark .project-index-num {
+  color: var(--lime);
+}
+html.dark .education-degree-title,
+html.dark .education-stat-unit strong,
+html.dark .about-lead-statement,
+html.dark .about-pillar h3,
+html.dark .principle-title {
+  color: var(--text);
+}
+html.dark .education-coursework-text {
+  color: var(--muted);
+}
+

@@ -1,4 +1,4 @@
-import { ArrowUpRight, ExternalLink, Github, Sparkles } from 'lucide-react'
+import { ArrowUpRight, ExternalLink, Github } from 'lucide-react'
 import { useState } from 'react'
 import type { Project } from '../data/portfolio'
 import { portfolio } from '../data/portfolio'
@@ -15,7 +15,7 @@ function ProjectLinks({ project, onOpen }: { project: Project; onOpen: (project:
         href={project.github}
         target="_blank"
         rel="noreferrer"
-        className="project-link-action"
+        className="project-action-link"
         aria-label={`${project.title} code`}
       >
         <Github size={13} /> <span>Code</span>
@@ -25,7 +25,7 @@ function ProjectLinks({ project, onOpen }: { project: Project; onOpen: (project:
           href={project.live}
           target="_blank"
           rel="noreferrer"
-          className="project-link-action project-link-action--live"
+          className="project-action-link project-action-link--live"
           aria-label={`${project.title} demo`}
         >
           <ExternalLink size={13} /> <span>Live Demo</span>
@@ -33,11 +33,11 @@ function ProjectLinks({ project, onOpen }: { project: Project; onOpen: (project:
       )}
       <button
         type="button"
-        className="project-link-action project-link-action--details"
+        className="project-action-link project-action-link--case"
         onClick={() => onOpen(project)}
-        aria-label={`Open ${project.title} case study modal`}
+        aria-label={`Open ${project.title} details`}
       >
-        <Sparkles size={12} /> <span>Case Study</span>
+        <span>Case Study</span> <ArrowUpRight size={13} />
       </button>
     </div>
   )
@@ -58,7 +58,8 @@ function FeaturedProject({ project, index, onOpen }: { project: Project; index: 
       </button>
 
       <div className="featured-project-copy">
-        <div>
+        <div className="featured-project-header">
+          <span className="project-index-num">0{index + 1} / FEATURED</span>
           <h3>{project.title}</h3>
           <p>{project.description}</p>
         </div>
@@ -73,13 +74,8 @@ function FeaturedProject({ project, index, onOpen }: { project: Project; index: 
       </div>
 
       <div className="featured-project-footer">
-        <div className="stack-tags">
-          {project.stack.slice(0, 4).map((item) => (
-            <span key={item} className="stack-tag-pill">
-              <span className="tag-dot" />
-              {item}
-            </span>
-          ))}
+        <div className="project-stack-line">
+          <span className="project-stack-text">{project.stack.slice(0, 5).join('  ·  ')}</span>
         </div>
         <ProjectLinks project={project} onOpen={onOpen} />
       </div>
@@ -103,6 +99,7 @@ function GalleryProject({ project, index, onOpen }: { project: Project; index: n
 
       <div className="gallery-project-copy">
         <div>
+          <span className="project-index-num">0{index + 3} / ARCHITECTURE</span>
           <h3>{project.title}</h3>
           <p>{project.description}</p>
         </div>
@@ -117,13 +114,8 @@ function GalleryProject({ project, index, onOpen }: { project: Project; index: n
       </div>
 
       <div className="gallery-footer">
-        <div className="stack-tags">
-          {project.stack.slice(0, 3).map((item) => (
-            <span key={item} className="stack-tag-pill">
-              <span className="tag-dot" />
-              {item}
-            </span>
-          ))}
+        <div className="project-stack-line">
+          <span className="project-stack-text">{project.stack.slice(0, 4).join('  ·  ')}</span>
         </div>
         <ProjectLinks project={project} onOpen={onOpen} />
       </div>
@@ -151,8 +143,8 @@ export function ProjectShowcase() {
       </div>
 
       <div className="work-subheading">
-        <span className="mono-label">more projects</span>
-        <span>Each one starts with a real problem.</span>
+        <span className="subheading-title">Additional Systems & Engineering Projects</span>
+        <span className="subheading-desc">Full-stack platforms, low-level sensor loops, and local document processing engines.</span>
       </div>
 
       <div className="project-gallery">
