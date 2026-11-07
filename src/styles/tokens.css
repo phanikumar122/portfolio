@@ -86,6 +86,7 @@
   --radius-sm: 8px;
   --radius-lg: 24px;
   --radius-full: 9999px;
+  --radius-btn: 9999px;
 
   /* Elevation Shadows */
   --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.45);

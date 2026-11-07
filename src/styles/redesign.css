@@ -44,6 +44,7 @@ a {
 }
 button {
   font-family: inherit;
+  border-radius: var(--radius-btn);
 }
 
 /* ------------------------------------------------------------------------- */
@@ -196,7 +197,7 @@ html.dark .desktop-nav a::after {
   gap: 6px;
   padding: 8px 14px;
   border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-btn);
   background: var(--surface);
   color: var(--text);
   font: 11px var(--mono);
@@ -225,7 +226,7 @@ html.dark .nav-resume:hover {
   height: 38px;
   padding: 0;
   border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-btn);
   background: var(--surface);
   color: var(--text);
   cursor: pointer;
@@ -243,7 +244,7 @@ html.dark .nav-resume:hover {
   height: 38px;
   padding: 0 16px;
   border: 1px solid var(--text);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-btn);
   background: var(--text);
   color: var(--bg);
   font: 11px var(--mono);
@@ -275,7 +276,7 @@ html.dark .nav-contact:hover {
   width: 38px;
   height: 38px;
   border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-btn);
   background: var(--surface);
   color: var(--text);
   cursor: pointer;
@@ -367,7 +368,7 @@ html.dark .hero-cursor {
   justify-content: center;
   gap: 8px;
   padding: 12px 22px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-btn);
   font: 12px var(--mono);
   font-weight: 600;
   letter-spacing: .06em;
@@ -908,7 +909,7 @@ html.dark .project-index-code {
   gap: 6px;
   padding: 8px 16px;
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: var(--radius-btn);
   background: var(--bg);
   color: var(--text);
   font: 11px var(--mono);
@@ -1635,7 +1636,7 @@ html.dark .credential-mark {
   gap: 6px;
   padding: 8px 14px;
   border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-btn);
   background: var(--bg);
   color: var(--text);
   font: 11px var(--mono);
@@ -1853,7 +1854,7 @@ html.dark .email-link:hover {
   gap: 8px;
   padding: 8px 14px;
   border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-btn);
   background: var(--bg);
   color: var(--text);
   font: 11px var(--mono);
@@ -2004,7 +2005,7 @@ html.dark .contact-bottom a:hover {
   width: 34px;
   height: 34px;
   border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-btn);
   background: var(--bg);
   color: var(--text);
   cursor: pointer;
