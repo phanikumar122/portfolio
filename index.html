@@ -20,6 +20,42 @@
     <meta name="twitter:image" content="https://phani-kumar.dev/og-card.png" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <title>Vinnakota Phani Kumar — Computer Science Engineer</title>
+    <style>
+      /* Critical pre-hydration reset to eliminate initial flash of unstyled content */
+      html, body {
+        background-color: #0f1412;
+      }
+      .skip-link {
+        position: fixed !important;
+        top: -9999px !important;
+        left: -9999px !important;
+        width: 1px !important;
+        height: 1px !important;
+        padding: 0 !important;
+        margin: -1px !important;
+        overflow: hidden !important;
+        clip: rect(0, 0, 0, 0) !important;
+        white-space: nowrap !important;
+        border: 0 !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        z-index: 99999 !important;
+      }
+      .skip-link:focus,
+      .skip-link:focus-visible {
+        top: 16px !important;
+        left: 16px !important;
+        width: auto !important;
+        height: auto !important;
+        padding: 10px 18px !important;
+        margin: 0 !important;
+        overflow: visible !important;
+        clip: auto !important;
+        white-space: normal !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+      }
+    </style>
     <script>
       // Set the theme before first paint to avoid a flash of the wrong palette.
       (function () {
@@ -46,7 +82,7 @@
     </script>
   </head>
   <body>
-    <a class="skip-link" href="#main-content">Skip to content</a>
+    <a class="skip-link" href="#main-content" style="position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);opacity:0;">Skip to content</a>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
