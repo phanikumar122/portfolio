@@ -1,48 +1,81 @@
 :root {
-  /* Core Semantic Palette — Obsidian Dark Theme (Exclusive) */
-  --bg: #0f1412;
-  --bg-raised: #151d19;
-  --surface: #1a231f;
-  --surface-strong: #232d28;
-  --surface-hover: #202b26;
+  /* ========================================================================= */
+  /* Palette Tokens (Snow, Carbon Black, Sapphire Sky, Cyan Glow)              */
+  /* ========================================================================= */
+  /* CSS HEX */
+  --snow: #fff9fb;
+  --carbon-black: #252627;
+  --sapphire-sky: #226ce0;
+  --cyan-glow: #3dfaff;
+
+  /* CSS HSL */
+  --snow-hsl: hsla(340, 100%, 99%, 1);
+  --carbon-black-hsl: hsla(210, 3%, 15%, 1);
+  --sapphire-sky-hsl: hsla(217, 75%, 51%, 1);
+  --cyan-glow-hsl: hsla(182, 100%, 62%, 1);
+
+  /* Gradients */
+  --gradient-top: linear-gradient(0deg, #fff9fb, #252627, #226ce0, #3dfaff);
+  --gradient-right: linear-gradient(90deg, #fff9fb, #252627, #226ce0, #3dfaff);
+  --gradient-bottom: linear-gradient(180deg, #fff9fb, #252627, #226ce0, #3dfaff);
+  --gradient-left: linear-gradient(270deg, #fff9fb, #252627, #226ce0, #3dfaff);
+  --gradient-top-right: linear-gradient(45deg, #fff9fb, #252627, #226ce0, #3dfaff);
+  --gradient-bottom-right: linear-gradient(135deg, #fff9fb, #252627, #226ce0, #3dfaff);
+  --gradient-top-left: linear-gradient(225deg, #fff9fb, #252627, #226ce0, #3dfaff);
+  --gradient-bottom-left: linear-gradient(315deg, #fff9fb, #252627, #226ce0, #3dfaff);
+  --gradient-radial: radial-gradient(#fff9fb, #252627, #226ce0, #3dfaff);
+
+  /* Signature Accents & Gradients */
+  --gradient-brand: linear-gradient(135deg, #226ce0 0%, #3dfaff 100%);
+  --gradient-brand-subtle: linear-gradient(135deg, rgba(34, 108, 224, 0.25) 0%, rgba(61, 250, 255, 0.12) 100%);
+
+  /* Core Semantic Palette */
+  --bg: #252627;
+  --bg-raised: #2c2e30;
+  --surface: #323437;
+  --surface-strong: #3b3e42;
+  --surface-hover: #43464a;
 
   /* Editorial Aliases */
-  --paper: #0f1412;
-  --paper-bright: #1a231f;
-  --ink: #f4f6ef;
-  --ink-soft: #dce0d5;
-  --ink-muted: #9eada3;
-  --lime: #b9e35e;
-  --lime-deep: #b9e35e;
-  --lime-fixed: #b9e35e;
-  --ink-fixed: #121815;
-  --paper-fixed: #f5f3ec;
+  --paper: #252627;
+  --paper-bright: #323437;
+  --ink: #fff9fb;
+  --ink-soft: #e5e8ed;
+  --ink-muted: #abb3bf;
+  --ink-fixed: #252627;
+  --paper-fixed: #fff9fb;
+
+  /* Theme Accents */
+  --lime: #3dfaff;          /* Primary vibrant glow highlight */
+  --lime-deep: #226ce0;     /* Primary deep sapphire accent */
+  --lime-fixed: #3dfaff;
 
   /* Borders & Dividers */
-  --line: rgba(244, 246, 239, 0.14);
-  --line-soft: rgba(244, 246, 239, 0.08);
-  --line-glow: rgba(185, 227, 94, 0.28);
+  --line: rgba(255, 249, 251, 0.12);
+  --line-soft: rgba(255, 249, 251, 0.07);
+  --line-glow: rgba(61, 250, 255, 0.35);
 
   /* Typography Colors (WCAG AAA High Contrast) */
-  --text: #f4f6ef;
-  --muted: #9eada3;
-  --faint: #6f7d74;
+  --text: #fff9fb;
+  --muted: #abb3bf;
+  --faint: #757e8d;
 
   /* Accent Colors */
-  --accent: #b9e35e;
-  --accent-dark: #93b844;
-  --accent-soft: rgba(185, 227, 94, 0.16);
-  --accent-glow: rgba(185, 227, 94, 0.32);
+  --accent: #226ce0;
+  --accent-bright: #3dfaff;
+  --accent-dark: #1b56b3;
+  --accent-soft: rgba(34, 108, 224, 0.2);
+  --accent-glow: rgba(61, 250, 255, 0.35);
 
   /* Secondary Accents */
   --violet: #8288f5;
   --orchid: #a982d6;
-  --cyan: #3fc5cb;
-  --teal: #4eb59c;
-  --rose: #e67f6b;
+  --cyan: #3dfaff;
+  --teal: #3fc5cb;
+  --rose: #ff708f;
   --amber: #cca23d;
   --orange: #dc7e42;
-  --blue: #5d7ce6;
+  --blue: #226ce0;
 
   /* Typography & Layout Metrics */
   --display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -55,9 +88,9 @@
   --radius-full: 9999px;
 
   /* Elevation Shadows */
-  --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.36);
-  --shadow-md: 0 16px 44px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.25);
-  --shadow-lg: 0 24px 72px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 16px 44px rgba(0, 0, 0, 0.55), 0 2px 6px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 24px 72px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 249, 251, 0.08);
 
   color-scheme: dark;
   font-family: var(--display);
@@ -70,7 +103,7 @@
 }
 
 html, html.dark {
-  background: #0f1412;
-  color: #f4f6ef;
+  background: #252627;
+  color: #fff9fb;
   color-scheme: dark;
 }

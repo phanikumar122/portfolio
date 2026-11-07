@@ -65,9 +65,9 @@ export function ProjectVisual({ type, compact = false }: ProjectVisualProps) {
             <svg viewBox="0 0 300 70" preserveAspectRatio="none" className="transport-svg">
               <defs>
                 <linearGradient id="waveGradClean" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#b9e35e" stopOpacity="0.4" />
-                  <stop offset="50%" stopColor="#b9e35e" stopOpacity="1" />
-                  <stop offset="100%" stopColor="#435e16" stopOpacity="0.7" />
+                  <stop offset="0%" stopColor="#3dfaff" stopOpacity="0.4" />
+                  <stop offset="50%" stopColor="#3dfaff" stopOpacity="1" />
+                  <stop offset="100%" stopColor="#226ce0" stopOpacity="0.7" />
                 </linearGradient>
               </defs>
               <path

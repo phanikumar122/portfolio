@@ -10,7 +10,7 @@ export function useTheme() {
     } catch {}
     const meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')
     if (meta) {
-      meta.content = '#0f1412'
+      meta.content = '#252627'
     }
   }, [])
 
