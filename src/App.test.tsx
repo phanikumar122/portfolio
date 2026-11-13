@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 import App from './App'
@@ -10,7 +10,7 @@ describe('portfolio experience', () => {
 
     expect(screen.getAllByRole('button', { name: /view .* case study/i })).toHaveLength(portfolio.projects.length)
     expect(screen.getByText('Vinnakota Phani Kumar')).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: /i build useful applications/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /systems with purpose.*software with impact/i })).toBeInTheDocument()
     portfolio.projects.filter((project) => !project.featured).forEach((project) => {
       expect(screen.getByRole('button', { name: `View ${project.title} details` })).toBeInTheDocument()
     })
@@ -71,9 +71,11 @@ describe('portfolio experience', () => {
 
     await user.click(menuButton)
     expect(menuButton).toHaveAttribute('aria-expanded', 'true')
-    expect(screen.getAllByRole('link', { name: /^about$/i })[0]).toBeVisible()
+    const mobileNavigation = screen.getByRole('navigation', { name: /mobile navigation/i })
+    const mobileAboutLink = within(mobileNavigation).getByRole('link', { name: /^about$/i })
+    expect(mobileAboutLink).toBeVisible()
 
-    await user.click(screen.getAllByRole('link', { name: /^about$/i })[1] || screen.getAllByRole('link', { name: /^about$/i })[0])
+    await user.click(mobileAboutLink)
     expect(menuButton).toHaveAttribute('aria-expanded', 'false')
   })
 
@@ -133,5 +135,22 @@ describe('portfolio experience', () => {
     render(<App />)
     expect(screen.getByRole('link', { name: /connect on linkedin/i })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /follow on github/i })).toBeInTheDocument()
+  })
+
+  it('provides programmatic labels for every contact field', () => {
+    render(<App />)
+    expect(screen.getByRole('textbox', { name: /your name/i })).toBeInTheDocument()
+    expect(screen.getByRole('textbox', { name: /your email/i })).toHaveAttribute('type', 'email')
+    expect(screen.getByRole('textbox', { name: /^message$/i })).toBeInTheDocument()
+  })
+
+  it('uses the progressive global scene and gives every project equal card treatment', () => {
+    const { container } = render(<App />)
+    expect(container.querySelector('.global-scene canvas')).toBeInTheDocument()
+    expect(container.querySelector('.hero-portrait img')).toHaveAccessibleName('Portrait of Vinnakota Phani Kumar')
+    expect(container.querySelectorAll('.project-grid > .project-card')).toHaveLength(portfolio.projects.length)
+    expect(container.querySelector('.archive-block')).not.toBeInTheDocument()
+    expect(container.querySelectorAll('.status-pill, .status-dot, .tech-badge, .skill-tech-chip')).toHaveLength(0)
+    expect(container.querySelector('.footer-marquee')).not.toBeInTheDocument()
   })
 })

@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#252627" />
-    <meta name="color-scheme" content="dark" />
-    <meta name="description" content="Portfolio of Vinnakota Phani Kumar, a Computer Science Engineer building full-stack software, cloud systems, and intelligent digital experiences." />
+    <meta name="theme-color" content="#0a090c" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="description" content="Portfolio of Vinnakota Phani Kumar, a Computer Science Engineer building full-stack software, cloud systems, and agentic AI architectures." />
     <link rel="canonical" href="https://phani-kumar.dev/" />
     <meta property="og:title" content="Vinnakota Phani Kumar — Computer Science Engineer" />
-    <meta property="og:description" content="Full-stack engineering, cloud systems, and intelligent digital experiences." />
+    <meta property="og:description" content="Full-stack engineering, cloud systems, and agentic AI architectures." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://phani-kumar.dev/" />
     <meta property="og:image" content="https://phani-kumar.dev/og-card.png" />
@@ -16,15 +16,15 @@
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Vinnakota Phani Kumar — Computer Science Engineer" />
-    <meta name="twitter:description" content="Full-stack engineering, cloud systems, and intelligent digital experiences." />
+    <meta name="twitter:description" content="Full-stack engineering, cloud systems, and agentic AI architectures." />
     <meta name="twitter:image" content="https://phani-kumar.dev/og-card.png" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <title>Vinnakota Phani Kumar — Computer Science Engineer</title>
     <style>
       /* Critical pre-hydration reset to eliminate initial flash of unstyled content */
       html, body {
-        background-color: #252627;
-        color: #fff9fb;
+        background-color: #0a090c;
+        color: #f0edee;
       }
       .skip-link {
         position: fixed !important;
@@ -55,14 +55,14 @@
         white-space: normal !important;
         opacity: 1 !important;
         pointer-events: auto !important;
-        background: #3dfaff !important;
-        color: #252627 !important;
+        background: #f0edee !important;
+        color: #0a090c !important;
         font-family: monospace, sans-serif !important;
         font-size: 11px !important;
         font-weight: 700 !important;
-        border-radius: 8px !important;
+        border-radius: 999px !important;
         text-decoration: none !important;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+        box-shadow: 0 4px 20px rgba(10, 9, 12, 0.5) !important;
       }
     </style>
     <script>
@@ -70,8 +70,11 @@
       (function () {
         try {
           var stored = localStorage.getItem('portfolio-theme');
-          var dark = true;
-          if (dark) document.documentElement.classList.add('dark');
+          var theme = stored === 'light' || stored === 'dark'
+            ? stored
+            : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+          document.documentElement.classList.remove('light', 'dark');
+          document.documentElement.classList.add(theme);
         } catch (e) {}
       })();
     </script>

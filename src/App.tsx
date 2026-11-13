@@ -9,10 +9,14 @@ import { Credentials } from './components/Credentials'
 import { Achievements } from './components/Achievements'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
+import { GrainOverlay } from './components/GrainOverlay'
+import { GlobalScene } from './components/GlobalScene'
 
 export default function App() {
   return (
     <div className="site-shell">
+      <GlobalScene />
+      <GrainOverlay />
       <SiteNav />
       <main id="main-content">
         <Hero />

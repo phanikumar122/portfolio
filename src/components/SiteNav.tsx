@@ -1,7 +1,9 @@
-import { FileText, Github, Linkedin, Mail, Menu, X } from 'lucide-react'
+import { FileText, Github, Linkedin, Mail, Menu, Moon, Sun, X } from 'lucide-react'
+import { motion } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 import { portfolio } from '../data/portfolio'
 import { useActiveSection } from '../hooks/useActiveSection'
+import { useScrollProgress } from '../hooks/useScrollProgress'
 import { useTheme } from '../hooks/useTheme'
 import { ResumeModal } from './ResumeModal'
 
@@ -12,8 +14,9 @@ export function SiteNav() {
   const [resumeOpen, setResumeOpen] = useState(false)
   const menuButtonRef = useRef<HTMLButtonElement>(null)
   const menuRef = useRef<HTMLDivElement>(null)
-  useTheme()
+  const { theme, toggleTheme } = useTheme()
   const activeSection = useActiveSection(sectionIds)
+  const progress = useScrollProgress()
 
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
@@ -43,13 +46,34 @@ export function SiteNav() {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
+  useEffect(() => {
+    if (!menuOpen) return
+
+    const handlePointerDown = (event: PointerEvent) => {
+      const target = event.target as Node
+      if (!menuRef.current?.contains(target) && !menuButtonRef.current?.contains(target)) {
+        setMenuOpen(false)
+      }
+    }
+
+    document.addEventListener('pointerdown', handlePointerDown)
+    return () => document.removeEventListener('pointerdown', handlePointerDown)
+  }, [menuOpen])
+
   const closeMenu = () => {
     setMenuOpen(false)
     menuButtonRef.current?.focus()
   }
 
   return (
-    <header className="site-nav" role="banner">
+    <motion.header
+      className="site-nav"
+      role="banner"
+      initial={{ opacity: 0, y: -16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <div className="nav-progress" style={{ transform: `scaleX(${progress})` }} aria-hidden="true" />
       <div className="nav-inner">
         <a className="brand-mark" href="#top" aria-label="Phani Kumar home">
           <span className="brand-symbol">PK</span>
@@ -58,7 +82,7 @@ export function SiteNav() {
 
         <nav className="desktop-nav" aria-label="Main navigation">
           {portfolio.navigation.map((item) => {
-            const isActive = activeSection === item.href.slice(1)
+            const isActive = activeSection === item.href
             return (
               <a
                 key={item.href}
@@ -73,6 +97,15 @@ export function SiteNav() {
         </nav>
 
         <div className="nav-actions">
+          <button
+            type="button"
+            className="theme-toggle nav-theme"
+            onClick={toggleTheme}
+            aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+          >
+            {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+          </button>
+
           {portfolio.person.resumeUrl && (
             <button
               type="button"
@@ -123,6 +156,14 @@ export function SiteNav() {
           )}
         </nav>
         <div className="mobile-nav-footer">
+          <button
+            type="button"
+            className="mobile-theme-link"
+            tabIndex={menuOpen ? 0 : -1}
+            onClick={toggleTheme}
+          >
+            {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />} {theme === 'dark' ? 'Light mode' : 'Dark mode'}
+          </button>
           <a href={portfolio.person.linkedin} target="_blank" rel="noreferrer" tabIndex={menuOpen ? 0 : -1} onClick={closeMenu}><Linkedin size={15} /> LinkedIn</a>
           <a href={portfolio.person.github} target="_blank" rel="noreferrer" tabIndex={menuOpen ? 0 : -1} onClick={closeMenu}><Github size={15} /> GitHub</a>
           <a href={`mailto:${portfolio.person.email}`} tabIndex={menuOpen ? 0 : -1} onClick={closeMenu}><Mail size={15} /> Email</a>
@@ -136,6 +177,6 @@ export function SiteNav() {
           resumeUrl={portfolio.person.resumeUrl}
         />
       )}
-    </header>
+    </motion.header>
   )
 }

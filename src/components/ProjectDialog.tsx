@@ -1,5 +1,6 @@
 import { ArrowUpRight, ExternalLink, Github, X } from 'lucide-react'
 import { useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import type { Project } from '../data/portfolio'
 import { ProjectVisual } from './ProjectVisual'
 
@@ -48,7 +49,7 @@ export function ProjectDialog({ project, onClose }: ProjectDialogProps) {
 
   if (!project) return null
 
-  return (
+  return createPortal(
     <div className="dialog-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose() }}>
       <div className="project-dialog" role="dialog" aria-modal="true" aria-labelledby="project-dialog-title" ref={dialogRef}>
          <div className="dialog-topline"><span>Case Study Specification · {project.title}</span><button ref={closeButtonRef} type="button" className="icon-button" aria-label="Close project details" onClick={onClose}><X size={18} /></button></div>
@@ -59,11 +60,12 @@ export function ProjectDialog({ project, onClose }: ProjectDialogProps) {
             <p className="dialog-description">{project.description}</p>
              <div className="dialog-block"><span className="mono-label">the problem</span><p>{project.problem}</p></div>
              <div className="dialog-block"><span className="mono-label">built</span><ul>{project.features.map((feature) => <li key={feature}>{feature}</li>)}</ul></div>
-             <div className="dialog-stack"><span className="mono-label">tech stack</span><div>{project.stack.map((item) => <span key={item}>{item}</span>)}</div></div>
+             <div className="dialog-stack"><span className="mono-label">tech stack</span><ol>{project.stack.map((item, index) => <li key={item}><span>{String(index + 1).padStart(2, '0')}</span>{item}</li>)}</ol></div>
              <div className="dialog-actions"><a className="button button--primary" href={project.github} target="_blank" rel="noreferrer"><Github size={15} /> Code <ArrowUpRight size={14} /></a>{project.live && <a className="button button--quiet" href={project.live} target="_blank" rel="noreferrer"><ExternalLink size={15} /> Demo <ArrowUpRight size={14} /></a>}</div>
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }

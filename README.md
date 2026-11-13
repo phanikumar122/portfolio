@@ -1,14 +1,15 @@
 # Vinnakota Phani Kumar — Portfolio
 
-A warm editorial portfolio for **Vinnakota Phani Kumar**, a Computer Science Engineer interested in full-stack software, cloud systems, and agentic AI.
+A precise engineering portfolio for **Vinnakota Phani Kumar**, a Computer Science Engineer interested in full-stack software, cloud systems, and agentic AI.
 
-The experience is built around a calm editorial visual language: warm paper surfaces, deep ink panels, a restrained chartreuse accent, project-specific abstract visuals, and motion that helps the reader move through the work without blocking the page.
+The experience uses an engineering-field-notes visual language built entirely from Onyx (`#0a090c`) and Platinum (`#f0edee`), with transparent derivatives, rounded interface surfaces, blueprint-style project diagrams, and motion that supports navigation without competing with the work.
 
 ## Stack
 
 - React 18 + TypeScript
 - Vite
 - Motion for React
+- Three.js (lazy-loaded, scroll-linked global background)
 - Lucide React
 - Space Grotesk + IBM Plex Mono
 - Vitest + React Testing Library
@@ -97,10 +98,14 @@ Edit the `portfolio.person`, `skills`, `projects`, `credentials`, `achievements`
 
 ## Theming
 
-A light/dark toggle lives in the navbar. The palette is tokenized in `src/styles/tokens.css` (`html.dark` overrides) with the dark overrides at the end of `src/styles/redesign.css`. The choice persists in `localStorage` and follows the OS preference on first visit.
+A light/dark toggle lives in the navbar. Both palettes are centralized in `src/styles/tokens.css`, while component styling and responsive rules live in `src/styles/redesign.css`. The choice persists in `localStorage` and follows the OS preference on first visit.
 
 ## Contact form
 
 The contact section ships a working form. Leave `FORMSPREE_ENDPOINT` in `src/components/Contact.tsx` blank to fall back to the visitor's mail app, or paste a [Formspree](https://formspree.io) endpoint to send submissions straight to the inbox.
 
 Project descriptions and stacks were written from the supplied GitHub READMEs, repository metadata, and supplied live links. Project visuals are intentionally generated treatments, not claimed screenshots.
+
+The Three.js background scene is loaded only when WebGL and motion preferences permit it. A custom Möbius ribbon, double helix, and flowing wave lattice move with page progress to create a continuous 3D scroll narrative behind the interface. Reduced-motion users and browsers without WebGL receive a static geometric background instead.
+
+All projects share the same card dimensions, visual treatment, and case-study actions; there is no featured/archive hierarchy.

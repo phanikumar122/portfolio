@@ -1,4 +1,4 @@
-import { AlertCircle, Check, Copy, ExternalLink, FileText, Github, Linkedin, Mail, Send, ArrowUpRight } from 'lucide-react'
+import { AlertCircle, Check, Copy, ExternalLink, FileText, Mail, Send, ArrowUpRight } from 'lucide-react'
 import { useState } from 'react'
 import type { FormEvent } from 'react'
 import { portfolio } from '../data/portfolio'
@@ -68,48 +68,9 @@ export function Contact() {
             )}
           </Reveal>
 
-          <Reveal delay={0.24} className="social-cards-grid">
-            <a
-              href={portfolio.person.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              className="social-profile-card social-profile-card--linkedin"
-              aria-label="Connect on LinkedIn"
-            >
-              <div className="social-card-header">
-                <span className="social-card-icon"><Linkedin size={18} /></span>
-                <span className="social-card-arrow"><ArrowUpRight size={14} /></span>
-              </div>
-              <strong className="social-card-title">LinkedIn</strong>
-              <span className="social-card-handle">phani-kumar-999022375</span>
-            </a>
-
-            <a
-              href={portfolio.person.github}
-              target="_blank"
-              rel="noreferrer"
-              className="social-profile-card social-profile-card--github"
-              aria-label="Follow on GitHub"
-            >
-              <div className="social-card-header">
-                <span className="social-card-icon"><Github size={18} /></span>
-                <span className="social-card-arrow"><ArrowUpRight size={14} /></span>
-              </div>
-              <strong className="social-card-title">GitHub</strong>
-              <span className="social-card-handle">phanikumar122</span>
-            </a>
-
-            <a
-              href={`mailto:${portfolio.person.email}`}
-              className="social-profile-card social-profile-card--mail"
-              aria-label="Send Email directly"
-            >
-              <div className="social-card-header">
-                <span className="social-card-icon"><Mail size={18} /></span>
-                <span className="social-card-arrow"><ArrowUpRight size={14} /></span>
-              </div>
-              <strong className="social-card-title">Direct Email</strong>
-              <span className="social-card-handle">{portfolio.person.email}</span>
+          <Reveal delay={0.24} className="contact-direct-line">
+            <a href={`mailto:${portfolio.person.email}`} className="contact-email-inline">
+              <Mail size={15} /> {portfolio.person.email}
             </a>
           </Reveal>
         </div>
@@ -122,9 +83,18 @@ export function Contact() {
           </button>
 
           <form className="contact-form" onSubmit={handleSubmit}>
-            <input name="name" type="text" placeholder="Your name" autoComplete="name" required />
-            <input name="email" type="email" placeholder="Your email" autoComplete="email" required />
-            <textarea name="message" placeholder="Tell me about your project, team, or opportunity…" required />
+            <label>
+              <span>Your name</span>
+              <input name="name" type="text" placeholder="How should I address you?" autoComplete="name" required />
+            </label>
+            <label>
+              <span>Your email</span>
+              <input name="email" type="email" placeholder="you@company.com" autoComplete="email" required />
+            </label>
+            <label>
+              <span>Message</span>
+              <textarea name="message" placeholder="Tell me about the project, team, or opportunity…" required />
+            </label>
             <button type="submit" className="button button--primary" disabled={status === 'sending'}>
               <Send size={14} /> {status === 'sending' ? 'Sending…' : 'Send message'}
             </button>
@@ -138,7 +108,10 @@ export function Contact() {
 
       <div className="contact-bottom">
         <span>Available for full-time roles & projects</span>
-        <a href={`mailto:${portfolio.person.email}`}><Mail size={15} /> Email me</a>
+        <span className="contact-bottom-links">
+          <a href={portfolio.person.github} target="_blank" rel="noreferrer">GitHub</a>
+          <a href={portfolio.person.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+        </span>
       </div>
     </SectionReveal>
   )

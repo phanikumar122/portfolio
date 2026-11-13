@@ -1,12 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#0b0d0c"/>
-  <path d="M0 470h1200M0 158h1200M270 0v630M930 0v630" stroke="#27302a" stroke-width="1"/>
-  <circle cx="930" cy="158" r="112" fill="none" stroke="#d8ff57" stroke-width="2" opacity=".7"/>
-  <circle cx="930" cy="158" r="52" fill="#d8ff57"/>
-  <circle cx="752" cy="392" r="16" fill="#d8ff57"/>
-  <path d="M930 158 752 392M930 158 1084 392" stroke="#d8ff57" stroke-width="2" opacity=".7"/>
-  <text x="78" y="160" fill="#d8ff57" font-family="monospace" font-size="18" letter-spacing="4">COMPUTER SCIENCE ENGINEER</text>
-  <text x="78" y="270" fill="#f1f0e8" font-family="Arial, sans-serif" font-size="72" font-weight="700">Vinnakota</text>
-  <text x="78" y="350" fill="#f1f0e8" font-family="Arial, sans-serif" font-size="72" font-weight="700">Phani Kumar</text>
-  <text x="78" y="530" fill="#a4ada5" font-family="monospace" font-size="18">FULL-STACK · CLOUD · AGENTIC AI</text>
+  <rect width="1200" height="630" fill="#0a090c"/>
+  <path d="M0 472h1200M0 156h1200M274 0v630M928 0v630" stroke="#f0edee" stroke-width="1" opacity=".13"/>
+  <path d="M928 72v252M802 198h252" stroke="#f0edee" stroke-width="2" opacity=".7"/>
+  <rect x="864" y="134" width="128" height="128" rx="32" fill="#0a090c" stroke="#f0edee" stroke-width="2" transform="rotate(45 928 198)"/>
+  <circle cx="928" cy="198" r="8" fill="#f0edee"/>
+  <circle cx="1090" cy="382" r="9" fill="#f0edee"/>
+  <path d="M928 198 1090 382M928 198 766 382" stroke="#f0edee" stroke-width="1" opacity=".42"/>
+  <text x="78" y="128" fill="#f0edee" font-family="monospace" font-size="18" letter-spacing="4">ENGINEER / BUILDER / PROBLEM SOLVER</text>
+  <text x="78" y="266" fill="#f0edee" font-family="Arial, sans-serif" font-size="72" font-weight="600">Vinnakota</text>
+  <text x="78" y="346" fill="#f0edee" font-family="Arial, sans-serif" font-size="72" font-weight="600">Phani Kumar</text>
+  <text x="78" y="530" fill="#f0edee" opacity=".62" font-family="monospace" font-size="18">FULL-STACK PRODUCTS · CLOUD SYSTEMS · APPLIED AI</text>
 </svg>

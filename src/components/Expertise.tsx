@@ -7,6 +7,15 @@ import { useReducedMotion } from '../hooks/useReducedMotion'
 import { Reveal } from './Reveal'
 import { SectionReveal } from './SectionReveal'
 
+const chipContainer = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.055, delayChildren: 0.1 } },
+}
+const chipItem = {
+  hidden: { opacity: 0, scale: 0.88, y: 10 },
+  show: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
+}
+
 const domainSubtitles: Record<string, { icon: typeof Code2; subtitle: string }> = {
   Build: { icon: Code2, subtitle: 'Frontend & APIs' },
   Data: { icon: Database, subtitle: 'Databases & Storage' },
@@ -124,13 +133,23 @@ export function Expertise() {
                       </div>
                     </div>
 
-                    <div className="capability-skills-grid">
+                    <motion.div
+                      className="capability-skills-grid"
+                      variants={reducedMotion ? undefined : chipContainer}
+                      initial="hidden"
+                      animate="show"
+                    >
                       {group.skills.map((skill) => (
-                        <div key={skill} className="skill-tech-chip">
-                          <span className="tech-chip-name">{skill}</span>
-                        </div>
+                        <motion.div
+                          key={skill}
+                          className="skill-tech-row"
+                          variants={reducedMotion ? undefined : chipItem}
+                          whileHover={reducedMotion ? undefined : { x: 3 }}
+                        >
+                          <span className="tech-row-name">{skill}</span>
+                        </motion.div>
                       ))}
-                    </div>
+                    </motion.div>
                   </motion.div>
                 )}
               </div>

@@ -16,7 +16,7 @@ export function Education() {
         <div className="education-card-main">
           <div className="education-degree-row">
             <div>
-              <span className="education-badge-clean">Degree Program</span>
+              <span className="education-program-label">Degree Program</span>
               <h3 className="education-degree-title">Bachelor of Technology — Computer Science & Engineering</h3>
               <p className="education-institution-name">{portfolio.education.institution}</p>
             </div>
