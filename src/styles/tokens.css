@@ -24,7 +24,6 @@
   --gradient-radial: radial-gradient(var(--onyx), var(--platinum));
 }
 
-html.dark,
 :root {
   color-scheme: dark;
   --bg: var(--onyx);
@@ -46,27 +45,4 @@ html.dark,
   --nav-bg: rgba(10, 9, 12, .88);
   --dialog-bg: var(--onyx);
   --shadow: 0 24px 70px rgba(10, 9, 12, .55);
-}
-
-html.light {
-  color-scheme: light;
-  --bg: var(--platinum);
-  --bg-alt: rgba(10, 9, 12, .035);
-  --surface: rgba(10, 9, 12, .055);
-  --surface-raised: rgba(10, 9, 12, .08);
-  --surface-hover: rgba(10, 9, 12, .12);
-  --text: var(--onyx);
-  --text-secondary: rgba(10, 9, 12, .8);
-  --muted: rgba(10, 9, 12, .62);
-  --faint: rgba(10, 9, 12, .42);
-  --line: rgba(10, 9, 12, .14);
-  --line-strong: rgba(10, 9, 12, .3);
-  --accent: var(--onyx);
-  --accent-hover: rgba(10, 9, 12, .78);
-  --accent-soft: rgba(10, 9, 12, .07);
-  --accent-border: rgba(10, 9, 12, .36);
-  --on-accent: var(--platinum);
-  --nav-bg: rgba(240, 237, 238, .9);
-  --dialog-bg: var(--platinum);
-  --shadow: 0 24px 60px rgba(10, 9, 12, .16);
 }

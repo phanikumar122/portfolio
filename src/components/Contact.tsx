@@ -67,12 +67,6 @@ export function Contact() {
               </a>
             )}
           </Reveal>
-
-          <Reveal delay={0.24} className="contact-direct-line">
-            <a href={`mailto:${portfolio.person.email}`} className="contact-email-inline">
-              <Mail size={15} /> {portfolio.person.email}
-            </a>
-          </Reveal>
         </div>
 
         <Reveal delay={0.18} className="contact-action">
@@ -104,14 +98,6 @@ export function Contact() {
             </p>
           </form>
         </Reveal>
-      </div>
-
-      <div className="contact-bottom">
-        <span>Available for full-time roles & projects</span>
-        <span className="contact-bottom-links">
-          <a href={portfolio.person.github} target="_blank" rel="noreferrer">GitHub</a>
-          <a href={portfolio.person.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-        </span>
       </div>
     </SectionReveal>
   )

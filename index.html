@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0a090c" />
-    <meta name="color-scheme" content="dark light" />
+    <meta name="color-scheme" content="dark" />
     <meta name="description" content="Portfolio of Vinnakota Phani Kumar, a Computer Science Engineer building full-stack software, cloud systems, and agentic AI architectures." />
     <link rel="canonical" href="https://phani-kumar.dev/" />
     <meta property="og:title" content="Vinnakota Phani Kumar — Computer Science Engineer" />
@@ -65,19 +65,6 @@
         box-shadow: 0 4px 20px rgba(10, 9, 12, 0.5) !important;
       }
     </style>
-    <script>
-      // Set the theme before first paint to avoid a flash of the wrong palette.
-      (function () {
-        try {
-          var stored = localStorage.getItem('portfolio-theme');
-          var theme = stored === 'light' || stored === 'dark'
-            ? stored
-            : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-          document.documentElement.classList.remove('light', 'dark');
-          document.documentElement.classList.add(theme);
-        } catch (e) {}
-      })();
-    </script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",

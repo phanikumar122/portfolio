@@ -6,7 +6,6 @@ import { Reveal } from './Reveal'
 import { ProjectDialog } from './ProjectDialog'
 import { ProjectVisual } from './ProjectVisual'
 import { SectionReveal } from './SectionReveal'
-import { TiltCard } from './TiltCard'
 
 const projectCategories: Record<string, string> = {
   mentora: 'Full-Stack Platform',
@@ -24,7 +23,7 @@ function ProjectCard({ project, index, onOpen }: { project: Project; index: numb
   return (
     <Reveal delay={(index % 2) * 0.06} className="project-card">
       <button className="project-card-visual" type="button" onClick={() => onOpen(project)} aria-label={`View ${project.title} case study`}>
-        <TiltCard className="project-tilt"><ProjectVisual type={project.visual} /></TiltCard>
+        <ProjectVisual type={project.visual} />
         <span className="project-visual-hint mono-label">Explore case study <ArrowUpRight size={12} /></span>
       </button>
 

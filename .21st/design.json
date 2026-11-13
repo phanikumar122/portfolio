@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "project": {
+    "name": "phani-kumar-portfolio",
+    "productType": null,
+    "stack": [
+      "react",
+      "vite"
+    ]
+  },
+  "sources": {
+    "tokens": [],
+    "components": [],
+    "assets": [
+      "src/assets"
+    ],
+    "instructions": [
+      "AGENTS.md"
+    ]
+  },
+  "design": {
+    "colorMode": "unknown",
+    "colors": {},
+    "typography": {},
+    "spacing": {},
+    "radius": {},
+    "shadows": {},
+    "motion": {},
+    "density": "unknown"
+  },
+  "components": {
+    "installed": [],
+    "preferredPrimitives": [],
+    "patterns": []
+  },
+  "constraints": {
+    "must": [],
+    "avoid": []
+  },
+  "decisions": [
+    "Preserve the monochrome editorial portfolio system; use generated 3D project artwork as the content focal point instead of fabricated product dashboards.",
+    "Use a single dedicated, pointer-responsive Three.js orbital object in the hero. Its canvas resizes with its container, pauses when the page is hidden, honors reduced motion, and the copy stacks before it can overlap on narrow screens.",
+    "Remove the full-page WebGL background, 3D project-card tilt, and scroll-depth transformations so motion has one clear focal point.",
+    "Use short entrance and feedback motion for hierarchy: staged hero typography, small hover elevation on project cards, cover-image depth, and responsive buttons. Never add a second continuous animation outside the hero object.",
+    "The portfolio is dark-only: light tokens, persistence, media-query selection, and both toggle controls have been removed."
+  ],
+  "evidence": [
+    {
+      "fact": "project.instructions",
+      "source": "AGENTS.md"
+    },
+    {
+      "fact": "project.stack:react",
+      "source": "package.json"
+    },
+    {
+      "fact": "project.stack:vite",
+      "source": "package.json"
+    }
+  ],
+  "generatedAt": "2026-11-13T14:34:28.589Z"
+}

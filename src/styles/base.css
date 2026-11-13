@@ -86,6 +86,7 @@ main > section:not(#top) { border-top: 1px solid var(--line); }
   transition: transform var(--fast) var(--ease), background var(--fast), border-color var(--fast);
 }
 .button:hover { transform: translateY(-2px); }
+.button:active { transform: translateY(0) scale(.98); }
 .button--primary { background: var(--accent); color: var(--on-accent); }
 .button--primary:hover { background: var(--accent-hover); }
 .button--quiet { border-color: var(--line-strong); background: transparent; }

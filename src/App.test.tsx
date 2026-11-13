@@ -16,11 +16,10 @@ describe('portfolio experience', () => {
     })
   })
 
-  it('gives every section a shared reveal surface and every project a 3D visual stage', () => {
+  it('gives every section a shared reveal surface and every project a visual stage', () => {
     const { container } = render(<App />)
 
     expect(container.querySelectorAll('main > section')).toHaveLength(9)
-    expect(container.querySelectorAll('.project-tilt')).toHaveLength(portfolio.projects.length)
     expect(container.querySelectorAll('.project-visual[aria-hidden="true"]')).toHaveLength(portfolio.projects.length)
   })
 
@@ -40,13 +39,11 @@ describe('portfolio experience', () => {
     expect(trigger).toHaveFocus()
   })
 
-  it('shows the portrait and switches the selected skills group', async () => {
+  it('shows the orbital systems object and switches the selected skills group', async () => {
     const user = userEvent.setup()
     render(<App />)
 
-    const portrait = screen.getByRole('img', { name: 'Portrait of Vinnakota Phani Kumar' })
-    expect(portrait).toBeInTheDocument()
-    expect(portrait.getAttribute('src')).toMatch(/phani.*\.jpg|data:image|phani/i)
+    expect(screen.getByRole('img', { name: 'Interactive three-dimensional orbital systems object' })).toBeInTheDocument()
     const tabs = screen.getAllByRole('tab')
     expect(tabs[0]).toHaveAttribute('aria-selected', 'true')
     expect(tabs[0]).toHaveAttribute('aria-controls', 'skill-panel-01')
@@ -113,7 +110,8 @@ describe('portfolio experience', () => {
 
   it('enforces dark theme across the website', () => {
     render(<App />)
-    expect(document.documentElement.classList.contains('dark')).toBe(true)
+    expect(document.documentElement.classList.contains('light')).toBe(false)
+    expect(screen.queryByRole('button', { name: /switch to (light|dark) theme/i })).not.toBeInTheDocument()
   })
 
   it('opens and closes the in-page resume preview modal', async () => {
@@ -144,10 +142,9 @@ describe('portfolio experience', () => {
     expect(screen.getByRole('textbox', { name: /^message$/i })).toBeInTheDocument()
   })
 
-  it('uses the progressive global scene and gives every project equal card treatment', () => {
+  it('uses one dedicated hero scene and gives every project equal card treatment', () => {
     const { container } = render(<App />)
-    expect(container.querySelector('.global-scene canvas')).toBeInTheDocument()
-    expect(container.querySelector('.hero-portrait img')).toHaveAccessibleName('Portrait of Vinnakota Phani Kumar')
+    expect(container.querySelector('.hero-object canvas')).toBeInTheDocument()
     expect(container.querySelectorAll('.project-grid > .project-card')).toHaveLength(portfolio.projects.length)
     expect(container.querySelector('.archive-block')).not.toBeInTheDocument()
     expect(container.querySelectorAll('.status-pill, .status-dot, .tech-badge, .skill-tech-chip')).toHaveLength(0)
