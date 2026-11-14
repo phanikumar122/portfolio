@@ -50,18 +50,18 @@ export function ProjectDialog({ project, onClose }: ProjectDialogProps) {
   if (!project) return null
 
   return createPortal(
-    <div className="dialog-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose() }}>
-      <div className="project-dialog" role="dialog" aria-modal="true" aria-labelledby="project-dialog-title" ref={dialogRef}>
-         <div className="dialog-topline"><span>Case Study Specification · {project.title}</span><button ref={closeButtonRef} type="button" className="icon-button" aria-label="Close project details" onClick={onClose}><X size={18} /></button></div>
-        <div className="dialog-grid">
-          <div className="dialog-visual"><ProjectVisual type={project.visual} /></div>
-          <div className="dialog-copy">
+    <div className="studio-project-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose() }}>
+      <div className="studio-project-dialog" role="dialog" aria-modal="true" aria-labelledby="project-dialog-title" aria-describedby="project-dialog-description" ref={dialogRef}>
+        <div className="studio-project-dialog-top"><span>About this project</span><button ref={closeButtonRef} type="button" className="studio-dialog-close" aria-label="Close project details" onClick={onClose}><X size={20} /></button></div>
+        <div className="studio-project-dialog-grid">
+          <div className="studio-project-dialog-visual"><ProjectVisual type={project.visual} /><p>Concept illustration for this project.</p></div>
+          <div className="studio-project-dialog-copy">
             <h2 id="project-dialog-title">{project.title}</h2>
-            <p className="dialog-description">{project.description}</p>
-             <div className="dialog-block"><span className="mono-label">the problem</span><p>{project.problem}</p></div>
-             <div className="dialog-block"><span className="mono-label">built</span><ul>{project.features.map((feature) => <li key={feature}>{feature}</li>)}</ul></div>
-             <div className="dialog-stack"><span className="mono-label">tech stack</span><ol>{project.stack.map((item, index) => <li key={item}><span>{String(index + 1).padStart(2, '0')}</span>{item}</li>)}</ol></div>
-             <div className="dialog-actions"><a className="button button--primary" href={project.github} target="_blank" rel="noreferrer"><Github size={15} /> Code <ArrowUpRight size={14} /></a>{project.live && <a className="button button--quiet" href={project.live} target="_blank" rel="noreferrer"><ExternalLink size={15} /> Demo <ArrowUpRight size={14} /></a>}</div>
+            <p id="project-dialog-description" className="studio-description">{project.description}</p>
+            <div className="studio-project-dialog-block"><h3>The problem</h3><p>{project.problem}</p></div>
+            <div className="studio-project-dialog-block"><h3>What I built</h3><ul>{project.features.map(feature => <li key={feature}>{feature}</li>)}</ul></div>
+            <div className="studio-project-dialog-block"><h3>Technology</h3><ul className="studio-project-stack">{project.stack.map(item => <li key={item}>{item}</li>)}</ul></div>
+            <div className="studio-project-dialog-actions"><a className="studio-button studio-button--primary" href={project.github} target="_blank" rel="noreferrer"><Github size={16} /> View code <ArrowUpRight size={15} /></a>{project.live && <a className="studio-button studio-button--outline" href={project.live} target="_blank" rel="noreferrer"><ExternalLink size={16} /> Live demo</a>}</div>
           </div>
         </div>
       </div>

@@ -1,0 +1,633 @@
+/* Supporting studio sections. Palette tokens and full-bleed backgrounds come from studio.css. */
+
+.studio-section .studio-support-head {
+  margin-bottom: 40px;
+}
+
+/* Engineering: a numbered process, not a card grid. */
+.studio-section.studio-philosophy .studio-process-layout {
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.4fr);
+  gap: clamp(40px, 7vw, 96px);
+  align-items: start;
+}
+
+.studio-section.studio-philosophy .studio-process-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  border-top: 1px solid var(--studio-line);
+}
+
+.studio-section.studio-philosophy .studio-process-row {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 24px;
+  padding-block: 26px;
+  border-bottom: 1px solid var(--studio-line);
+}
+
+.studio-section.studio-philosophy .studio-process-number {
+  padding-top: 3px;
+  color: var(--studio-accent);
+  font-family: var(--studio-mono);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.studio-section.studio-philosophy .studio-process-copy h3 {
+  margin: 0 0 10px;
+  color: var(--studio-text);
+  font-family: var(--studio-font);
+  font-size: clamp(20px, 2vw, 25px);
+  font-weight: 500;
+  letter-spacing: -.03em;
+  line-height: 1.25;
+}
+
+.studio-section.studio-philosophy .studio-process-copy p {
+  margin: 0;
+  max-width: 58ch;
+  color: var(--studio-muted);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+/* Education: an academic dossier with a separate record margin. */
+.studio-section.studio-education .studio-academic-dossier {
+  display: grid;
+  grid-template-columns: minmax(220px, .32fr) minmax(0, 1fr);
+  border: 1px solid var(--studio-line);
+}
+
+.studio-section.studio-education .studio-academic-record {
+  grid-row: span 2;
+  padding: 32px;
+  background: var(--studio-surface);
+  border-right: 1px solid var(--studio-line);
+}
+
+.studio-section.studio-education .studio-academic-label {
+  margin: 0 0 16px;
+  color: var(--studio-muted);
+  font-family: var(--studio-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .08em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+.studio-section.studio-education .studio-academic-years {
+  margin: 0 0 36px;
+  color: var(--studio-text);
+  font-family: var(--studio-font);
+  font-size: clamp(26px, 2.6vw, 34px);
+  font-weight: 500;
+  letter-spacing: -.06em;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.studio-section.studio-education .studio-academic-years span {
+  color: var(--studio-accent);
+}
+
+.studio-section.studio-education .studio-academic-meta {
+  display: grid;
+  gap: 24px;
+  margin: 0;
+}
+
+.studio-section.studio-education .studio-academic-meta dt {
+  color: var(--studio-text);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.studio-section.studio-education .studio-academic-meta dd {
+  margin: 3px 0 0;
+  color: var(--studio-muted);
+  font-size: 13px;
+}
+
+.studio-section.studio-education .studio-academic-main {
+  padding: 32px 40px;
+}
+
+.studio-section.studio-education .studio-academic-main h3 {
+  max-width: 30ch;
+  margin: 0 0 16px;
+  color: var(--studio-text);
+  font-family: var(--studio-font);
+  font-size: clamp(24px, 2.7vw, 34px);
+  font-weight: 500;
+  letter-spacing: -.04em;
+  line-height: 1.2;
+}
+
+.studio-section.studio-education .studio-academic-institution {
+  margin: 0;
+  color: var(--studio-muted);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.studio-section.studio-education .studio-academic-contact {
+  margin-top: 24px;
+}
+
+.studio-section.studio-education .studio-academic-coursework {
+  padding: 26px 40px 32px;
+  border-top: 1px solid var(--studio-line);
+}
+
+.studio-section.studio-education .studio-academic-coursework ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.studio-section.studio-education .studio-academic-coursework li {
+  display: flex;
+  gap: 12px;
+  color: var(--studio-text);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.studio-section.studio-education .studio-academic-coursework li::before {
+  content: '';
+  flex: 0 0 10px;
+  height: 1px;
+  margin-top: 11px;
+  background: var(--studio-accent);
+}
+
+/* Credentials: compact ledger with aligned verification actions. */
+.studio-section.studio-credentials .studio-ledger-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.studio-section.studio-credentials .studio-ledger-count {
+  margin: 0 0 5px;
+  color: var(--studio-muted);
+  font-family: var(--studio-mono);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.studio-section.studio-credentials .studio-ledger-columns,
+.studio-section.studio-credentials .studio-ledger-row {
+  display: grid;
+  grid-template-columns: 100px minmax(0, 1fr) 100px;
+  gap: 28px;
+  align-items: center;
+}
+
+.studio-section.studio-credentials .studio-ledger-columns {
+  padding: 0 0 14px;
+  color: var(--studio-muted);
+  font-family: var(--studio-mono);
+  font-size: 11px;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.studio-section.studio-credentials .studio-ledger-columns > :last-child {
+  text-align: right;
+}
+
+.studio-section.studio-credentials .studio-credential-ledger {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--studio-text);
+  list-style: none;
+}
+
+.studio-section.studio-credentials .studio-ledger-row {
+  min-height: 100px;
+  padding-block: 24px;
+  border-bottom: 1px solid var(--studio-line);
+}
+
+.studio-section.studio-credentials .studio-ledger-record {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-family: var(--studio-mono);
+  font-size: 12px;
+}
+
+.studio-section.studio-credentials .studio-ledger-index {
+  color: var(--studio-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.studio-section.studio-credentials .studio-ledger-mark {
+  color: var(--studio-accent);
+  font-weight: 500;
+}
+
+.studio-section.studio-credentials .studio-ledger-copy h3 {
+  margin: 0 0 7px;
+  color: var(--studio-text);
+  font-family: var(--studio-font);
+  font-size: clamp(17px, 1.8vw, 21px);
+  font-weight: 500;
+  letter-spacing: -.025em;
+  line-height: 1.4;
+}
+
+.studio-section.studio-credentials .studio-ledger-copy p {
+  margin: 0;
+  color: var(--studio-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.studio-section.studio-credentials .studio-ledger-verify {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-self: end;
+  gap: 10px;
+  padding-inline: 4px;
+  color: var(--studio-text);
+  font-family: var(--studio-mono);
+  font-size: 12px;
+}
+
+.studio-section.studio-credentials .studio-ledger-verify:hover {
+  color: var(--studio-accent);
+}
+
+.studio-section.studio-credentials .studio-ledger-verify:hover span {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+/* Awards: two expressive panels; numerals represent actual placements. */
+.studio-section.studio-achievements .studio-award-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.studio-section.studio-achievements .studio-award-panel {
+  padding: 32px;
+  border: 1px solid var(--studio-line);
+  color: var(--studio-text);
+  background: var(--studio-surface);
+}
+
+.studio-section.studio-achievements .studio-award-panel--forest {
+  color: var(--studio-bg);
+  background: var(--studio-text);
+  border-color: var(--studio-text);
+}
+
+.studio-section.studio-achievements .studio-award-content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+.studio-section.studio-achievements .studio-award-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.studio-section.studio-achievements .studio-award-label {
+  font-family: var(--studio-mono);
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.studio-section.studio-achievements .studio-award-body {
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
+  gap: 24px;
+  padding-block: 40px 32px;
+}
+
+.studio-section.studio-achievements .studio-award-place {
+  color: var(--studio-accent);
+  font-family: var(--studio-font);
+  font-size: clamp(72px, 8vw, 112px);
+  font-weight: 500;
+  letter-spacing: -.08em;
+  line-height: .8;
+}
+
+.studio-section.studio-achievements .studio-award-panel--forest .studio-award-place {
+  color: var(--studio-bg);
+}
+
+.studio-section.studio-achievements .studio-award-copy {
+  min-width: 0;
+}
+
+.studio-section.studio-achievements .studio-award-copy h3 {
+  margin: 0 0 10px;
+  font-family: var(--studio-font);
+  font-size: clamp(24px, 2.8vw, 34px);
+  font-weight: 500;
+  letter-spacing: -.04em;
+  line-height: 1.1;
+}
+
+.studio-section.studio-achievements .studio-award-copy p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.studio-section.studio-achievements .studio-award-link {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 16px;
+  border-top: 1px solid currentColor;
+  font-family: var(--studio-mono);
+  font-size: 12px;
+}
+
+.studio-section.studio-achievements .studio-award-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+.studio-section.studio-education a:focus-visible,
+.studio-section.studio-credentials a:focus-visible,
+.studio-section.studio-achievements a:focus-visible {
+  outline: 2px solid var(--studio-accent);
+  outline-offset: 5px;
+}
+
+.studio-section.studio-achievements .studio-award-panel--forest a:focus-visible {
+  outline-color: var(--studio-bg);
+}
+
+/* Footer: a quiet colophon, with time and social links kept on mobile. */
+.studio-footer {
+  background: var(--studio-bg);
+  color: var(--studio-text);
+  border-top: 1px solid var(--studio-line);
+}
+
+.studio-footer .studio-footer-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 40px;
+  padding-block: 32px;
+}
+
+.studio-footer .studio-footer-identity {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+}
+
+.studio-footer .studio-footer-mark {
+  flex-shrink: 0;
+  color: var(--studio-text);
+  font-family: var(--studio-font);
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -.08em;
+  line-height: 1;
+}
+
+.studio-footer .studio-footer-mark span {
+  color: var(--studio-accent);
+}
+
+.studio-footer .studio-footer-name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.studio-footer .studio-footer-copyright {
+  margin: 4px 0 0;
+  color: var(--studio-muted);
+  font-family: var(--studio-mono);
+  font-size: 11px;
+}
+
+.studio-footer .studio-footer-status {
+  display: grid;
+  gap: 4px;
+}
+
+.studio-footer .studio-footer-availability {
+  color: var(--studio-text);
+  font-size: 13px;
+}
+
+.studio-footer .studio-footer-time {
+  color: var(--studio-muted);
+  font-family: var(--studio-mono);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.studio-footer .studio-footer-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.studio-footer .studio-footer-links a {
+  display: inline-flex;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid var(--studio-line);
+  color: var(--studio-text);
+}
+
+.studio-footer .studio-footer-links .studio-footer-top {
+  padding-inline: 14px;
+  margin-left: 8px;
+  font-family: var(--studio-mono);
+  font-size: 11px;
+}
+
+.studio-footer .studio-footer-links a:hover {
+  background: var(--studio-surface);
+  border-color: var(--studio-accent);
+}
+
+.studio-footer .studio-footer-links a:focus-visible {
+  outline: 2px solid var(--studio-accent);
+  outline-offset: 4px;
+}
+
+@media (max-width: 960px) {
+  .studio-section.studio-philosophy .studio-process-layout {
+    grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+    gap: 40px;
+  }
+
+  .studio-section.studio-education .studio-academic-record,
+  .studio-section.studio-education .studio-academic-main,
+  .studio-section.studio-education .studio-academic-coursework {
+    padding: 28px;
+  }
+
+  .studio-section.studio-achievements .studio-award-panel {
+    padding: 28px;
+  }
+
+  .studio-section.studio-achievements .studio-award-body {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+  }
+
+  .studio-footer .studio-footer-inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 24px;
+  }
+
+  .studio-footer .studio-footer-status {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .studio-footer .studio-footer-links {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+}
+
+@media (max-width: 700px) {
+  .studio-section .studio-support-head {
+    margin-bottom: 32px;
+  }
+
+  .studio-section.studio-philosophy .studio-process-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .studio-section.studio-philosophy .studio-process-row {
+    grid-template-columns: 28px minmax(0, 1fr);
+    gap: 18px;
+    padding-block: 24px;
+  }
+
+  .studio-section.studio-education .studio-academic-dossier {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .studio-section.studio-education .studio-academic-record {
+    grid-row: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--studio-line);
+  }
+
+  .studio-section.studio-education .studio-academic-years {
+    margin-bottom: 24px;
+  }
+
+  .studio-section.studio-education .studio-academic-meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .studio-section.studio-education .studio-academic-record,
+  .studio-section.studio-education .studio-academic-main,
+  .studio-section.studio-education .studio-academic-coursework {
+    padding: 24px;
+  }
+
+  .studio-section.studio-education .studio-academic-coursework ul {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .studio-section.studio-credentials .studio-ledger-heading {
+    display: block;
+  }
+
+  .studio-section.studio-credentials .studio-ledger-count {
+    margin-top: 20px;
+  }
+
+  .studio-section.studio-credentials .studio-ledger-columns {
+    display: none;
+  }
+
+  .studio-section.studio-credentials .studio-ledger-row {
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: 12px 16px;
+    align-items: start;
+    padding-block: 24px 16px;
+  }
+
+  .studio-section.studio-credentials .studio-ledger-record {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding-top: 4px;
+  }
+
+  .studio-section.studio-credentials .studio-ledger-verify {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .studio-section.studio-achievements .studio-award-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .studio-section.studio-achievements .studio-award-panel {
+    padding: 24px;
+  }
+
+  .studio-section.studio-achievements .studio-award-body {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 24px;
+    padding-block: 36px 28px;
+  }
+
+  .studio-footer .studio-footer-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    padding-block: 28px;
+  }
+
+  .studio-footer .studio-footer-links {
+    grid-column: 1;
+    grid-row: 3;
+    flex-wrap: wrap;
+  }
+
+  .studio-footer .studio-footer-status {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 12px 20px;
+  }
+}

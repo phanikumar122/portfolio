@@ -1,15 +1,14 @@
 # Vinnakota Phani Kumar — Portfolio
 
-A precise engineering portfolio for **Vinnakota Phani Kumar**, a Computer Science Engineer interested in full-stack software, cloud systems, and agentic AI.
+A content-first engineering portfolio for **Vinnakota Phani Kumar**, a Computer Science Engineer interested in full-stack software, cloud systems, and agentic AI.
 
-The experience uses an engineering-field-notes visual language built entirely from Onyx (`#0a090c`) and Platinum (`#f0edee`), with transparent derivatives, rounded interface surfaces, blueprint-style project diagrams, and motion that supports navigation without competing with the work.
+The experience uses a dark editorial studio language built from Royal Ink (`#18152e`), Digital Lavender (`#c9b8ff`), and Acid Yellow (`#f2f762`). Selective yellow underlines identify key ideas while restrained motion supports hierarchy without competing with the work.
 
 ## Stack
 
 - React 18 + TypeScript
 - Vite
 - Motion for React
-- Three.js (lazy-loaded, scroll-linked global background)
 - Lucide React
 - Space Grotesk + IBM Plex Mono
 - Vitest + React Testing Library
@@ -52,7 +51,7 @@ npm run test:run
 npm run build
 ```
 
-The tests cover the complete project list, mobile navigation state, project-detail dialog opening/closing and focus restoration, and copy-email feedback.
+The tests cover the complete project list, project filtering, keyboard-operated skill tabs, mobile navigation state, project-detail dialog behavior and focus restoration, resume preview, and copy-email feedback.
 
 ## Production build
 
@@ -84,7 +83,7 @@ This is a static Vite site and can be deployed to Vercel, Netlify, GitHub Pages,
 - No environment variables are required
 - For history fallback on a host with client-side routes, serve `index.html` for unknown paths
 
-There is no canonical URL in the metadata because a deployed domain has not been supplied.
+The document metadata currently uses `https://phani-kumar.dev/` as its canonical production URL. Update it in `index.html` if the deployed domain changes.
 
 ## Content editing
 
@@ -96,16 +95,16 @@ src/data/portfolio.ts
 
 Edit the `portfolio.person`, `skills`, `projects`, `credentials`, `achievements`, and `education` objects there. The resume is served from `public/resume.pdf` and linked via `portfolio.person.resumeUrl` — drop a real resume PDF at that path to replace the placeholder.
 
-## Theming
+## Visual system
 
-A light/dark toggle lives in the navbar. Both palettes are centralized in `src/styles/tokens.css`, while component styling and responsive rules live in `src/styles/redesign.css`. The choice persists in `localStorage` and follows the OS preference on first visit.
+The portfolio uses one deliberate three-color dark palette. Global foundations live in `src/styles/tokens.css` and `src/styles/base.css`; current studio components, supporting sections, and the project index are styled in the three `src/styles/studio*.css` files.
 
 ## Contact form
 
-The contact section ships a working form. Leave `FORMSPREE_ENDPOINT` in `src/components/Contact.tsx` blank to fall back to the visitor's mail app, or paste a [Formspree](https://formspree.io) endpoint to send submissions straight to the inbox.
+The contact section ships a working form. Leave `VITE_FORMSPREE_ENDPOINT` unset to fall back to the visitor's mail app, or define it with a [Formspree](https://formspree.io) endpoint to send submissions straight to the inbox.
 
 Project descriptions and stacks were written from the supplied GitHub READMEs, repository metadata, and supplied live links. Project visuals are intentionally generated treatments, not claimed screenshots.
 
-The Three.js background scene is loaded only when WebGL and motion preferences permit it. A custom Möbius ribbon, double helix, and flowing wave lattice move with page progress to create a continuous 3D scroll narrative behind the interface. Reduced-motion users and browsers without WebGL receive a static geometric background instead.
+The hero uses a lightweight inline SVG architecture illustration rather than a WebGL scene, keeping the page fast and the visual directly connected to the portfolio’s systems focus.
 
-All projects share the same card dimensions, visual treatment, and case-study actions; there is no featured/archive hierarchy.
+All projects share the same editorial row treatment and case-study actions; filters help visitors narrow the list without introducing a featured/archive hierarchy.

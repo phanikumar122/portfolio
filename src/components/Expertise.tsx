@@ -1,11 +1,10 @@
-import { Code2, Cpu, Database, Network } from 'lucide-react'
+import { ArrowUpRight, Code2, Cpu, Database, Network } from 'lucide-react'
 import { motion } from 'motion/react'
 import { useRef, useState } from 'react'
 import type { KeyboardEvent } from 'react'
 import { portfolio } from '../data/portfolio'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { Reveal } from './Reveal'
-import { SectionReveal } from './SectionReveal'
 
 const chipContainer = {
   hidden: {},
@@ -49,17 +48,17 @@ export function Expertise() {
   }
 
   return (
-    <SectionReveal className="expertise section-shell section-padding" id="expertise" aria-labelledby="expertise-title">
-      <div className="section-heading section-heading--split">
-        <Reveal delay={0.08} className="section-title-wrap">
-          <h2 id="expertise-title">Technical<br /><em>capabilities.</em></h2>
-          <p className="section-lead-desc">Core languages, frameworks, and infrastructure tools I work with.</p>
+    <section className="studio-section studio-expertise section-shell section-padding" id="expertise" aria-labelledby="expertise-title">
+      <div className="studio-section-header">
+        <Reveal>
+          <h2 className="studio-heading" id="expertise-title">Different tools.<br /><em>One connected approach.</em></h2>
         </Reveal>
+        <p className="studio-description">From the <span className="studio-highlight">first interaction</span> to the <span className="studio-highlight">last deployment</span>. Explore the languages, frameworks, and systems I work with.</p>
       </div>
 
-      <div className="capabilities-console">
+      <div className="studio-skills-console">
         {/* Left Rail: 4 Domain Selectors */}
-        <div className="capabilities-rail" role="tablist" aria-label="Technical expertise groups" aria-orientation="vertical">
+        <div className="studio-skills-tabs" role="tablist" aria-label="Technical expertise groups">
           {portfolio.skills.map((group, index) => {
             const meta = domainSubtitles[group.title] || domainSubtitles.Build
             const Icon = meta.icon
@@ -71,7 +70,7 @@ export function Expertise() {
               <button
                 key={group.title}
                 ref={(element) => { tabRefs.current[index] = element }}
-                className={`capability-domain-card ${isActive ? 'is-active' : ''}`}
+                className={`studio-skill-tab ${isActive ? 'is-active' : ''}`}
                 type="button"
                 role="tab"
                 id={tabId}
@@ -81,27 +80,22 @@ export function Expertise() {
                 onClick={() => selectSkill(index)}
                 onKeyDown={handleTabKeyDown}
               >
-                <div className="domain-card-header">
-                  <span className="domain-index-num">{group.index}</span>
-                  <span className="domain-skill-count">{group.skills.length} skills</span>
-                </div>
-                <div className="domain-card-body">
-                  <span className="domain-icon-box" aria-hidden="true">
-                    <Icon size={16} />
+                <div className="studio-tab-title">
+                  <span aria-hidden="true">
+                    <Icon size={20} />
                   </span>
-                  <div className="domain-card-titles">
-                    <strong className="domain-primary-title">{group.title}</strong>
-                    <span className="domain-subtitle">{meta.subtitle}</span>
+                  <div>
+                    <strong>{group.title}</strong>
+                    <span className="studio-tab-subtitle">{meta.subtitle}</span>
                   </div>
                 </div>
-                <div className="domain-card-active-line" aria-hidden="true" />
               </button>
             )
           })}
         </div>
 
         {/* Right Stage: Active Domain Content */}
-        <div className="capabilities-stage">
+        <div className="studio-skills-stage">
           {portfolio.skills.map((group, index) => {
             const isActive = active === index
             const panelId = `skill-panel-${group.index}`
@@ -109,7 +103,7 @@ export function Expertise() {
             return (
               <div
                 key={group.title}
-                className="capability-panel"
+                className="studio-skill-panel"
                 id={panelId}
                 role="tabpanel"
                 aria-labelledby={`skill-tab-${group.index}`}
@@ -118,23 +112,23 @@ export function Expertise() {
               >
                 {isActive && (
                   <motion.div
-                    className="capability-panel-inner"
+                    className="studio-skill-panel-inner"
                     initial={reducedMotion ? false : { opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <div className="panel-headline-row">
+                    <div className="studio-panel-head">
                       <div>
-                        <h3 className="panel-domain-title">
+                        <h3>
                           <span>{group.title}</span>
-                          <em className="panel-title-dot">.</em>
+                          <em>.</em>
                         </h3>
-                        <p className="panel-domain-desc">{group.description}</p>
+                        <p>{group.description}</p>
                       </div>
                     </div>
 
                     <motion.div
-                      className="capability-skills-grid"
+                      className="studio-skill-list"
                       variants={reducedMotion ? undefined : chipContainer}
                       initial="hidden"
                       animate="show"
@@ -142,11 +136,10 @@ export function Expertise() {
                       {group.skills.map((skill) => (
                         <motion.div
                           key={skill}
-                          className="skill-tech-row"
+                          className="studio-skill-item"
                           variants={reducedMotion ? undefined : chipItem}
-                          whileHover={reducedMotion ? undefined : { x: 3 }}
                         >
-                          <span className="tech-row-name">{skill}</span>
+                          <span>{skill}</span>
                         </motion.div>
                       ))}
                     </motion.div>
@@ -157,6 +150,7 @@ export function Expertise() {
           })}
         </div>
       </div>
-    </SectionReveal>
+      <a className="studio-skills-next" href="#work">See these tools in action <ArrowUpRight size={18} /></a>
+    </section>
   )
 }

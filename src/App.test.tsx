@@ -10,17 +10,18 @@ describe('portfolio experience', () => {
 
     expect(screen.getAllByRole('button', { name: /view .* case study/i })).toHaveLength(portfolio.projects.length)
     expect(screen.getByText('Vinnakota Phani Kumar')).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: /systems with purpose.*software with impact/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /thoughtful software.*built to matter/i })).toBeInTheDocument()
     portfolio.projects.filter((project) => !project.featured).forEach((project) => {
       expect(screen.getByRole('button', { name: `View ${project.title} details` })).toBeInTheDocument()
     })
   })
 
-  it('gives every section a shared reveal surface and every project a visual stage', () => {
+  it('gives every section a shared studio surface and every project a visual stage', () => {
     const { container } = render(<App />)
 
     expect(container.querySelectorAll('main > section')).toHaveLength(9)
-    expect(container.querySelectorAll('.project-visual[aria-hidden="true"]')).toHaveLength(portfolio.projects.length)
+    expect(container.querySelectorAll('main > .studio-section')).toHaveLength(9)
+    expect(container.querySelectorAll('.studio-project-visual[aria-hidden="true"]')).toHaveLength(portfolio.projects.length)
   })
 
   it('opens and closes an accessible project detail dialog', async () => {
@@ -39,11 +40,11 @@ describe('portfolio experience', () => {
     expect(trigger).toHaveFocus()
   })
 
-  it('shows the orbital systems object and switches the selected skills group', async () => {
+  it('shows the software architecture illustration and switches the selected skills group', async () => {
     const user = userEvent.setup()
     render(<App />)
 
-    expect(screen.getByRole('img', { name: 'Interactive three-dimensional orbital systems object' })).toBeInTheDocument()
+    expect(screen.getByRole('img', { name: 'Connected architecture diagram from interface to services, data, and cloud' })).toBeInTheDocument()
     const tabs = screen.getAllByRole('tab')
     expect(tabs[0]).toHaveAttribute('aria-selected', 'true')
     expect(tabs[0]).toHaveAttribute('aria-controls', 'skill-panel-01')
@@ -108,9 +109,9 @@ describe('portfolio experience', () => {
     })
   })
 
-  it('enforces dark theme across the website', () => {
-    render(<App />)
-    expect(document.documentElement.classList.contains('light')).toBe(false)
+  it('uses the Royal Ink dark theme without a theme toggle', () => {
+    const { container } = render(<App />)
+    expect(container.querySelector('.site-shell')).toHaveClass('theme-royal-ink')
     expect(screen.queryByRole('button', { name: /switch to (light|dark) theme/i })).not.toBeInTheDocument()
   })
 
@@ -121,12 +122,12 @@ describe('portfolio experience', () => {
     const resumeBtn = screen.getByRole('button', { name: /^view resume$/i })
     await user.click(resumeBtn)
 
-    const modal = screen.getByRole('dialog', { name: /resume \/ vinnakota phani kumar/i })
+    const modal = screen.getByRole('dialog', { name: /resume.*vinnakota phani kumar/i })
     expect(modal).toBeInTheDocument()
 
     const closeBtn = screen.getByRole('button', { name: /^close resume preview$/i })
     await user.click(closeBtn)
-    expect(screen.queryByRole('dialog', { name: /resume \/ vinnakota phani kumar/i })).not.toBeInTheDocument()
+    expect(screen.queryByRole('dialog', { name: /resume.*vinnakota phani kumar/i })).not.toBeInTheDocument()
   })
 
   it('renders the hero role presentation and social profile cards', () => {
@@ -142,12 +143,24 @@ describe('portfolio experience', () => {
     expect(screen.getByRole('textbox', { name: /^message$/i })).toBeInTheDocument()
   })
 
-  it('uses one dedicated hero scene and gives every project equal card treatment', () => {
+  it('uses one purposeful hero illustration and gives every project equal editorial treatment', () => {
     const { container } = render(<App />)
-    expect(container.querySelector('.hero-object canvas')).toBeInTheDocument()
-    expect(container.querySelectorAll('.project-grid > .project-card')).toHaveLength(portfolio.projects.length)
+    expect(container.querySelector('.studio-system-art svg')).toBeInTheDocument()
+    expect(container.querySelectorAll('.studio-project-grid > .studio-project-card')).toHaveLength(portfolio.projects.length)
     expect(container.querySelector('.archive-block')).not.toBeInTheDocument()
     expect(container.querySelectorAll('.status-pill, .status-dot, .tech-badge, .skill-tech-chip')).toHaveLength(0)
     expect(container.querySelector('.footer-marquee')).not.toBeInTheDocument()
+  })
+
+  it('filters the project index and reports the visible total', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+
+    await user.click(screen.getByRole('button', { name: 'Data & AI' }))
+
+    expect(screen.getByText('Showing 2 projects')).toHaveAttribute('role', 'status')
+    expect(screen.getByRole('heading', { name: 'Public Transport Demand Prediction' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Syllabi-AI' })).toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: 'Mentora' })).not.toBeInTheDocument()
   })
 })

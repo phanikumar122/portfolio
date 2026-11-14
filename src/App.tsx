@@ -13,7 +13,7 @@ import { GrainOverlay } from './components/GrainOverlay'
 
 export default function App() {
   return (
-    <div className="site-shell">
+    <div className="site-shell theme-royal-ink">
       <GrainOverlay />
       <SiteNav />
       <main id="main-content">
