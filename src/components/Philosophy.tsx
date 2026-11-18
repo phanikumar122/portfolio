@@ -4,22 +4,22 @@ const buildSteps = [
   {
     num: '01',
     label: 'Interface Architecture',
-    detail: 'Accessibility-first semantics, zero-layout-shift UI, and responsive design systems built with modern React and TypeScript.',
+    detail: 'Start with readable layouts, semantic controls, keyboard access, and responsive behavior.',
   },
   {
     num: '02',
     label: 'Backend & Service Logic',
-    detail: 'Deterministic business rules, clean REST & WebSocket interfaces, secure JWT auth, and structured error boundaries.',
+    detail: 'Keep business rules separate from presentation; validate inputs and make failures recoverable.',
   },
   {
     num: '03',
     label: 'Data Foundations',
-    detail: 'Relational normalization, scalable NoSQL document modeling, transactional integrity, and analytical data pipelines.',
+    detail: 'Choose storage around the data and its queries; verify transformations before drawing conclusions.',
   },
   {
     num: '04',
     label: 'Cloud & Deployment',
-    detail: 'Containerized builds with Docker, reproducible runtime environments, and automated CI/CD validation pipelines.',
+    detail: 'Use reproducible builds, test important flows, and document the configuration required to run them.',
   },
 ]
 

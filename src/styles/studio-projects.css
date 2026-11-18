@@ -1,5 +1,5 @@
 /* Editorial project index: large visuals, calm metadata, and consistently aligned actions. */
-.studio-work { --studio-bg: #18152e; }
+.studio-work { --studio-bg: var(--bg); }
 
 .studio-project-toolbar {
   display: flex;
@@ -46,13 +46,13 @@
   place-items: center;
   padding: clamp(20px, 3vw, 36px);
   overflow: hidden;
-  background: rgb(201 184 255 / .06);
+  background: var(--surface);
   border-right: 1px solid var(--studio-line);
 }
 .studio-project-cover-button:focus-visible { z-index: 1; outline-width: 3px; outline-offset: -6px; }
-.studio-project-visual { width: 100%; overflow: hidden; aspect-ratio: 1.6; background: var(--studio-bg); box-shadow: 0 18px 42px rgb(5 4 14 / .34); }
-.studio-project-visual img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 500ms var(--ease), filter 500ms var(--ease); }
-.studio-project-cover-button:hover .studio-project-visual img { transform: scale(1.018); filter: saturate(1.04); }
+.studio-project-visual { width: 100%; overflow: hidden; aspect-ratio: 1.6; background: var(--studio-bg); box-shadow: 0 18px 42px rgb(24 33 47 / .08); }
+.studio-project-visual img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 350ms var(--ease); }
+.studio-project-cover-button:hover .studio-project-visual img { transform: scale(1.018); }
 .studio-project-cover-action {
   position: absolute;
   right: clamp(28px, 4vw, 48px);
@@ -62,13 +62,13 @@
   align-items: center;
   gap: 8px;
   padding: 9px 13px;
-  color: var(--studio-bg);
+  color: var(--on-accent);
   background: var(--studio-accent);
   font-weight: 600;
   font-size: 11px;
   transition: background 180ms ease, transform 180ms ease;
 }
-.studio-project-cover-button:hover .studio-project-cover-action { background: #fbff91; transform: translate(2px, -2px); }
+.studio-project-cover-button:hover .studio-project-cover-action { background: var(--accent-hover); transform: translate(2px, -2px); }
 
 .studio-project-body {
   display: grid;
@@ -95,16 +95,16 @@
 .studio-project-actions button:hover { color: var(--studio-accent); }
 
 /* Project detail dialog */
-.studio-project-backdrop { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 24px; background: rgb(5 4 14 / .8); backdrop-filter: blur(6px); }
+.studio-project-backdrop { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 24px; background: rgb(24 33 47 / .48); backdrop-filter: blur(6px); }
 .studio-project-backdrop :focus-visible { outline-color: var(--studio-accent); }
-.studio-project-dialog { width: min(1080px, 100%); max-height: calc(100dvh - 48px); overflow: auto; overscroll-behavior: contain; border: 1px solid var(--studio-line); border-radius: 6px; background: var(--studio-bg); box-shadow: 0 28px 80px rgb(5 4 14 / .56); }
-.studio-project-dialog-top { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 24px; border-bottom: 1px solid var(--studio-line); background: rgb(24 21 46 / .96); backdrop-filter: blur(12px); }
+.studio-project-dialog { width: min(1080px, 100%); max-height: calc(100dvh - 48px); overflow: auto; overscroll-behavior: contain; border: 1px solid var(--studio-line); border-radius: 6px; background: var(--studio-bg); box-shadow: 0 28px 80px rgb(24 33 47 / .18); }
+.studio-project-dialog-top { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 24px; border-bottom: 1px solid var(--studio-line); background: var(--surface); backdrop-filter: blur(12px); }
 .studio-project-dialog-top > span { color: var(--studio-muted); font: 12px var(--studio-mono); }
 .studio-dialog-close { display: grid; width: 44px; height: 44px; place-items: center; border: 1px solid var(--studio-line); border-radius: 4px; }
 .studio-dialog-close:hover { border-color: var(--studio-accent); background: var(--studio-surface); }
 .studio-project-dialog-grid { display: grid; grid-template-columns: .9fr 1.1fr; }
 .studio-project-dialog-visual { padding: 32px; background: var(--studio-surface); }
-.studio-project-dialog-visual .studio-project-visual { box-shadow: 0 16px 38px rgb(5 4 14 / .34); }
+.studio-project-dialog-visual .studio-project-visual { box-shadow: 0 16px 38px rgb(24 33 47 / .08); }
 .studio-project-dialog-visual > p { margin: 12px 0 0; color: var(--studio-muted); font-size: 11px; }
 .studio-project-dialog-copy { padding: 36px; }
 .studio-project-dialog-copy h2 { margin: 0 0 16px; color: var(--studio-text); font-size: clamp(32px, 3.5vw, 46px); font-weight: 500; letter-spacing: -.05em; line-height: 1.08; }
@@ -145,3 +145,30 @@
   .studio-project-cover-action { min-height: 38px; padding: 7px 10px; }
   .studio-project-actions { gap-inline: 16px; }
 }
+/* Real image colors match the palette; no runtime image filters. */
+.studio-project-visual-frame { width: 100%; min-width: 0; perspective: 900px; }
+.studio-project-visual { border: 1px solid var(--line); border-radius: 12px; }
+.studio-project-grid { animation: studio-filter-in 220ms var(--ease); }
+.studio-project-cover-action { border-radius: 6px; min-height: 44px; }
+.studio-project-actions svg { transition: transform 180ms var(--ease); }
+.studio-project-actions a:hover svg, .studio-project-actions button:hover svg { transform: translateY(-2px); }
+@keyframes studio-filter-in { from { opacity: .65; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 960px) {
+  .studio-project-visual-frame { max-width: 760px; }
+  .studio-project-dialog-visual .studio-project-visual-frame { max-width: 540px; }
+}
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .studio-project-cover-button:hover .studio-project-visual img { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .studio-project-grid { animation: none; }
+  .studio-project-actions a:hover svg, .studio-project-actions button:hover svg { transform: none; }
+}
+.studio-project-article { min-height: 360px; }
+.studio-project-body { padding: clamp(24px, 3vw, 36px); }
+.studio-project-category { margin-bottom: 12px; }
+.studio-project-summary { margin-bottom: 16px; }
+.studio-project-actions { margin-top: 20px; padding-top: 12px; }
+.studio-project-outcome { margin: 0 0 16px; color: var(--text-secondary); font-size: 13px; line-height: 1.65; }
+.studio-project-evidence { font-size: 12px; color: var(--muted); }
+.studio-skill-tab.is-active .studio-tab-subtitle { opacity: 1; }

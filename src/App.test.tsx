@@ -31,7 +31,8 @@ describe('portfolio experience', () => {
     const trigger = screen.getByRole('button', { name: 'View Mentora case study' })
     await user.click(trigger)
 
-    const dialog = screen.getByRole('dialog')
+    await vi.dynamicImportSettled()
+    const dialog = await screen.findByRole('dialog')
     expect(dialog).toBeInTheDocument()
     expect(dialog.querySelector('#project-dialog-title')).toHaveTextContent('Mentora')
 
@@ -109,9 +110,9 @@ describe('portfolio experience', () => {
     })
   })
 
-  it('uses the Royal Ink dark theme without a theme toggle', () => {
+  it('uses the Warm Ivory and Cobalt theme without a theme toggle', () => {
     const { container } = render(<App />)
-    expect(container.querySelector('.site-shell')).toHaveClass('theme-royal-ink')
+    expect(container.querySelector('.site-shell')).toHaveClass('theme-ivory-cobalt')
     expect(screen.queryByRole('button', { name: /switch to (light|dark) theme/i })).not.toBeInTheDocument()
   })
 
@@ -122,7 +123,8 @@ describe('portfolio experience', () => {
     const resumeBtn = screen.getByRole('button', { name: /^view resume$/i })
     await user.click(resumeBtn)
 
-    const modal = screen.getByRole('dialog', { name: /resume.*vinnakota phani kumar/i })
+    await vi.dynamicImportSettled()
+    const modal = await screen.findByRole('dialog', { name: /resume.*vinnakota phani kumar/i })
     expect(modal).toBeInTheDocument()
 
     const closeBtn = screen.getByRole('button', { name: /^close resume preview$/i })
@@ -160,7 +162,7 @@ describe('portfolio experience', () => {
 
     expect(screen.getByText('Showing 2 projects')).toHaveAttribute('role', 'status')
     expect(screen.getByRole('heading', { name: 'Public Transport Demand Prediction' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'Syllabi-AI' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Syllabus AI' })).toBeInTheDocument()
     expect(screen.queryByRole('heading', { name: 'Mentora' })).not.toBeInTheDocument()
   })
 })

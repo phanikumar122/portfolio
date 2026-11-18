@@ -8,11 +8,11 @@ import { Reveal } from './Reveal'
 
 const chipContainer = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.055, delayChildren: 0.1 } },
+  show: { transition: { staggerChildren: 0.025, delayChildren: 0.04 } },
 }
 const chipItem = {
-  hidden: { opacity: 0, scale: 0.88, y: 10 },
-  show: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
+  hidden: { opacity: 0, scale: 0.97, y: 6 },
+  show: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
 }
 
 const domainSubtitles: Record<string, { icon: typeof Code2; subtitle: string }> = {
@@ -80,6 +80,7 @@ export function Expertise() {
                 onClick={() => selectSkill(index)}
                 onKeyDown={handleTabKeyDown}
               >
+                {isActive && <motion.span className="studio-skill-tab-indicator" layoutId={reducedMotion ? undefined : "skill-selection"} aria-hidden="true" transition={reducedMotion ? { duration: 0 } : { type: 'spring', stiffness: 420, damping: 36 }} />}
                 <div className="studio-tab-title">
                   <span aria-hidden="true">
                     <Icon size={20} />

@@ -1,3 +1,4 @@
+import { BackToTop } from './components/BackToTop'
 import { SiteNav } from './components/SiteNav'
 import { Hero } from './components/Hero'
 import { About } from './components/About'
@@ -9,12 +10,10 @@ import { Credentials } from './components/Credentials'
 import { Achievements } from './components/Achievements'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
-import { GrainOverlay } from './components/GrainOverlay'
 
 export default function App() {
   return (
-    <div className="site-shell theme-royal-ink">
-      <GrainOverlay />
+    <div className="site-shell theme-ivory-cobalt">
       <SiteNav />
       <main id="main-content">
         <Hero />
@@ -28,6 +27,7 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
+      <BackToTop />
     </div>
   )
 }

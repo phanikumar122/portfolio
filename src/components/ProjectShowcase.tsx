@@ -1,9 +1,10 @@
 import { ArrowUpRight, ExternalLink, Github } from 'lucide-react'
-import { useState } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import type { Project } from '../data/portfolio'
 import { portfolio } from '../data/portfolio'
 import { Reveal } from './Reveal'
-import { ProjectDialog } from './ProjectDialog'
+const loadProjectDialog = () => import('./ProjectDialog').then(module => ({ default: module.ProjectDialog }))
+const ProjectDialog = lazy(loadProjectDialog)
 import { ProjectVisual } from './ProjectVisual'
 
 const projectCategories: Record<string, string> = {
@@ -33,7 +34,7 @@ function ProjectCard({ project, index, onOpen }: { project: Project; index: numb
   return (
     <Reveal delay={Math.min(index * 0.035, 0.18)} className="studio-project-card" y={16}>
       <article className="studio-project-article" aria-labelledby={`project-title-${project.id}`}>
-        <button className="studio-project-cover-button" type="button" onClick={() => onOpen(project)} aria-label={`View ${project.title} case study`}>
+        <button className="studio-project-cover-button" type="button" onPointerEnter={() => { void loadProjectDialog() }} onFocus={() => { void loadProjectDialog() }} onClick={() => onOpen(project)} aria-label={`View ${project.title} case study`}>
           <ProjectVisual type={project.visual} />
           <span className="studio-project-cover-action" aria-hidden="true">View project <ArrowUpRight size={17} /></span>
         </button>
@@ -43,6 +44,7 @@ function ProjectCard({ project, index, onOpen }: { project: Project; index: numb
             <span className="studio-project-category">{category}</span>
             <h3 id={`project-title-${project.id}`}>{project.title}</h3>
             <p className="studio-project-summary">{project.description}</p>
+            <p className="studio-project-outcome">{project.outcome}</p>
             <ul className="studio-project-stack" aria-label={`${project.title} technology stack`}>
               {project.stack.map(tech => <li key={tech}>{tech}</li>)}
             </ul>
@@ -50,7 +52,7 @@ function ProjectCard({ project, index, onOpen }: { project: Project; index: numb
           <div className="studio-project-actions">
             <a href={project.github} target="_blank" rel="noreferrer" aria-label={`${project.title} code`}><Github size={15} /> Code</a>
             {project.live && <a href={project.live} target="_blank" rel="noreferrer" aria-label={`${project.title} demo`}><ExternalLink size={15} /> Live demo</a>}
-            <button type="button" onClick={() => onOpen(project)} aria-label={`View ${project.title} details`}>Case study <ArrowUpRight size={16} /></button>
+            <button type="button" onPointerEnter={() => { void loadProjectDialog() }} onFocus={() => { void loadProjectDialog() }} onClick={() => onOpen(project)} aria-label={`View ${project.title} details`}>Case study <ArrowUpRight size={16} /></button>
           </div>
         </div>
       </article>
@@ -77,10 +79,10 @@ export function ProjectShowcase() {
         </div>
         <p className="studio-project-count" role="status" aria-live="polite">Showing {visibleProjects.length} {visibleProjects.length === 1 ? 'project' : 'projects'}</p>
       </div>
-      <div className="studio-project-grid">
+      <div className="studio-project-grid" key={activeFilter}>
         {visibleProjects.map((project, index) => <ProjectCard key={project.id} project={project} index={index} onOpen={setSelectedProject} />)}
       </div>
-      <ProjectDialog project={selectedProject} onClose={() => setSelectedProject(null)} />
+      {selectedProject && <Suspense fallback={<p role="status">Loading project details…</p>}><ProjectDialog project={selectedProject} onClose={() => setSelectedProject(null)} /></Suspense>}
     </section>
   )
 }

@@ -12,6 +12,11 @@ export interface Project {
   title: string
   description: string
   problem: string
+  focus: string
+  outcome: string
+  evidence: string
+  evidenceUrl?: string
+  role?: string
   features: string[]
   stack: string[]
   github: string
@@ -90,6 +95,10 @@ export const portfolio = {
       id: 'mentora',
       title: 'Mentora',
       description: 'A full-stack educational platform connecting students, teachers, and administrators through one shared academic workspace.',
+      focus: "Full-stack academic workflows, access control, and live communication.",
+      outcome: "Documented student, teacher, and admin portals with STOMP messaging.",
+      evidence: "Repository includes security and real-time messaging integration tests; they were not rerun in this portfolio review.",
+      evidenceUrl: "https://github.com/phanikumar122/Mentora#readme",
       problem: 'Academic workflows often scatter announcements, assignments, attendance, study material, and conversations across disconnected tools.',
       features: ['Role-based student, teacher, and admin portals', 'Assignments, grading, attendance, and feedback', 'Discussion forums, notice board, and study materials', 'STOMP over WebSockets for real-time messaging'],
       stack: ['React', 'TypeScript', 'Spring Boot', 'Java', 'JWT', 'WebSockets'],
@@ -102,7 +111,11 @@ export const portfolio = {
     {
       id: 'transport',
       title: 'Public Transport Demand Prediction',
-      description: 'A multi-modal transport analytics pipeline that brings bus, rail, and air data together for demand analysis and prediction.',
+      description: 'A coursework pipeline comparing demand models across bus, rail, and air datasets, with transparent evaluation and data limitations.',
+      focus: "Data engineering, regression comparison, and explainable predictions.",
+      outcome: "Committed CatBoost test results: RMSE 54.15 passengers; R\u00b2 0.478.",
+      evidence: "Metrics come from the committed evaluation CSV, not a new run. Rail and air passenger counts are heuristic, and some dates are synthetic; this is a coursework pipeline, not an operational forecast.",
+      evidenceUrl: "https://github.com/phanikumar122/Public-Transport-Demand-Prediction/blob/main/outputs/metrics/model_metrics.csv",
       problem: 'Transport planning needs a common view of demand across modes, routes, time, anomalies, and operational context.',
       features: ['ETL pipeline across APSRTC, rail, and flight data', 'MySQL dimensional warehouse and OLAP operations', 'K-Means route clustering and Isolation Forest anomaly detection', 'Regression model comparison, SHAP analysis, and reusable predictions'],
       stack: ['Python', 'Pandas', 'MySQL', 'Scikit-learn', 'XGBoost', 'SHAP'],
@@ -115,7 +128,11 @@ export const portfolio = {
     {
       id: 'goodfind',
       title: 'GoodFind',
-      description: 'A polished commerce SaaS frontend combining an editorial storefront, merchant console, and onboarding experience.',
+      description: 'A commerce frontend demonstration with an editorial storefront, merchant console, and onboarding flows.',
+      focus: "Storefront interaction, persistent client state, and merchant workflows.",
+      outcome: "A commerce frontend demonstration spanning shopping and merchant administration.",
+      evidence: "The README describes a curated product dataset and browser-persisted state. Backend order processing and real payment completion are not established by this review.",
+      evidenceUrl: "https://github.com/phanikumar122/GoodFind#readme",
       problem: 'A modern commerce product has to make discovery, purchase, operations, and brand configuration feel like one coherent system.',
       features: ['Editorial multi-category storefront and product discovery', 'Cart, wishlist, checkout, orders, and account flows', 'Merchant inventory, order, category, and coupon operations', 'SaaS landing page and multi-step merchant onboarding'],
       stack: ['React', 'Vite', 'Tailwind CSS', 'Zustand', 'TanStack Query', 'Recharts'],
@@ -129,6 +146,10 @@ export const portfolio = {
       id: 'docviewer',
       title: 'docviewer',
       description: 'A browser-based file library, document viewer, PDF toolkit, image converter, and editor where processing stays on the device.',
+      focus: "Local document processing, browser storage, and safe previews.",
+      outcome: "A local-first workspace with IndexedDB persistence and PDF editing tools.",
+      evidence: "The README documents local processing and sanitization; the repository contains browser-flow tests. Those tests were not rerun during this review.",
+      evidenceUrl: "https://github.com/phanikumar122/docviewer#readme",
       problem: 'Everyday document work is often fragmented across upload-heavy tools that make simple transformations feel unnecessarily remote.',
       features: ['Universal file library backed by IndexedDB', 'PDF, image, DOCX, spreadsheet, text, and Markdown viewing', 'Local PDF merge, split, rotate, watermark, and export tools', 'Sanitised previews and a clear no-preview fallback'],
       stack: ['Angular', 'TypeScript', 'IndexedDB', 'PDF.js', 'pdf-lib', 'Tailwind CSS'],
@@ -141,6 +162,10 @@ export const portfolio = {
       id: 'rehabilitation',
       title: 'Smart Hand Rehabilitation',
       description: 'A sensor-based glove and companion mobile app for monitoring finger movement and delivering haptic feedback during rehabilitation exercises.',
+      focus: "Sensor-to-app communication and movement-feedback workflows.",
+      outcome: "Documented Bluetooth payload for five finger readings and grip pressure.",
+      evidence: "The repository includes a Flutter companion app. Hardware accuracy and clinical rehabilitation outcomes have not been independently measured in this review.",
+      evidenceUrl: "https://github.com/phanikumar122/Smart-Hand-Rehabilitation#bluetooth-data-format",
       problem: 'A physical gesture becomes more useful when the sensing, feedback, and mobile monitoring loop are designed together.',
       features: ['Individual finger movement tracking with flex sensors', 'Force sensing and finger-specific vibration feedback', 'OLED status display for angles and pressure', 'Bluetooth data exchange with a Flutter companion app'],
       stack: ['Flutter', 'Dart', 'Arduino & ESP32', 'Bluetooth', 'Flex sensors', 'OLED'],
@@ -151,8 +176,12 @@ export const portfolio = {
     },
     {
       id: 'syllabus-ai',
-      title: 'Syllabi-AI',
-      description: 'An AI-assisted study platform that turns syllabus material into personalized plans with progress tracking and a focused learning interface.',
+      title: 'Syllabus AI',
+      description: 'A study workspace with editable topic plans, progress analytics, and optional Gemini-assisted syllabus extraction and coaching.',
+      focus: "Study planning, progress state, and optional AI-assisted topic extraction.",
+      outcome: "An editable study workspace with topic planning, progress analytics, and optional Gemini coaching.",
+      evidence: "Current documentation distinguishes manual planning from configured AI services. Live account, cloud-sync, and AI behavior require configured-service verification.",
+      evidenceUrl: "https://github.com/phanikumar122/Syllabus-AI#readme",
       problem: 'A syllabus is a map, but it does not automatically become a sequence of manageable next steps for a learner.',
       features: ['Syllabus analysis and personalized study-plan generation', 'Progress tracking across planned learning', 'Modern SaaS-style learning interface', 'Firebase-backed application foundation with Gemini integration'],
       stack: ['React', 'Vite', 'Firebase', 'Gemini integration', 'Recharts'],
@@ -166,6 +195,9 @@ export const portfolio = {
       id: 'skilltern',
       title: 'SkillTern',
       description: 'A role-based internship platform that matches student profiles with opportunities using a clear, deterministic rules engine.',
+      focus: "Rules-based eligibility matching and internship application workflows.",
+      outcome: "A portfolio-listed internship matching project; public source verification is currently unavailable.",
+      evidence: "The linked public repository returned HTTP 404 during this review. Features and contribution details need owner confirmation before results can be verified.",
       problem: 'Students and companies need a faster way to compare skills, eligibility, preferences, and open opportunities without opaque ranking.',
       features: ['Student, company, and admin workflows', 'Skill, CGPA, degree, and study-year eligibility checks', 'Location and internship-type preference bonuses', 'Application tracking and company-side candidate views'],
       stack: ['Node.js', 'Express.js', 'MongoDB', 'JavaScript', 'JWT', 'MVC'],

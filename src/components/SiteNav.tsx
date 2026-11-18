@@ -1,11 +1,12 @@
 import { FileText, Github, Linkedin, Mail, Menu, X } from 'lucide-react'
 import { motion } from 'motion/react'
-import { useEffect, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { portfolio } from '../data/portfolio'
 import { useActiveSection } from '../hooks/useActiveSection'
 import { useScrollProgress } from '../hooks/useScrollProgress'
 import { useReducedMotion } from '../hooks/useReducedMotion'
-import { ResumeModal } from './ResumeModal'
+const loadResumeModal = () => import('./ResumeModal').then(module => ({ default: module.ResumeModal }))
+const ResumeModal = lazy(loadResumeModal)
 
 const sectionIds = portfolio.navigation.map((item) => item.href.slice(1))
 
@@ -85,7 +86,7 @@ export function SiteNav() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
-      <div className="studio-nav-progress" style={{ transform: `scaleX(${progress})` }} aria-hidden="true" />
+      <motion.div className="studio-nav-progress" style={{ scaleX: progress }} aria-hidden="true" />
       <div className="studio-nav-inner">
         <a className="studio-brand" href="#top" aria-label="Phani Kumar home">
           <span className="studio-brand-symbol">PK<span>.</span></span>
@@ -113,6 +114,8 @@ export function SiteNav() {
             <button
               type="button"
               className="studio-nav-resume"
+              onPointerEnter={() => { void loadResumeModal() }}
+              onFocus={() => { void loadResumeModal() }}
               onClick={() => setResumeOpen(true)}
               aria-label="View Resume"
             >
@@ -164,12 +167,12 @@ export function SiteNav() {
         </div>
       </div>
 
-      {portfolio.person.resumeUrl && (
-        <ResumeModal
+      {portfolio.person.resumeUrl && resumeOpen && (
+        <Suspense fallback={<span role="status">Loading resume preview…</span>}><ResumeModal
           isOpen={resumeOpen}
           onClose={() => setResumeOpen(false)}
           resumeUrl={portfolio.person.resumeUrl}
-        />
+        /></Suspense>
       )}
     </motion.header>
   )

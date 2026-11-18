@@ -58,8 +58,11 @@ export function ProjectDialog({ project, onClose }: ProjectDialogProps) {
           <div className="studio-project-dialog-copy">
             <h2 id="project-dialog-title">{project.title}</h2>
             <p id="project-dialog-description" className="studio-description">{project.description}</p>
-            <div className="studio-project-dialog-block"><h3>The problem</h3><p>{project.problem}</p></div>
-            <div className="studio-project-dialog-block"><h3>What I built</h3><ul>{project.features.map(feature => <li key={feature}>{feature}</li>)}</ul></div>
+            {project.role && <div className="studio-project-dialog-block"><h3>My role</h3><p>{project.role}</p></div>}
+            <div className="studio-project-dialog-block"><h3>Implementation focus</h3><p>{project.focus}</p></div>
+            <div className="studio-project-dialog-block"><h3>The challenge</h3><p>{project.problem}</p></div>
+            <div className="studio-project-dialog-block"><h3>Project capabilities</h3><ul>{project.features.map(feature => <li key={feature}>{feature}</li>)}</ul></div>
+            <div className="studio-project-dialog-block"><h3>Documented outcome</h3><p>{project.outcome}</p><p className="studio-project-evidence">{project.evidence}</p>{project.evidenceUrl && <a className="studio-text-link" href={project.evidenceUrl} target="_blank" rel="noreferrer">Review source <ArrowUpRight size={14} /></a>}</div>
             <div className="studio-project-dialog-block"><h3>Technology</h3><ul className="studio-project-stack">{project.stack.map(item => <li key={item}>{item}</li>)}</ul></div>
             <div className="studio-project-dialog-actions"><a className="studio-button studio-button--primary" href={project.github} target="_blank" rel="noreferrer"><Github size={16} /> View code <ArrowUpRight size={15} /></a>{project.live && <a className="studio-button studio-button--outline" href={project.live} target="_blank" rel="noreferrer"><ExternalLink size={16} /> Live demo</a>}</div>
           </div>

@@ -2,7 +2,9 @@
 
 A content-first engineering portfolio for **Vinnakota Phani Kumar**, a Computer Science Engineer interested in full-stack software, cloud systems, and agentic AI.
 
-The experience uses a dark editorial studio language built from Royal Ink (`#18152e`), Digital Lavender (`#c9b8ff`), and Acid Yellow (`#f2f762`). Selective yellow underlines identify key ideas while restrained motion supports hierarchy without competing with the work.
+The experience uses Warm Ivory (`#f7f5ef`), white surfaces, ink text (`#18212f`), and Cobalt (`#2457d6`). The architecture illustration introduces the engineering focus, with compact entrance transitions and responsive dialog animations. Reduced-motion preferences disable animation.
+
+Project covers are recolored to warm ivory, blue ink, and cobalt, and use compressed JPEGs with lazy loading, asynchronous decoding, and reserved aspect ratios. Original PNG sources remain available for future edits. The decorative full-screen grain filter is omitted to reduce rendering overhead on mobile.
 
 ## Stack
 
@@ -57,8 +59,10 @@ The tests cover the complete project list, project filtering, keyboard-operated 
 
 ```bash
 npm run build
-npm run preview
+npm start
 ```
+
+The production server listens on `http://127.0.0.1:5173` (override with `PORT`). Build output includes Brotli and gzip text variants. Fingerprinted assets receive a one-year immutable cache; HTML and unversioned files revalidate. PDF range requests support the resume viewer. Verify serving behavior with `npm run test:server` after building.
 
 The static output is written to `dist/`.
 
@@ -97,7 +101,7 @@ Edit the `portfolio.person`, `skills`, `projects`, `credentials`, `achievements`
 
 ## Visual system
 
-The portfolio uses one deliberate three-color dark palette. Global foundations live in `src/styles/tokens.css` and `src/styles/base.css`; current studio components, supporting sections, and the project index are styled in the three `src/styles/studio*.css` files.
+The portfolio uses a consistent light palette with cobalt actions and accessible ink text. Global foundations live in `src/styles/tokens.css` and `src/styles/base.css`; current studio components, supporting sections, and the project index are styled in the three `src/styles/studio*.css` files.
 
 ## Contact form
 
@@ -108,3 +112,15 @@ Project descriptions and stacks were written from the supplied GitHub READMEs, r
 The hero uses a lightweight inline SVG architecture illustration rather than a WebGL scene, keeping the page fast and the visual directly connected to the portfolio’s systems focus.
 
 All projects share the same editorial row treatment and case-study actions; filters help visitors narrow the list without introducing a featured/archive hierarchy.
+
+## Interactive refinements
+
+Project illustrations respond to mouse movement with a gentle spring tilt; touch users keep a stable image. Skill selection uses a moving cobalt highlight, project filtering uses a compact entrance, and a back-to-top shortcut appears after the hero leaves the viewport. All motion respects reduced-motion preferences.
+
+To rebuild the recolored covers, run `scripts/theme-project-images.cjs` with `pngjs` and `jpeg-js` available through `NODE_PATH`. The script preserves original PNG artwork and writes JPEG derivatives; these tools are not runtime dependencies.
+
+## Review and responsive assets
+
+See [the performance review](docs/performance-review.md) for measured asset sizes, contrast ratios, content sources, and browser-check limitations. Project case studies distinguish documented outcomes from independently verified results. Team roles are intentionally omitted until confirmed.
+
+Cover images use 480px, 960px, and 1586px WebP variants. To rebuild them from themed JPEGs, set `PORTFOLIO_IMAGE_TOOLS` to a directory containing `jpeg-js` and `@jsquash/webp`, then run `node scripts/responsive-images.mjs`. Encoder packages remain outside the application dependencies.

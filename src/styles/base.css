@@ -50,8 +50,6 @@ h1, h2, h3, h4, p { margin-top: 0; }
 .site-shell > main, .site-shell > footer { position: relative; z-index: 1; }
 .section-shell { width: var(--shell); margin-inline: auto; }
 .section-padding { padding-block: clamp(76px, 10vw, 140px); }
-main { perspective: 1400px; }
-main > section { transform-style: preserve-3d; }
 main > section:not(#top) { border-top: 1px solid var(--line); }
 .section-heading { margin-bottom: clamp(34px, 6vw, 72px); }
 .section-heading--split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, .55fr); }
