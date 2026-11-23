@@ -9,6 +9,7 @@ import './styles/redesign.css'
 import './styles/studio.css'
 import './styles/studio-support.css'
 import './styles/studio-projects.css'
+import './styles/interactive.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

@@ -32,7 +32,7 @@ function ProjectCard({ project, index, onOpen }: { project: Project; index: numb
   const projectNumber = String(index + 1).padStart(2, '0')
 
   return (
-    <Reveal delay={Math.min(index * 0.035, 0.18)} className="studio-project-card" y={16}>
+    <div className="studio-project-card">
       <article className="studio-project-article" aria-labelledby={`project-title-${project.id}`}>
         <button className="studio-project-cover-button" type="button" onPointerEnter={() => { void loadProjectDialog() }} onFocus={() => { void loadProjectDialog() }} onClick={() => onOpen(project)} aria-label={`View ${project.title} case study`}>
           <ProjectVisual type={project.visual} />
@@ -56,7 +56,7 @@ function ProjectCard({ project, index, onOpen }: { project: Project; index: numb
           </div>
         </div>
       </article>
-    </Reveal>
+    </div>
   )
 }
 

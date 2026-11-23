@@ -147,7 +147,7 @@ describe('portfolio experience', () => {
 
   it('uses one purposeful hero illustration and gives every project equal editorial treatment', () => {
     const { container } = render(<App />)
-    expect(container.querySelector('.studio-system-art svg')).toBeInTheDocument()
+    expect(container.querySelectorAll('.architecture-layer')).toHaveLength(3)
     expect(container.querySelectorAll('.studio-project-grid > .studio-project-card')).toHaveLength(portfolio.projects.length)
     expect(container.querySelector('.archive-block')).not.toBeInTheDocument()
     expect(container.querySelectorAll('.status-pill, .status-dot, .tech-badge, .skill-tech-chip')).toHaveLength(0)

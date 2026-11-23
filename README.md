@@ -2,7 +2,7 @@
 
 A content-first engineering portfolio for **Vinnakota Phani Kumar**, a Computer Science Engineer interested in full-stack software, cloud systems, and agentic AI.
 
-The experience uses Warm Ivory (`#f7f5ef`), white surfaces, ink text (`#18212f`), and Cobalt (`#2457d6`). The architecture illustration introduces the engineering focus, with compact entrance transitions and responsive dialog animations. Reduced-motion preferences disable animation.
+The experience uses Warm Ivory (`#f7f5ef`), white surfaces, ink text (`#18212f`), and Cobalt (`#2457d6`). An interactive CSS 3D software stack anchors the hero: layers float continuously, follow mouse movement, and separate through the “Explore layers” control. A pause button stops the scene animation. Project preview frames remain stationary. The images themselves play a 4.5-second zoom and rotation sequence when they enter view, and pan and tilt under the mouse with a cursor-following light reflection. A brief sheen responds to hover or keyboard focus, and touch presses provide gentle feedback. Sections enter with dimensional transitions, and skills and buttons respond to hover. Touch devices retain normal scrolling and can explore the layers by tapping. Reduced-motion preferences disable automatic movement and pointer tilt.
 
 Project covers are recolored to warm ivory, blue ink, and cobalt, and use compressed JPEGs with lazy loading, asynchronous decoding, and reserved aspect ratios. Original PNG sources remain available for future edits. The decorative full-screen grain filter is omitted to reduce rendering overhead on mobile.
 
