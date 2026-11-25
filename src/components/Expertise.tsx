@@ -22,6 +22,13 @@ const domainSubtitles: Record<string, { icon: typeof Code2; subtitle: string }> 
   'Agentic AI': { icon: Cpu, subtitle: 'Applied AI & Workflows' },
 }
 
+const projectProof: Record<string, string[]> = {
+  Build: ['mentora', 'goodfind', 'docviewer'],
+  Data: ['transport', 'mentora'],
+  Systems: ['mentora', 'rehabilitation'],
+  'Agentic AI': ['syllabus-ai'],
+}
+
 export function Expertise() {
   const [active, setActive] = useState(0)
   const reducedMotion = useReducedMotion()
@@ -51,13 +58,11 @@ export function Expertise() {
     <section className="studio-section studio-expertise section-shell section-padding" id="expertise" aria-labelledby="expertise-title">
       <div className="studio-section-header">
         <Reveal>
-          <h2 className="studio-heading" id="expertise-title">Different tools.<br /><em>One connected approach.</em></h2>
+          <h2 className="studio-heading" id="expertise-title">Skills</h2>
         </Reveal>
-        <p className="studio-description">From the <span className="studio-highlight">first interaction</span> to the <span className="studio-highlight">last deployment</span>. Explore the languages, frameworks, and systems I work with.</p>
       </div>
 
       <div className="studio-skills-console">
-        {/* Left Rail: 4 Domain Selectors */}
         <div className="studio-skills-tabs" role="tablist" aria-label="Technical expertise groups">
           {portfolio.skills.map((group, index) => {
             const meta = domainSubtitles[group.title] || domainSubtitles.Build
@@ -95,7 +100,6 @@ export function Expertise() {
           })}
         </div>
 
-        {/* Right Stage: Active Domain Content */}
         <div className="studio-skills-stage">
           {portfolio.skills.map((group, index) => {
             const isActive = active === index
@@ -110,6 +114,7 @@ export function Expertise() {
                 aria-labelledby={`skill-tab-${group.index}`}
                 aria-live="polite"
                 hidden={!isActive}
+                tabIndex={isActive ? 0 : -1}
               >
                 {isActive && (
                   <motion.div
@@ -120,11 +125,7 @@ export function Expertise() {
                   >
                     <div className="studio-panel-head">
                       <div>
-                        <h3>
-                          <span>{group.title}</span>
-                          <em>.</em>
-                        </h3>
-                        <p>{group.description}</p>
+                        <h3>{group.title}</h3>
                       </div>
                     </div>
 
@@ -144,6 +145,7 @@ export function Expertise() {
                         </motion.div>
                       ))}
                     </motion.div>
+                    <div className="skill-project-proof"><span>Projects</span>{portfolio.projects.filter(project => projectProof[group.title]?.includes(project.id)).map(project => <a key={project.id} href={`#project-${project.id}`}>{project.title}<ArrowUpRight size={14} aria-hidden="true" /></a>)}</div>
                   </motion.div>
                 )}
               </div>
@@ -151,7 +153,6 @@ export function Expertise() {
           })}
         </div>
       </div>
-      <a className="studio-skills-next" href="#work">See these tools in action <ArrowUpRight size={18} /></a>
     </section>
   )
 }

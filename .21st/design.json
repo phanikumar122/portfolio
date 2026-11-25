@@ -2,47 +2,121 @@
   "version": 1,
   "project": {
     "name": "phani-kumar-portfolio",
-    "productType": null,
+    "productType": "personal engineering portfolio",
     "stack": [
       "react",
-      "vite"
+      "vite",
+      "three"
     ]
   },
   "sources": {
-    "tokens": [],
-    "components": [],
+    "tokens": [
+      "src/styles/tokens.css"
+    ],
+    "components": [
+      "src/components"
+    ],
     "assets": [
-      "src/assets"
+      "src/assets",
+      "public"
     ],
     "instructions": [
       "AGENTS.md"
     ]
   },
   "design": {
-    "colorMode": "unknown",
-    "colors": {},
-    "typography": {},
-    "spacing": {},
-    "radius": {},
-    "shadows": {},
-    "motion": {},
-    "density": "unknown"
+    "theme": "theme-monochrome",
+    "colorMode": "light",
+    "colors": {
+      "background": "#FFFCF9",
+      "surface": "#FFFCF9",
+      "foreground": "#050505",
+      "primary": "#050505",
+      "highlight": "#050505"
+    },
+    "typography": {
+      "display": "Space Grotesk",
+      "metadata": "IBM Plex Mono"
+    },
+    "spacing": {
+      "container": 1280,
+      "desktopGutter": 48,
+      "mobileGutter": 20
+    },
+    "radius": {
+      "button": 999,
+      "image": 8,
+      "frame": 10
+    },
+    "motion": {
+      "library": "Motion for React",
+      "entrance": "One-time title masks, SVG strokes, and reveals",
+      "interaction": "Filter layout transitions and menu stagger",
+      "reducedMotion": true,
+      "scrolling": "native",
+      "signature": {
+        "library": "Three.js",
+        "version": "0.187.0",
+        "renderer": "separate lazy module",
+        "geometry": "five custom capped beveled PK ribbons",
+        "morph": "GPU targets into a phase-shifted weave",
+        "renderFpsCap": 30,
+        "pixelRatioCap": 1.5,
+        "inactive": "paused offscreen or in hidden tabs",
+        "fallback": "static SVG",
+        "cleanup": "on photo override and unmount"
+      }
+    },
+    "density": "editorial"
   },
   "components": {
     "installed": [],
-    "preferredPrimitives": [],
-    "patterns": []
+    "preferredPrimitives": [
+      "native buttons",
+      "anchors",
+      "labeled form inputs"
+    ],
+    "patterns": [
+      "accessible tabs",
+      "viewport dialogs",
+      "manual evidence galleries",
+      "monochrome conceptual covers",
+      "bespoke woven PK sculpture"
+    ]
   },
   "constraints": {
-    "must": [],
-    "avoid": []
+    "must": [
+      "Use Porcelain #FFFCF9 and Black #050505 for the interface and landing illustrations.",
+      "Use simple section labels without descriptive sentences beneath landing headings.",
+      "Preserve all seven projects, confirmed roles, and source caveats.",
+      "Label conceptual covers and retain actual screenshots in evidence galleries.",
+      "Use an authentic supplied portrait; retain the woven PK signature and SVG fallback while the photo is absent or unavailable.",
+      "Confine 3D to the bespoke PK signature with accessible controls and reduced-motion support.",
+      "Keep keyboard access, visible focus, trigger restoration, and reduced-motion support."
+    ],
+    "avoid": [
+      "additional interface colors",
+      "stock decorative 3D shapes",
+      "3D stack illustrations",
+      "autoplay carousels",
+      "scroll hijacking",
+      "invented portraits",
+      "fabricated metrics"
+    ]
   },
   "decisions": [
-    "Preserve the monochrome editorial portfolio system; use generated 3D project artwork as the content focal point instead of fabricated product dashboards.",
-    "Use a single dedicated, pointer-responsive Three.js orbital object in the hero. Its canvas resizes with its container, pauses when the page is hidden, honors reduced motion, and the copy stacks before it can overlap on narrow screens.",
-    "Remove the full-page WebGL background, 3D project-card tilt, and scroll-depth transformations so motion has one clear focal point.",
-    "Use short entrance and feedback motion for hierarchy: staged hero typography, small hover elevation on project cards, cover-image depth, and responsive buttons. Never add a second continuous animation outside the hero object.",
-    "The portfolio is dark-only: light tokens, persistence, media-query selection, and both toggle controls have been removed."
+    "Use theme-monochrome with porcelain surfaces, black typography, and high-contrast black feature sections.",
+    "Use a type-led Intro with the factual developer role and a bespoke porcelain woven PK sculpture on black as the portrait fallback.",
+    "Build five capped beveled ribbons with GPU morph targets. Provide Unfold/Reform, Pause/Play, Reset form and view, rotate buttons, keyboard arrows, and horizontal drag with native pan-y and pinch zoom.",
+    "Load Three.js 0.187.0 through an isolated lazy renderer. Cap rendering at 30fps and DPR 1.5; pause when offscreen or hidden, apply reduced-motion changes immediately, dispose on photo override/unmount, and retain a static SVG fallback.",
+    "Add a supplied photo at public/portrait.webp and set portfolio.person.portraitUrl to './portrait.webp' in src/data/portfolio.ts.",
+    "Use the section order top, work, expertise, education, credentials, achievements, contact.",
+    "Render custom monochrome interface concepts as landing covers in a full-width lead and paired staggered composition; retain actual screenshot evidence in dialogs.",
+    "Keep landing labels concise and project summaries, stacks, confirmed roles, and source limitations in case studies.",
+    "Use a black Skills workspace and Contact section, porcelain ruled qualifications, and readable porcelain form controls.",
+    "Use consistent pill controls, 8–10px image corners, a 1280px shell, 48px desktop gutters, and 20px mobile gutters.",
+    "Coordinate Motion title masks, SVG drawing, one-time reveals, filter layout changes, and menu stagger; preserve native scrolling.",
+    "Use viewport portals for menus and dialogs; preserve truthful contact help and keyboard focus behavior."
   ],
   "evidence": [
     {
@@ -56,7 +130,11 @@
     {
       "fact": "project.stack:vite",
       "source": "package.json"
+    },
+    {
+      "fact": "design.palette",
+      "source": "src/styles/tokens.css"
     }
   ],
-  "generatedAt": "2026-11-13T14:34:28.589Z"
+  "generatedAt": "2026-11-25"
 }

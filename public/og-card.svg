@@ -1,13 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#0a090c"/>
-  <path d="M0 472h1200M0 156h1200M274 0v630M928 0v630" stroke="#f0edee" stroke-width="1" opacity=".13"/>
-  <path d="M928 72v252M802 198h252" stroke="#f0edee" stroke-width="2" opacity=".7"/>
-  <rect x="864" y="134" width="128" height="128" rx="32" fill="#0a090c" stroke="#f0edee" stroke-width="2" transform="rotate(45 928 198)"/>
-  <circle cx="928" cy="198" r="8" fill="#f0edee"/>
-  <circle cx="1090" cy="382" r="9" fill="#f0edee"/>
-  <path d="M928 198 1090 382M928 198 766 382" stroke="#f0edee" stroke-width="1" opacity=".42"/>
-  <text x="78" y="128" fill="#f0edee" font-family="monospace" font-size="18" letter-spacing="4">ENGINEER / BUILDER / PROBLEM SOLVER</text>
-  <text x="78" y="266" fill="#f0edee" font-family="Arial, sans-serif" font-size="72" font-weight="600">Vinnakota</text>
-  <text x="78" y="346" fill="#f0edee" font-family="Arial, sans-serif" font-size="72" font-weight="600">Phani Kumar</text>
-  <text x="78" y="530" fill="#f0edee" opacity=".62" font-family="monospace" font-size="18">FULL-STACK PRODUCTS · CLOUD SYSTEMS · APPLIED AI</text>
+  <title>Phani Kumar — Full-stack developer</title>
+  <rect width="1200" height="630" fill="#fffcf9"/>
+  <text x="64" y="96" fill="#050505" font-family="monospace" font-size="17" letter-spacing="1">PORTFOLIO</text>
+  <text x="59" y="241" fill="#050505" font-family="Arial,sans-serif" font-size="125" font-weight="600" letter-spacing="-7">Phani</text>
+  <text x="59" y="364" fill="#050505" font-family="Arial,sans-serif" font-size="125" font-weight="600" letter-spacing="-7">Kumar</text>
+  <text x="64" y="425" fill="#050505" font-family="Arial,sans-serif" font-size="31" letter-spacing="-1">Full-stack developer</text>
+  <path d="M64 508h666" stroke="#050505" stroke-opacity=".25"/>
+  <circle cx="69" cy="554" r="5" fill="#050505"/>
+  <text x="88" y="560" fill="#050505" font-family="monospace" font-size="17">phani-kumar.dev</text>
+  <text x="528" y="560" fill="#050505" font-family="monospace" font-size="17">@phanikumar122</text>
+  <rect x="790" y="54" width="346" height="522" rx="8" fill="#050505"/>
+  <path d="M814 98V78h20M1092 498h20v-20" fill="none" stroke="#fffcf9" stroke-opacity=".5"/>
+  <g transform="translate(787 142) scale(.88)" fill="none" stroke="#fffcf9" stroke-width="30" stroke-linecap="square" stroke-linejoin="round">
+    <path d="M65 270V65H135C215 65 215 165 135 165H65"/>
+    <path d="M245 65V270M335 65L245 168L342 270"/>
+  </g>
+  <path d="M790 524h346" stroke="#fffcf9" stroke-opacity=".22"/>
+  <text x="814" y="556" fill="#fffcf9" font-family="monospace" font-size="13">PHANI KUMAR</text>
+  <path d="M1100 555l11-11m-11 0h11v11" fill="none" stroke="#fffcf9" stroke-width="2"/>
 </svg>

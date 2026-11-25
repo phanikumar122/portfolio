@@ -1,8 +1,29 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { once } from 'node:events'
-import { readdir } from 'node:fs/promises'
+import { readdir, mkdtemp, mkdir, writeFile, rm } from 'node:fs/promises'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 import { createPortfolioServer } from './serve.mjs'
+
+test('hashed assets use immutable caching on the native filesystem', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'portfolio-server-test-'))
+  await mkdir(join(root, 'assets'))
+  await writeFile(join(root, 'assets', 'app-test123.js'), 'export default true')
+  const server = createPortfolioServer(root)
+  server.listen(0, '127.0.0.1')
+  await once(server, 'listening')
+  try {
+    const response = await fetch(`http://127.0.0.1:${server.address().port}/assets/app-test123.js`)
+    assert.equal(response.status, 200)
+    assert.equal(response.headers.get('cache-control'), 'public, max-age=31536000, immutable')
+    assert.equal(await response.text(), 'export default true')
+  } finally {
+    server.closeAllConnections()
+    await new Promise(resolve => server.close(resolve))
+    await rm(root, { recursive: true, force: true })
+  }
+})
 
 test('production responses support compression, caching, PDF ranges and safe paths', async () => {
   const server = createPortfolioServer()
@@ -13,7 +34,7 @@ test('production responses support compression, caching, PDF ranges and safe pat
     const page = await fetch(base, { headers: { 'Accept-Encoding': 'br' } })
     assert.equal(page.status, 200)
     assert.equal(page.headers.get('content-encoding'), 'br')
-    assert.match(await page.text(), /<title>Vinnakota/)
+    assert.match(await page.text(), /<title>Phani Kumar — Full-stack developer<\/title>/)
     assert.equal(page.headers.get('cache-control'), 'no-cache')
     const files = await readdir(new URL('../dist/assets/', import.meta.url))
     const asset = '/assets/' + files.find(file => file.endsWith('.js'))

@@ -1,5 +1,6 @@
 import { Download, ExternalLink, FileText, X } from 'lucide-react'
 import { useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 
 interface ResumeModalProps {
   isOpen: boolean
@@ -11,6 +12,9 @@ export function ResumeModal({ isOpen, onClose, resumeUrl }: ResumeModalProps) {
   const dialogRef = useRef<HTMLDivElement>(null)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
   const triggerRef = useRef<HTMLElement | null>(null)
+  const onCloseRef = useRef(onClose)
+
+  useEffect(() => { onCloseRef.current = onClose }, [onClose])
 
   useEffect(() => {
     if (!isOpen) return
@@ -19,35 +23,41 @@ export function ResumeModal({ isOpen, onClose, resumeUrl }: ResumeModalProps) {
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        onClose()
+        onCloseRef.current()
         return
       }
       if (event.key !== 'Tab' || !dialogRef.current) return
-      const focusable = Array.from(dialogRef.current.querySelectorAll<HTMLElement>('button, a[href], [tabindex]:not([tabindex="-1"])'))
+      const focusable = Array.from(dialogRef.current.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], iframe, [tabindex]:not([tabindex="-1"])'))
       if (!focusable.length) return
-      const first = focusable[0]
-      const last = focusable[focusable.length - 1]
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault()
-        last.focus()
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault()
-        first.focus()
-      }
+      const index = focusable.findIndex(element => element === document.activeElement)
+      const nextIndex = (index + (event.shiftKey ? -1 : 1) + focusable.length) % focusable.length
+      event.preventDefault()
+      focusable[nextIndex]?.focus()
     }
 
+    const keepFocusInside = (event: FocusEvent) => {
+      if (event.target instanceof Node && !dialogRef.current?.contains(event.target)) closeButtonRef.current?.focus()
+    }
+    const backdrop = dialogRef.current?.parentElement
+    const background = Array.from(document.body.children)
+      .filter((element): element is HTMLElement => element instanceof HTMLElement && element !== backdrop)
+      .map(element => ({ element, wasInert: element.hasAttribute('inert') }))
+    background.forEach(({ element }) => element.setAttribute('inert', ''))
     document.addEventListener('keydown', handleKeyDown)
+    document.addEventListener('focusin', keepFocusInside)
     document.body.classList.add('dialog-is-open')
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
+      document.removeEventListener('focusin', keepFocusInside)
       document.body.classList.remove('dialog-is-open')
-      triggerRef.current?.focus()
+      background.forEach(({ element, wasInert }) => { if (!wasInert) element.removeAttribute('inert') })
+      if (triggerRef.current?.isConnected) triggerRef.current.focus()
     }
-  }, [isOpen, onClose])
+  }, [isOpen])
 
   if (!isOpen) return null
 
-  return (
+  return createPortal(
     <div
       className="dialog-backdrop resume-backdrop studio-resume"
       role="presentation"
@@ -60,6 +70,7 @@ export function ResumeModal({ isOpen, onClose, resumeUrl }: ResumeModalProps) {
         role="dialog"
         aria-modal="true"
         aria-labelledby="resume-modal-title"
+        aria-describedby="resume-preview-help"
         ref={dialogRef}
       >
         <div className="dialog-topline resume-modal-topline">
@@ -83,7 +94,7 @@ export function ResumeModal({ isOpen, onClose, resumeUrl }: ResumeModalProps) {
               className="button button--quiet resume-action-btn"
               aria-label="Open resume in new tab"
             >
-              <ExternalLink size={14} /> <span>Fullscreen</span>
+              <ExternalLink size={14} /> <span>Open PDF</span>
             </a>
             <button
               ref={closeButtonRef}
@@ -102,9 +113,15 @@ export function ResumeModal({ isOpen, onClose, resumeUrl }: ResumeModalProps) {
             src={`${resumeUrl}#toolbar=0`}
             title="Resume of Vinnakota Phani Kumar"
             className="resume-iframe"
+            tabIndex={0}
           />
         </div>
+        <div className="resume-modal-footer">
+          <p id="resume-preview-help">If the preview is unavailable, open or download the PDF above.</p>
+          <button type="button" className="studio-button studio-button--outline" onClick={onClose}>Close preview</button>
+        </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }

@@ -1,41 +1,44 @@
-# Portfolio review — 19 November 2026
+# Portfolio verification — 25 November 2026
 
-## Measured assets
+## Current design
 
-- Seven 480px WebP covers: 57.2 KiB total.
-- Seven 1586px WebP covers: 284.0 KiB total, versus 1007.8 KiB for the previous JPEGs (71.8% reduction).
-- Browsers choose one width per image through `srcset`; high-DPI phones may choose a larger version.
-- Main JavaScript: 319.8 KiB raw; 96.4 KiB Brotli.
-- Main CSS: 73.0 KiB raw; 12.5 KiB Brotli.
-- Project details and resume preview are separate chunks, loaded on hover/focus of their triggers or when opened.
-- Image dimensions reserve space; below-the-fold covers remain lazy and asynchronously decoded.
+Porcelain #FFFCF9 and Black #050505. The shared stylesheet defines the complete interface, including hover, focus, selection, dark sections, and reduced-motion behavior. Section headings remain concise. The portrait area uses a bespoke woven Three.js PK signature until the user supplies an authentic photo, with a static monogram if WebGL is unavailable.
+
+All seven landing covers are custom SVG interface concepts in ProjectArtwork.tsx. Their colors, typography, window frames, and controls match the portfolio. They are labeled as concepts; actual public screenshots remain in project-detail galleries.
+
+## Evidence
+
+User-confirmed roles distinguish solo work, group contributions, and Mentora's core developer role. Transport results use the committed benchmark CSV with synthetic-date and heuristic-target limitations. GoodFind commerce flows are simulated; the rehabilitation project is an engineering prototype. SkillTern's unavailable repository link is omitted.
+
+## Automated verification
+
+- 44 tests passed across 9 files, covering conceptual covers, project filters/expansion, repeated hidden-project links, skill keyboard tabs, galleries, clipboard feedback, contact states, overlay focus, portrait fallback, signature controls, morph geometry, and renderer cleanup.
+- TypeScript and the production build passed.
+- Both production server checks passed, covering compression, caching, conditional requests, PDF ranges, missing assets, and safe paths.
+- Native in-app browser inspection covered assembled/unfolded Three.js rendering, drag and keyboard rotation, pause controls, and a 375px mobile viewport. The camera framing and reusable-context cleanup were corrected after inspection. No Playwright commands were used for this update.
+- Source and branding checks found no remaining red or previous palette tokens. The native SVG compositions were reviewed for their bounds and labels.
+
+## Measured production assets
+
+- Main CSS: approximately 33.5 KB raw / 6.9 KB gzip.
+- Main JavaScript: approximately 342.3 KB raw / 110 KB gzip.
+- The separate lazy Three.js renderer is approximately 529.6 KB raw / 132.6 KB gzip. This exceeds Vite's default chunk-size warning threshold; it stays outside the initial page chunk.
+- Project dialogs and the resume remain separate lazy chunks.
+- SVG covers reserve their aspect ratio and scale without bitmap requests.
+- Five original evidence screenshots are retained at approximately 42–85 KB each.
+
+Payload sizes are build measurements. Core Web Vitals and deployed field performance were not measured.
+
+The signature uses five custom capped, beveled ribbons with precomputed GPU morph targets. Rendering is capped at 30fps and pixel ratio 1.5, pauses offscreen or in hidden tabs, and becomes static under reduced motion. Renderer resources are released on unmount, context failure, or photo override.
 
 ## Calculated contrast
 
-These ratios use the specified solid color tokens, not screenshot sampling.
+WCAG sRGB luminance calculations for the defined tokens:
 
-| Pair | Ratio | Check |
-|---|---|---|
-| Ink text / ivory | 14.85:1 | Pass (4.5:1 normal text) |
-| Muted text / ivory | 5.84:1 | Pass (4.5:1 normal text) |
-| White text / cobalt | 6.16:1 | Pass (4.5:1 normal text) |
-| Field boundary / ivory | 3.38:1 | Pass (3:1 control boundary) |
+- Black / Porcelain: 19.94:1.
+- Muted text on porcelain: 6.84:1.
+- Muted text on black: 9.11:1.
+- Input boundary on porcelain: 3.83:1.
+- Input boundary on black: 6.15:1.
 
-Form placeholder opacity is now 1, selected skill subtitles retain full opacity, and form boundaries use the stronger border token. Decorative separators intentionally use a softer border.
-
-## Content evidence
-
-Public READMEs and repository file trees were reviewed for six projects. The transport model's committed CSV reports CatBoost test RMSE 54.1542 and R² 0.477527; the README discloses heuristic rail/air passenger targets and synthetic dates. These are artifact results, not independently reproduced results. GoodFind is presented as a frontend demonstration. SkillTern's public repository returned 404. Source links are included in case studies. Individual ownership/team roles remain unconfirmed and are not inferred from repository ownership.
-
-## Mobile and runtime review
-
-- Source review: layouts adapt to a single project column at 960px, mobile navigation at 900px, and narrower text/spacing at 700px. Section anchors remain intact; redundant About interest descriptions were removed.
-- Interaction suite covers project filtering, dialogs, keyboard tabs, mobile navigation, contact feedback, and resume preview.
-- Production server checks cover Brotli/gzip, q=0 negotiation, immutable asset caching, conditional requests, PDF byte ranges, missing assets, traversal rejection, and allowed methods.
-- Browser rendering, real 375px/landscape layout, animation frame timing, and Core Web Vitals (LCP, INP, CLS) **were not measured**: no callable browser automation or Chromium binary is available in this device environment. A passing build/unit suite does not establish browser performance.
-
-## Remaining browser verification
-
-Run a mobile Lighthouse audit against the production URL with Chrome DevTools, and inspect 375px portrait and landscape, keyboard navigation, reduced motion, image requests, and dialogs. Use field data after deployment to establish actual INP and other Core Web Vitals; do not substitute bundle sizes for those measurements.
-
-Final validation: TypeScript and production build passed; 14 interaction tests passed; the production serving integration check passed. Scroll progress uses a motion value rather than rerendering navigation on every scroll frame.
+These token ratios are not a complete accessibility certification. Run npm test, npm run build, and npm run test:server to reproduce the automated checks.

@@ -1,27 +1,47 @@
-import { fireEvent, render, screen, waitFor, within } from '@testing-library/react'
+import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 import App from './App'
 import { portfolio } from './data/portfolio'
 
 describe('portfolio experience', () => {
-  it('renders every verified project with a case-study trigger', () => {
+  it('reveals a hidden project when the same skill proof link is used again', async () => {
+    const user = userEvent.setup()
+    const initialHash = window.location.hash
+    Object.defineProperty(HTMLElement.prototype, 'scrollIntoView', { configurable: true, value: vi.fn() })
     render(<App />)
-
-    expect(screen.getAllByRole('button', { name: /view .* case study/i })).toHaveLength(portfolio.projects.length)
+    const work = screen.getByRole('region', { name: /^Projects$/i })
+    const proof = screen.getByRole('link', { name: /^docviewer/i })
+    try {
+      await user.click(proof)
+      await waitFor(() => expect(within(work).getByRole('heading', { name: /docviewer/i })).toBeInTheDocument())
+      await user.click(screen.getByRole('button', { name: 'Show selected projects' }))
+      await waitFor(() => expect(within(work).queryByRole('heading', { name: /docviewer/i })).not.toBeInTheDocument())
+      await user.click(proof)
+      await waitFor(() => expect(within(work).getByRole('heading', { name: /docviewer/i })).toBeInTheDocument())
+    } finally {
+      window.history.replaceState(null, '', initialHash || '/')
+    }
+  })
+  it('leads with selected work and lets visitors reveal all projects', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+    const work = screen.getByRole('region', { name: /^Projects$/i })
+    expect(within(work).getAllByRole('button', { name: /view .* case study/i })).toHaveLength(3)
     expect(screen.getByText('Vinnakota Phani Kumar')).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: /thoughtful software.*built to matter/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 1, name: 'Phani Kumar' })).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: /show all 7 projects/i }))
+    expect(within(work).getAllByRole('button', { name: /view .* case study/i })).toHaveLength(portfolio.projects.length)
     portfolio.projects.filter((project) => !project.featured).forEach((project) => {
       expect(screen.getByRole('button', { name: `View ${project.title} details` })).toBeInTheDocument()
     })
   })
 
-  it('gives every section a shared studio surface and every project a visual stage', () => {
+  it('puts projects before skills and presents the requested section order', () => {
     const { container } = render(<App />)
 
-    expect(container.querySelectorAll('main > section')).toHaveLength(9)
-    expect(container.querySelectorAll('main > .studio-section')).toHaveLength(9)
-    expect(container.querySelectorAll('.studio-project-visual[aria-hidden="true"]')).toHaveLength(portfolio.projects.length)
+    const sections = Array.from(container.querySelectorAll('main > section')).map(section => section.id)
+    expect(sections).toEqual(['top', 'work', 'expertise', 'education', 'credentials', 'achievements', 'contact'])
   })
 
   it('opens and closes an accessible project detail dialog', async () => {
@@ -31,21 +51,20 @@ describe('portfolio experience', () => {
     const trigger = screen.getByRole('button', { name: 'View Mentora case study' })
     await user.click(trigger)
 
-    await vi.dynamicImportSettled()
+    await act(async () => { await vi.dynamicImportSettled() })
     const dialog = await screen.findByRole('dialog')
     expect(dialog).toBeInTheDocument()
     expect(dialog.querySelector('#project-dialog-title')).toHaveTextContent('Mentora')
 
     await user.keyboard('{Escape}')
-    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+    await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
     expect(trigger).toHaveFocus()
   })
 
-  it('shows the software architecture illustration and switches the selected skills group', async () => {
+  it('switches skill groups by pointer and keyboard with matching panel semantics', async () => {
     const user = userEvent.setup()
     render(<App />)
 
-    expect(screen.getByRole('img', { name: 'Connected architecture diagram from interface to services, data, and cloud' })).toBeInTheDocument()
     const tabs = screen.getAllByRole('tab')
     expect(tabs[0]).toHaveAttribute('aria-selected', 'true')
     expect(tabs[0]).toHaveAttribute('aria-controls', 'skill-panel-01')
@@ -71,10 +90,10 @@ describe('portfolio experience', () => {
     await user.click(menuButton)
     expect(menuButton).toHaveAttribute('aria-expanded', 'true')
     const mobileNavigation = screen.getByRole('navigation', { name: /mobile navigation/i })
-    const mobileAboutLink = within(mobileNavigation).getByRole('link', { name: /^about$/i })
-    expect(mobileAboutLink).toBeVisible()
+    const mobileIntroLink = within(mobileNavigation).getByRole('link', { name: /^Intro$/i })
+    expect(mobileIntroLink).toBeVisible()
 
-    await user.click(mobileAboutLink)
+    await user.click(mobileIntroLink)
     expect(menuButton).toHaveAttribute('aria-expanded', 'false')
   })
 
@@ -104,15 +123,15 @@ describe('portfolio experience', () => {
 
   it('provides identifiable section landmarks for navigation anchors', () => {
     const { container } = render(<App />)
-    const expectedIds = ['top', 'about', 'expertise', 'work', 'philosophy', 'education', 'credentials', 'achievements', 'contact']
+    const expectedIds = ['top', 'work', 'expertise', 'education', 'credentials', 'achievements', 'contact']
     expectedIds.forEach((id) => {
       expect(container.querySelector(`#${id}`)).not.toBeNull()
     })
   })
 
-  it('uses the Warm Ivory and Cobalt theme without a theme toggle', () => {
+  it('uses the selected monochrome palette', () => {
     const { container } = render(<App />)
-    expect(container.querySelector('.site-shell')).toHaveClass('theme-ivory-cobalt')
+    expect(container.querySelector('.site-shell')).toHaveClass('theme-monochrome')
     expect(screen.queryByRole('button', { name: /switch to (light|dark) theme/i })).not.toBeInTheDocument()
   })
 
@@ -123,7 +142,7 @@ describe('portfolio experience', () => {
     const resumeBtn = screen.getByRole('button', { name: /^view resume$/i })
     await user.click(resumeBtn)
 
-    await vi.dynamicImportSettled()
+    await act(async () => { await vi.dynamicImportSettled() })
     const modal = await screen.findByRole('dialog', { name: /resume.*vinnakota phani kumar/i })
     expect(modal).toBeInTheDocument()
 
@@ -132,8 +151,10 @@ describe('portfolio experience', () => {
     expect(screen.queryByRole('dialog', { name: /resume.*vinnakota phani kumar/i })).not.toBeInTheDocument()
   })
 
-  it('renders the hero role presentation and social profile cards', () => {
+  it('identifies the developer and provides social profile links', () => {
     render(<App />)
+    expect(screen.getByRole('heading', { level: 1, name: 'Phani Kumar' })).toBeInTheDocument()
+    expect(screen.getByText(/^Full-stack developer\.?$/i)).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /connect on linkedin/i })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /follow on github/i })).toBeInTheDocument()
   })
@@ -145,13 +166,23 @@ describe('portfolio experience', () => {
     expect(screen.getByRole('textbox', { name: /^message$/i })).toBeInTheDocument()
   })
 
-  it('uses one purposeful hero illustration and gives every project equal editorial treatment', () => {
+  it('keeps the intro free of project selectors and an invented portrait', () => {
     const { container } = render(<App />)
-    expect(container.querySelectorAll('.architecture-layer')).toHaveLength(3)
-    expect(container.querySelectorAll('.studio-project-grid > .studio-project-card')).toHaveLength(portfolio.projects.length)
-    expect(container.querySelector('.archive-block')).not.toBeInTheDocument()
-    expect(container.querySelectorAll('.status-pill, .status-dot, .tech-badge, .skill-tech-chip')).toHaveLength(0)
-    expect(container.querySelector('.footer-marquee')).not.toBeInTheDocument()
+    expect(screen.queryByRole('group', { name: 'Project previews' })).not.toBeInTheDocument()
+    expect(screen.queryAllByRole('button', { name: /^Preview (GoodFind|Mentora|Public Transport)/i })).toHaveLength(0)
+    expect(container.querySelector('.hero-portrait img')).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /show all 7 projects/i })).toHaveAttribute('aria-expanded', 'false')
+  })
+
+  it('uses theme-matching interface concepts for project covers', () => {
+    render(<App />)
+    const projects = screen.getByRole('region', { name: 'Projects' })
+    const covers = within(projects).getAllByRole('button', { name: /view .* case study/i })
+    covers.forEach(cover => {
+      expect(cover.querySelector('img')).toBeNull()
+      expect(cover.querySelector('svg.project-artwork')).not.toBeNull()
+      expect(cover).toHaveTextContent('Interface concept')
+    })
   })
 
   it('filters the project index and reports the visible total', async () => {
@@ -161,8 +192,9 @@ describe('portfolio experience', () => {
     await user.click(screen.getByRole('button', { name: 'Data & AI' }))
 
     expect(screen.getByText('Showing 2 projects')).toHaveAttribute('role', 'status')
-    expect(screen.getByRole('heading', { name: 'Public Transport Demand Prediction' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'Syllabus AI' })).toBeInTheDocument()
-    expect(screen.queryByRole('heading', { name: 'Mentora' })).not.toBeInTheDocument()
+    const work = screen.getByRole('region', { name: /^Projects$/i })
+    expect(within(work).getByRole('heading', { name: 'Public Transport Demand Prediction' })).toBeInTheDocument()
+    expect(within(work).getByRole('heading', { name: 'Syllabus AI' })).toBeInTheDocument()
+    await waitFor(() => expect(within(work).queryByRole('heading', { name: 'Mentora' })).not.toBeInTheDocument())
   })
 })

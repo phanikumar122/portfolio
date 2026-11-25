@@ -1,14 +1,15 @@
 import { createServer } from 'node:http'
 import { stat, readFile } from 'node:fs/promises'
 import { resolve, extname, sep } from 'node:path'
-import { pathToFileURL } from 'node:url'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 const types = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.png': 'image/png', '.woff2': 'font/woff2', '.woff': 'font/woff', '.pdf': 'application/pdf', '.txt': 'text/plain; charset=utf-8' }
 function accepts(header, encoding) {
   const entries = String(header || '').split(',').map(value => value.trim().split(';'))
   const entry = entries.find(([name]) => name === encoding) || entries.find(([name]) => name === '*')
   return entry && !entry.slice(1).some(value => /^\s*q\s*=\s*0(?:\.0*)?\s*$/.test(value))
 }
-export function createPortfolioServer(root = resolve(new URL('../dist/', import.meta.url).pathname)) {
+export function createPortfolioServer(root = fileURLToPath(new URL('../dist/', import.meta.url))) {
+  root = resolve(root)
   return createServer(async (req, res) => {
     if (!['GET', 'HEAD'].includes(req.method)) { res.writeHead(405, { Allow: 'GET, HEAD' }); res.end(); return }
     try {
@@ -29,7 +30,7 @@ export function createPortfolioServer(root = resolve(new URL('../dist/', import.
         }
       }
       const etag = `"${info.size.toString(16)}-${Math.floor(info.mtimeMs).toString(16)}"`
-      const headers = { 'Content-Type': contentType, 'Cache-Control': /\/assets\//.test(file) ? 'public, max-age=31536000, immutable' : 'no-cache', Vary: 'Accept-Encoding', ETag: etag, 'X-Content-Type-Options': 'nosniff', 'Accept-Ranges': 'bytes' }
+      const headers = { 'Content-Type': contentType, 'Cache-Control': file.startsWith(resolve(root, 'assets') + sep) ? 'public, max-age=31536000, immutable' : 'no-cache', Vary: 'Accept-Encoding', ETag: etag, 'X-Content-Type-Options': 'nosniff', 'Accept-Ranges': 'bytes' }
       if (encoding) headers['Content-Encoding'] = encoding
       if (req.headers['if-none-match']?.split(/,\s*/).includes(etag)) { res.writeHead(304, headers); res.end(); return }
       let start = 0, end = info.size - 1, status = 200

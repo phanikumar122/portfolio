@@ -1,80 +1,46 @@
-# Design System: Phani Kumar Portfolio (Obsidian & Cyber Emerald)
+# Phani Kumar — Monochrome
 
-## 1. Visual Direction & Architecture
-- **Archetype**: Developer Tool & Engineering Showcase (Linear × Raycast × Swiss Minimalist)
-- **Primary Style**: Dark Mode (OLED) + Bento Box Grid + Swiss Typographic Precision
-- **Key Tenet**: Anti-slop, content-first engineering. Every element communicates capability, systems maturity, and attention to detail.
+## Purpose and palette
 
-## 2. Color System
-### Dark Mode (Default)
-- `--bg`: `#07090e` (Deep obsidian canvas, low eye strain, OLED friendly)
-- `--bg-subtle`: `#0c1017`
-- `--bg-raised`: `#121722`
-- `--surface`: `#111726` (Clean engineered slate tile)
-- `--surface-elevated`: `#172033`
-- `--surface-hover`: `#1e293f`
-- `--surface-active`: `#263552`
-- `--text`: `#f8fafc` (Ice white, 15:1 contrast against canvas)
-- `--text-secondary`: `#cbd5e1` (Soft slate, 9:1 contrast)
-- `--muted`: `#94a3b8` (Balanced mid-tone slate)
-- `--faint`: `#64748b`
-- `--accent`: `#10b981` (Run Emerald / Electric Mint, primary signature)
-- `--accent-hover`: `#059669`
-- `--accent-bright`: `#34d399` (Electric Mint)
-- `--accent-soft`: `rgba(16, 185, 129, 0.12)`
-- `--accent-glow`: `rgba(16, 185, 129, 0.3)`
-- `--accent-border`: `rgba(16, 185, 129, 0.4)`
-- `--accent-cyan`: `#06b6d4` (Systems / Telemetry cyan)
-- `--accent-cyan-soft`: `rgba(6, 182, 212, 0.12)`
-- `--accent-violet`: `#8b5cf6` (Agentic AI electric violet)
-- `--accent-violet-soft`: `rgba(139, 92, 246, 0.14)`
-- `--accent-amber`: `#f59e0b`
-- `--accent-rose`: `#f43f5e`
-- `--line`: `rgba(255, 255, 255, 0.08)`
-- `--line-soft`: `rgba(255, 255, 255, 0.04)`
-- `--line-strong`: `rgba(255, 255, 255, 0.16)`
-- `--line-glow`: `rgba(16, 185, 129, 0.35)`
+An engineering portfolio that leads with personal identity and project evidence.
 
-### Light Mode
-- `--bg`: `#f8fafc` (Crisp light snow canvas)
-- `--bg-subtle`: `#f1f5f9`
-- `--bg-raised`: `#e2e8f0`
-- `--surface`: `#ffffff`
-- `--surface-elevated`: `#f8fafc`
-- `--surface-hover`: `#f1f5f9`
-- `--surface-active`: `#e2e8f0`
-- `--text`: `#0f172a` (Slate black, 14:1 contrast)
-- `--text-secondary`: `#334155`
-- `--muted`: `#64748b`
-- `--faint`: `#94a3b8`
-- `--accent`: `#059669` (Emerald 600)
-- `--accent-hover`: `#047857`
-- `--accent-bright`: `#10b981`
-- `--accent-soft`: `rgba(5, 150, 105, 0.1)`
-- `--accent-glow`: `rgba(5, 150, 105, 0.22)`
-- `--accent-border`: `rgba(5, 150, 105, 0.35)`
-- `--line`: `rgba(15, 23, 42, 0.08)`
-- `--line-soft`: `rgba(15, 23, 42, 0.04)`
-- `--line-strong`: `rgba(15, 23, 42, 0.16)`
+- Porcelain: `#FFFCF9` — page and light surfaces
+- Black: `#050505` — typography, controls, Skills and Contact surfaces
 
-## 3. Typography
-- **Display / Headings**: Space Grotesk (geometric, distinctive, tech-forward)
-- **Monospace / Code & Labels**: IBM Plex Mono / JetBrains Mono (precise, engineering, authentic)
-- **Scale**:
-  - Hero display: `clamp(36px, 6vw, 68px)` / line-height: 1.08 / tracking: -0.035em
-  - Section headers: `clamp(28px, 4.5vw, 46px)` / line-height: 1.15
-  - H3 Card Titles: `18px - 22px`
-  - Body: `15px - 16px` / line-height: 1.6
-  - Labels & Metadata: `11px - 13px` / font-family: mono / tracking: 0.05em uppercase
+The interface and conceptual landing covers use these two colors. Semantic tokens and translucent variants live in `src/styles/tokens.css`. Actual screenshots retain their original colors in evidence galleries.
 
-## 4. Layout & Grid Standards
-- Bento Grid with asymmetric spans (`2x2`, `2x1`, `1x1`)
-- Consistent container shell: `min(1200px, calc(100% - 48px))`
-- Standard gutter: `clamp(20px, 4vw, 48px)`
-- Standard radius: `12px - 16px` for cards, `8px` for inner chips, `9999px` for status badges
+## Typography and layout
 
-## 5. Interaction & Motion Rules
-- Button & interactive hover states: 180ms ease / spring
-- Card hover: `translateY(-4px)` with subtle border highlight
-- Accessible focus outlines: `2px solid var(--accent)` with `3px` offset
-- Strict `prefers-reduced-motion` compliance on all motion components
+Use locally loaded Space Grotesk for titles and interface text, with IBM Plex Mono for metadata. Establish hierarchy through scale, weight, and alignment. Landing section headings use plain labels without descriptive sentences beneath them.
+
+Use a centered shell up to 1280px wide, with 48px desktop and 20px mobile gutters. Buttons and paging controls share a pill radius and at least 44px hit areas. Image corners are 8–10px.
+
+## Page progression
+
+Intro → Projects → Skills → Education → Certifications → Awards → Contact.
+
+Internal landmarks: `top`, `work`, `expertise`, `education`, `credentials`, `achievements`, `contact`.
+
+- Intro: name, factual developer role, bespoke porcelain woven PK sculpture on black.
+- Projects: custom monochrome interface concepts, a full-width lead, and paired staggered covers; remaining projects expand on request.
+- Skills: black tab workspace with links to project evidence.
+- Education, Certifications, Awards: porcelain surfaces and ruled rows.
+- Contact: black surface, readable porcelain form controls, explicit delivery help.
+
+Concept covers are labeled. Keep actual screenshots, project descriptions, stacks, confirmed roles, decisions, and source caveats in case-study dialogs. Every project remains accessible.
+
+## Portrait
+
+`portfolio.person.portraitUrl` is empty while awaiting a supplied personal photo. Put an authentic image at `public/portrait.webp` and set `portraitUrl: './portrait.webp'` in `src/data/portfolio.ts`. The photo overrides the signature and releases its renderer. The sculpture remains the fallback while the photo is absent or cannot load.
+
+## Motion and interaction
+
+Use Motion for React to coordinate title masks, drawn SVG strokes, one-time reveals, filter layout changes, and menu stagger. Preserve native scrolling and reduced-motion preferences.
+
+The hero signature uses five custom capped, beveled ribbons with GPU morph targets that unfold into a phase-shifted weave. Its separate lazy Three.js 0.187.0 renderer caps rendering at 30fps and pixel ratio 1.5, pauses offscreen or in hidden tabs, and disposes resources on photo override or unmount. Static SVG provides the unavailable-WebGL fallback.
+
+Unfold/Reform controls form; Pause/Play controls ambient motion; Reset restores form and view. Rotate buttons and keyboard arrows complement horizontal drag. Preserve native vertical scrolling and pinch zoom. Reduced-motion changes are immediate and ambient motion stops.
+
+Evidence galleries have named controls, keyboard navigation, accurate captions, and image retry. Menus and dialogs use viewport portals, contain keyboard focus, and restore triggers. Contact explains direct delivery or email-app drafts and preserves messages after errors.
+
+Confine 3D to the bespoke PK signature. Exclude stock decorative shapes, 3D stack illustrations, additional interface colors, autoplay carousels, and scroll hijacking.

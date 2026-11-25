@@ -7,9 +7,8 @@ import { Reveal } from './Reveal'
 
 // Set VITE_FORMSPREE_ENDPOINT in .env (or paste here, e.g. https://formspree.io/f/xxxx) to enable
 // the contact form. If left blank, the form safely opens the visitor's mail client directly.
-const FORMSPREE_ENDPOINT = (import.meta.env.VITE_FORMSPREE_ENDPOINT as string | undefined) || ''
-
 export function Contact() {
+  const FORMSPREE_ENDPOINT = (import.meta.env.VITE_FORMSPREE_ENDPOINT as string | undefined) || ''
   const { copied, copyError, copy } = useCopyToClipboard()
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'draft' | 'error' | 'invalid'>('idle')
 
@@ -60,14 +59,8 @@ export function Contact() {
         <div className="studio-contact-intro">
           <Reveal delay={0.08}>
             <h2 className="studio-heading" id="contact-title">
-              Something good<br />
-              <em>starts with a hello.</em>
+              Contact
             </h2>
-          </Reveal>
-          <Reveal delay={0.16}>
-            <p className="studio-description">
-              Have an <span className="studio-highlight">opportunity</span>, a product idea, or a <span className="studio-highlight">problem worth solving</span>? I’d love to hear about it.
-            </p>
           </Reveal>
           <Reveal delay={0.2} className="studio-contact-links">
             <a className="studio-contact-email" href={`mailto:${portfolio.person.email}`}>{portfolio.person.email}<ArrowUpRight size={20} /></a>
@@ -88,20 +81,20 @@ export function Contact() {
         </div>
 
         <Reveal delay={0.18} className="studio-contact-form-wrap">
-          <div className="studio-form-heading"><h3>A note, an idea, a hello.</h3><ArrowUpRight size={24} aria-hidden="true" /></div>
+          <div className="studio-form-heading"><h3>Message</h3><ArrowUpRight size={24} aria-hidden="true" /></div>
           <p id="contact-form-description" className="studio-form-help">{FORMSPREE_ENDPOINT ? 'Send a message directly to my inbox.' : 'This form prepares a draft in your email app. You’ll review and send it there.'}</p>
           <form className="studio-contact-form" onSubmit={handleSubmit} aria-describedby="contact-form-description" onChange={() => { if (status !== 'sending') setStatus('idle') }}>
             <label>
               <span>Your name</span>
-              <input name="name" type="text" placeholder="Your name" autoComplete="name" maxLength={120} required />
+              <input name="name" type="text" placeholder="Your name" autoComplete="name" maxLength={120} required disabled={status === 'sending'} />
             </label>
             <label>
               <span>Your email</span>
-              <input name="email" type="email" placeholder="you@company.com" autoComplete="email" maxLength={254} required />
+              <input name="email" type="email" placeholder="you@company.com" autoComplete="email" maxLength={254} required disabled={status === 'sending'} />
             </label>
             <label>
               <span>Message</span>
-              <textarea name="message" placeholder="What are you working on?" rows={4} maxLength={5000} required />
+              <textarea name="message" placeholder="What are you working on?" rows={4} maxLength={5000} required disabled={status === 'sending'} />
             </label>
             <button type="submit" className="studio-button studio-button--primary" disabled={status === 'sending'}>
               {status === 'sending' ? 'Sending…' : FORMSPREE_ENDPOINT ? 'Send message' : 'Prepare email'} <Send size={16} />

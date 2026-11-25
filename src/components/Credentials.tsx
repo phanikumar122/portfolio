@@ -6,11 +6,7 @@ export function Credentials() {
   return (
     <section className="studio-section section-shell section-padding studio-credentials" id="credentials" aria-labelledby="credentials-title">
       <Reveal className="studio-support-head studio-ledger-heading">
-        <div>
-          <p className="studio-eyebrow">Credentials</p>
-          <h2 className="studio-heading" id="credentials-title">My certificates.</h2>
-        </div>
-        <p className="studio-ledger-count">{portfolio.credentials.length} verified certificates</p>
+        <h2 className="studio-heading" id="credentials-title">Certifications</h2>
       </Reveal>
 
       <div className="studio-ledger-columns" aria-hidden="true">
