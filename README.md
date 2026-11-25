@@ -35,6 +35,8 @@ The interaction suite exercises signature controls and geometry, photo override,
 
 The build writes static assets plus gzip and Brotli variants to `dist/`. Run `npm start` for the production server; its default port is 5173 and can be overridden with `PORT`. The server supports asset caching, conditional requests, and PDF byte ranges. Static hosts can also serve `dist/` directly.
 
+GitHub Pages uses separate build/upload and deployment jobs in `.github/workflows/deploy.yml`. Deployment waits for a successful build and consumes the explicitly named `github-pages` artifact using the v5 Pages actions.
+
 ## Content and portrait
 
 Edit content in `src/data/portfolio.ts`. All seven projects remain available. `ProjectVisual` supplies conceptual landing illustrations; actual public screenshots in `src/assets/projects/` retain their evidence captions and original colors.
