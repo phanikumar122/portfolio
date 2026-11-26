@@ -90,8 +90,8 @@ export function SiteNav() {
       <motion.div className="studio-nav-progress" style={{ scaleX: progress }} aria-hidden="true" />
       <div className="studio-nav-inner">
         <a className="studio-brand" href="#top" aria-label="Phani Kumar home">
-          <span className="studio-brand-symbol">PK<span>.</span></span>
-          <span className="studio-brand-name">Phani Kumar</span>
+          <span className="studio-brand-symbol" aria-hidden="true">PK</span>
+          <span className="studio-brand-name">Portfolio</span>
         </a>
 
         <nav className="studio-desktop-nav" aria-label="Main navigation">

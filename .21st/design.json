@@ -5,8 +5,7 @@
     "productType": "personal engineering portfolio",
     "stack": [
       "react",
-      "vite",
-      "three"
+      "vite"
     ]
   },
   "sources": {
@@ -35,37 +34,24 @@
       "highlight": "#050505"
     },
     "typography": {
-      "display": "Space Grotesk",
+      "display": "Georgia and Space Grotesk",
       "metadata": "IBM Plex Mono"
     },
     "spacing": {
-      "container": 1280,
-      "desktopGutter": 48,
-      "mobileGutter": 20
+      "container": 1392,
+      "gutter": "clamp(16px, 4.5vw, 72px)"
     },
     "radius": {
-      "button": 999,
-      "image": 8,
-      "frame": 10
+      "button": 0,
+      "image": 0,
+      "frame": 0
     },
     "motion": {
       "library": "Motion for React",
-      "entrance": "One-time title masks, SVG strokes, and reveals",
+      "entrance": "One-time title masks and reveals",
       "interaction": "Filter layout transitions and menu stagger",
       "reducedMotion": true,
-      "scrolling": "native",
-      "signature": {
-        "library": "Three.js",
-        "version": "0.187.0",
-        "renderer": "separate lazy module",
-        "geometry": "five custom capped beveled PK ribbons",
-        "morph": "GPU targets into a phase-shifted weave",
-        "renderFpsCap": 30,
-        "pixelRatioCap": 1.5,
-        "inactive": "paused offscreen or in hidden tabs",
-        "fallback": "static SVG",
-        "cleanup": "on photo override and unmount"
-      }
+      "scrolling": "native"
     },
     "density": "editorial"
   },
@@ -80,8 +66,7 @@
       "accessible tabs",
       "viewport dialogs",
       "manual evidence galleries",
-      "monochrome conceptual covers",
-      "bespoke woven PK sculpture"
+      "monochrome conceptual covers"
     ]
   },
   "constraints": {
@@ -90,8 +75,6 @@
       "Use simple section labels without descriptive sentences beneath landing headings.",
       "Preserve all seven projects, confirmed roles, and source caveats.",
       "Label conceptual covers and retain actual screenshots in evidence galleries.",
-      "Use an authentic supplied portrait; retain the woven PK signature and SVG fallback while the photo is absent or unavailable.",
-      "Confine 3D to the bespoke PK signature with accessible controls and reduced-motion support.",
       "Keep keyboard access, visible focus, trigger restoration, and reduced-motion support."
     ],
     "avoid": [
@@ -106,16 +89,14 @@
   },
   "decisions": [
     "Use theme-monochrome with porcelain surfaces, black typography, and high-contrast black feature sections.",
-    "Use a type-led Intro with the factual developer role and a bespoke porcelain woven PK sculpture on black as the portrait fallback.",
-    "Build five capped beveled ribbons with GPU morph targets. Provide Unfold/Reform, Pause/Play, Reset form and view, rotate buttons, keyboard arrows, and horizontal drag with native pan-y and pinch zoom.",
-    "Load Three.js 0.187.0 through an isolated lazy renderer. Cap rendering at 30fps and DPR 1.5; pause when offscreen or hidden, apply reduced-motion changes immediately, dispose on photo override/unmount, and retain a static SVG fallback.",
+    "Use a typographic masthead with the developer role, primary links, and an optional supplied portrait.",
     "Add a supplied photo at public/portrait.webp and set portfolio.person.portraitUrl to './portrait.webp' in src/data/portfolio.ts.",
     "Use the section order top, work, expertise, education, credentials, achievements, contact.",
-    "Render custom monochrome interface concepts as landing covers in a full-width lead and paired staggered composition; retain actual screenshot evidence in dialogs.",
+    "Render custom monochrome interface concepts as landing covers in ruled project rows with side-by-side copy and previews on wide screens. Display screenshot evidence in grayscale in dialogs.",
     "Keep landing labels concise and project summaries, stacks, confirmed roles, and source limitations in case studies.",
-    "Use a black Skills workspace and Contact section, porcelain ruled qualifications, and readable porcelain form controls.",
-    "Use consistent pill controls, 8–10px image corners, a 1280px shell, 48px desktop gutters, and 20px mobile gutters.",
-    "Coordinate Motion title masks, SVG drawing, one-time reveals, filter layout changes, and menu stagger; preserve native scrolling.",
+    "Use a porcelain Skills workspace and black Contact section, porcelain ruled qualifications, and readable porcelain form controls.",
+    "Use square controls and image frames with a 1392px maximum content width and fluid gutters.",
+    "Coordinate Motion title masks, one-time reveals, filter layout changes, and menu stagger; preserve native scrolling.",
     "Use viewport portals for menus and dialogs; preserve truthful contact help and keyboard focus behavior."
   ],
   "evidence": [

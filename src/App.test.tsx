@@ -80,6 +80,8 @@ describe('portfolio experience', () => {
     await user.keyboard('{ArrowDown}')
     expect(tabs[2]).toHaveAttribute('aria-selected', 'true')
     expect(tabs[2]).toHaveFocus()
+    expect(screen.getByRole('tabpanel')).toHaveTextContent('Cloud & DevOps')
+    expect(screen.getByRole('tabpanel')).toHaveTextContent('CI/CD')
   })
 
   it('opens the mobile menu and closes it after selecting a section', async () => {
@@ -154,7 +156,9 @@ describe('portfolio experience', () => {
   it('identifies the developer and provides social profile links', () => {
     render(<App />)
     expect(screen.getByRole('heading', { level: 1, name: 'Phani Kumar' })).toBeInTheDocument()
-    expect(screen.getByText(/^Full-stack developer\.?$/i)).toBeInTheDocument()
+    expect(screen.getByText('Full-stack AI engineer')).toBeInTheDocument()
+    expect(screen.getByText(/a focus on cloud infrastructure, DevOps, and agentic AI/i)).toBeInTheDocument()
+    expect(screen.getByRole('tab', { name: /Agentic AI/i })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /connect on linkedin/i })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /follow on github/i })).toBeInTheDocument()
   })

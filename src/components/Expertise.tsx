@@ -18,14 +18,14 @@ const chipItem = {
 const domainSubtitles: Record<string, { icon: typeof Code2; subtitle: string }> = {
   Build: { icon: Code2, subtitle: 'Frontend & APIs' },
   Data: { icon: Database, subtitle: 'Databases & Storage' },
-  Systems: { icon: Network, subtitle: 'Cloud & Infrastructure' },
-  'Agentic AI': { icon: Cpu, subtitle: 'Applied AI & Workflows' },
+  'Cloud & DevOps': { icon: Network, subtitle: 'AWS, Docker & CI/CD' },
+  'Agentic AI': { icon: Cpu, subtitle: 'LLMs, retrieval & workflows' },
 }
 
 const projectProof: Record<string, string[]> = {
   Build: ['mentora', 'goodfind', 'docviewer'],
   Data: ['transport', 'mentora'],
-  Systems: ['mentora', 'rehabilitation'],
+  'Cloud & DevOps': ['mentora', 'syllabus-ai'],
   'Agentic AI': ['syllabus-ai'],
 }
 
@@ -124,9 +124,8 @@ export function Expertise() {
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <div className="studio-panel-head">
-                      <div>
-                        <h3>{group.title}</h3>
-                      </div>
+                      <h3>{group.title}</h3>
+                      <p>{group.description}</p>
                     </div>
 
                     <motion.div
@@ -145,7 +144,7 @@ export function Expertise() {
                         </motion.div>
                       ))}
                     </motion.div>
-                    <div className="skill-project-proof"><span>Projects</span>{portfolio.projects.filter(project => projectProof[group.title]?.includes(project.id)).map(project => <a key={project.id} href={`#project-${project.id}`}>{project.title}<ArrowUpRight size={14} aria-hidden="true" /></a>)}</div>
+                    <div className="skill-project-proof"><span>Related projects</span>{portfolio.projects.filter(project => projectProof[group.title]?.includes(project.id)).map(project => <a key={project.id} href={`#project-${project.id}`}>{project.title}<ArrowUpRight size={14} aria-hidden="true" /></a>)}</div>
                   </motion.div>
                 )}
               </div>

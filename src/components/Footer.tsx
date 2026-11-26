@@ -1,4 +1,4 @@
-import { Github, Linkedin } from 'lucide-react'
+import { ArrowUp, Github, Linkedin } from 'lucide-react'
 import { portfolio } from '../data/portfolio'
 import { Reveal } from './Reveal'
 
@@ -19,6 +19,7 @@ export function Footer() {
           <a href={portfolio.person.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
             <Linkedin size={17} aria-hidden="true" />
           </a>
+          <a className="studio-footer-top" href="#top" aria-label="Back to top"><ArrowUp size={17} aria-hidden="true" /></a>
         </nav>
       </Reveal>
     </footer>

@@ -18,6 +18,7 @@ describe('portrait presentation', () => {
     render(<Hero />)
     fireEvent.error(screen.getByRole('img', { name: 'Phani Kumar' }))
     expect(screen.queryByRole('img', { name: 'Phani Kumar' })).not.toBeInTheDocument()
+    expect(document.querySelector('.hero-portrait, .hero-grid--portrait, canvas')).toBeNull()
     expect(screen.getByRole('heading', { level: 1, name: 'Phani Kumar' })).toBeVisible()
     expect(screen.getByRole('link', { name: 'Projects' })).toHaveAttribute('href', '#work')
   })

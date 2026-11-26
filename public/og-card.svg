@@ -1,10 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <title>Phani Kumar — Full-stack developer</title>
+  <title>Phani Kumar — Full-stack AI engineer</title>
   <rect width="1200" height="630" fill="#fffcf9"/>
   <text x="64" y="96" fill="#050505" font-family="monospace" font-size="17" letter-spacing="1">PORTFOLIO</text>
   <text x="59" y="241" fill="#050505" font-family="Arial,sans-serif" font-size="125" font-weight="600" letter-spacing="-7">Phani</text>
   <text x="59" y="364" fill="#050505" font-family="Arial,sans-serif" font-size="125" font-weight="600" letter-spacing="-7">Kumar</text>
-  <text x="64" y="425" fill="#050505" font-family="Arial,sans-serif" font-size="31" letter-spacing="-1">Full-stack developer</text>
+  <text x="64" y="425" fill="#050505" font-family="Arial,sans-serif" font-size="31" letter-spacing="-1">Full-stack AI engineer</text>
+  <text x="64" y="471" fill="#050505" font-family="monospace" font-size="17">Cloud &amp; DevOps · Agentic AI</text>
   <path d="M64 508h666" stroke="#050505" stroke-opacity=".25"/>
   <circle cx="69" cy="554" r="5" fill="#050505"/>
   <text x="88" y="560" fill="#050505" font-family="monospace" font-size="17">phani-kumar.dev</text>

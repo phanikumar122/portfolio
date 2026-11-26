@@ -13,7 +13,7 @@ export default function App() {
   return (
     <MotionConfig reducedMotion="user"><div className="site-shell theme-monochrome">
       <SiteNav />
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <Hero />
         <ProjectShowcase />
         <Expertise />
