@@ -52,4 +52,4 @@ Without `VITE_FORMSPREE_ENDPOINT`, the form prepares a draft in the visitor's em
 
 ## Design sources
 
-`src/styles/tokens.css` defines semantic tokens; `src/styles/portfolio.css` is the application stylesheet. Design context is recorded in `.21st/design.json`, `.21st/DESIGN.md`, and `design-system/phani-kumar-portfolio/MASTER.md`.
+`src/styles/tokens.css` defines semantic tokens and `src/styles/portfolio.css` is the application stylesheet. Design context is recorded in `design-system/phani-kumar-portfolio/MASTER.md`.

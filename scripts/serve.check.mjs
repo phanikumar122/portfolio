@@ -34,7 +34,7 @@ test('production responses support compression, caching, PDF ranges and safe pat
     const page = await fetch(base, { headers: { 'Accept-Encoding': 'br' } })
     assert.equal(page.status, 200)
     assert.equal(page.headers.get('content-encoding'), 'br')
-    assert.match(await page.text(), /<title>Phani Kumar — Full-stack developer<\/title>/)
+    assert.match(await page.text(), /<title>Phani Kumar — Full-stack AI engineer<\/title>/)
     assert.equal(page.headers.get('cache-control'), 'no-cache')
     const files = await readdir(new URL('../dist/assets/', import.meta.url))
     const asset = '/assets/' + files.find(file => file.endsWith('.js'))
