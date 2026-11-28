@@ -4,6 +4,7 @@ dist/
 output/
 /.agents/
 /.21st/
+/design-system/phani-kumar-portfolio/MASTER.md
 __pycache__/
 .DS_Store
 *.log
