@@ -1,19 +1,7 @@
 import { ArrowUpRight, Code2, Cpu, Database, Network } from 'lucide-react'
-import { motion } from 'motion/react'
 import { useRef, useState } from 'react'
 import type { KeyboardEvent } from 'react'
 import { portfolio } from '../data/portfolio'
-import { useReducedMotion } from '../hooks/useReducedMotion'
-import { Reveal } from './Reveal'
-
-const chipContainer = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.025, delayChildren: 0.04 } },
-}
-const chipItem = {
-  hidden: { opacity: 0, scale: 0.97, y: 6 },
-  show: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
-}
 
 const domainSubtitles: Record<string, { icon: typeof Code2; subtitle: string }> = {
   Build: { icon: Code2, subtitle: 'Frontend & APIs' },
@@ -31,7 +19,6 @@ const projectProof: Record<string, string[]> = {
 
 export function Expertise() {
   const [active, setActive] = useState(0)
-  const reducedMotion = useReducedMotion()
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([])
 
   const selectSkill = (index: number, moveFocus = false) => {
@@ -57,9 +44,9 @@ export function Expertise() {
   return (
     <section className="studio-section studio-expertise section-shell section-padding" id="expertise" aria-labelledby="expertise-title">
       <div className="studio-section-header">
-        <Reveal>
+        <div>
           <h2 className="studio-heading" id="expertise-title">Skills</h2>
-        </Reveal>
+        </div>
       </div>
 
       <div className="studio-skills-console">
@@ -85,7 +72,7 @@ export function Expertise() {
                 onClick={() => selectSkill(index)}
                 onKeyDown={handleTabKeyDown}
               >
-                {isActive && <motion.span className="studio-skill-tab-indicator" layoutId={reducedMotion ? undefined : "skill-selection"} aria-hidden="true" transition={reducedMotion ? { duration: 0 } : { type: 'spring', stiffness: 420, damping: 36 }} />}
+                {isActive && <span className="studio-skill-tab-indicator" aria-hidden="true" />}
                 <div className="studio-tab-title">
                   <span aria-hidden="true">
                     <Icon size={20} />
@@ -117,35 +104,24 @@ export function Expertise() {
                 tabIndex={isActive ? 0 : -1}
               >
                 {isActive && (
-                  <motion.div
-                    className="studio-skill-panel-inner"
-                    initial={reducedMotion ? false : { opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                  >
+                  <div className="studio-skill-panel-inner">
                     <div className="studio-panel-head">
                       <h3>{group.title}</h3>
                       <p>{group.description}</p>
                     </div>
 
-                    <motion.div
-                      className="studio-skill-list"
-                      variants={reducedMotion ? undefined : chipContainer}
-                      initial="hidden"
-                      animate="show"
-                    >
+                    <div className="studio-skill-list">
                       {group.skills.map((skill) => (
-                        <motion.div
+                        <div
                           key={skill}
                           className="studio-skill-item"
-                          variants={reducedMotion ? undefined : chipItem}
                         >
                           <span>{skill}</span>
-                        </motion.div>
+                        </div>
                       ))}
-                    </motion.div>
+                    </div>
                     <div className="skill-project-proof"><span>Related projects</span>{portfolio.projects.filter(project => projectProof[group.title]?.includes(project.id)).map(project => <a key={project.id} href={`#project-${project.id}`}>{project.title}<ArrowUpRight size={14} aria-hidden="true" /></a>)}</div>
-                  </motion.div>
+                  </div>
                 )}
               </div>
             )

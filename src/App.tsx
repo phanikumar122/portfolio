@@ -1,8 +1,8 @@
+import { ScrollBackground } from './components/ScrollBackground'
 import { SiteNav } from './components/SiteNav'
 import { Hero } from './components/Hero'
 import { Expertise } from './components/Expertise'
 import { ProjectShowcase } from './components/ProjectShowcase'
-import { MotionConfig } from 'motion/react'
 import { Education } from './components/Education'
 import { Credentials } from './components/Credentials'
 import { Achievements } from './components/Achievements'
@@ -11,7 +11,8 @@ import { Footer } from './components/Footer'
 
 export default function App() {
   return (
-    <MotionConfig reducedMotion="user"><div className="site-shell theme-monochrome">
+    <div className="site-shell theme-monochrome">
+      <ScrollBackground />
       <SiteNav />
       <main id="main-content" tabIndex={-1}>
         <Hero />
@@ -23,6 +24,6 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
-    </div></MotionConfig>
+    </div>
   )
 }

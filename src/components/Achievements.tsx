@@ -1,21 +1,18 @@
 import { ArrowUpRight } from 'lucide-react'
 import { portfolio } from '../data/portfolio'
-import { Reveal } from './Reveal'
 
 export function Achievements() {
   return (
     <section className="studio-section section-shell section-padding studio-achievements" id="achievements" aria-labelledby="achievements-title">
-      <Reveal className="studio-support-head">
+      <div className="studio-support-head">
         <h2 className="studio-heading" id="achievements-title">Awards</h2>
-      </Reveal>
+      </div>
 
       <div className="studio-award-grid">
         {portfolio.achievements.map((achievement, index) => (
-          <Reveal
+          <div
             key={achievement.url}
             className="studio-award-panel"
-            delay={index * 0.06}
-            y={16}
           >
             <article className="studio-award-content" aria-labelledby={`studio-award-title-${index}`}>
               <div className="studio-award-body">
@@ -28,7 +25,7 @@ export function Achievements() {
                 View certificate <ArrowUpRight size={17} aria-hidden="true" />
               </a>
             </article>
-          </Reveal>
+          </div>
         ))}
       </div>
     </section>

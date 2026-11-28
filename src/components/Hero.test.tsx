@@ -4,7 +4,8 @@ import { portfolio } from '../data/portfolio'
 import { Hero } from './Hero'
 
 const person: typeof portfolio.person & { portraitUrl?: string } = portfolio.person
-afterEach(() => { person.portraitUrl = '' })
+const originalPortrait = person.portraitUrl
+afterEach(() => { person.portraitUrl = originalPortrait })
 
 describe('portrait presentation', () => {
   it('uses only a supplied portrait with a meaningful alternative', () => {
@@ -18,7 +19,7 @@ describe('portrait presentation', () => {
     render(<Hero />)
     fireEvent.error(screen.getByRole('img', { name: 'Phani Kumar' }))
     expect(screen.queryByRole('img', { name: 'Phani Kumar' })).not.toBeInTheDocument()
-    expect(document.querySelector('.hero-portrait, .hero-grid--portrait, canvas')).toBeNull()
+    expect(screen.queryByText('Open to opportunities')).not.toBeInTheDocument()
     expect(screen.getByRole('heading', { level: 1, name: 'Phani Kumar' })).toBeVisible()
     expect(screen.getByRole('link', { name: 'Projects' })).toHaveAttribute('href', '#work')
   })

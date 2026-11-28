@@ -1,11 +1,10 @@
 import { ArrowUp, Github, Linkedin } from 'lucide-react'
 import { portfolio } from '../data/portfolio'
-import { Reveal } from './Reveal'
 
 export function Footer() {
   return (
     <footer className="studio-footer">
-      <Reveal className="studio-footer-inner section-shell" y={12}>
+      <div className="studio-footer-inner section-shell">
         <div className="studio-footer-identity">
           <div>
             <p className="studio-footer-name">{portfolio.person.name}</p>
@@ -21,7 +20,7 @@ export function Footer() {
           </a>
           <a className="studio-footer-top" href="#top" aria-label="Back to top"><ArrowUp size={17} aria-hidden="true" /></a>
         </nav>
-      </Reveal>
+      </div>
     </footer>
   )
 }

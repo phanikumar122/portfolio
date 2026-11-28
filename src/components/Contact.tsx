@@ -3,7 +3,6 @@ import { useState } from 'react'
 import type { FormEvent } from 'react'
 import { portfolio } from '../data/portfolio'
 import { useCopyToClipboard } from '../hooks/useCopyToClipboard'
-import { Reveal } from './Reveal'
 
 // Set VITE_FORMSPREE_ENDPOINT in .env (or paste here, e.g. https://formspree.io/f/xxxx) to enable
 // the contact form. If left blank, the form safely opens the visitor's mail client directly.
@@ -57,12 +56,12 @@ export function Contact() {
     <section className="studio-section studio-contact section-shell section-padding" id="contact" aria-labelledby="contact-title">
       <div className="studio-contact-grid">
         <div className="studio-contact-intro">
-          <Reveal delay={0.08}>
+          <div>
             <h2 className="studio-heading" id="contact-title">
               Contact
             </h2>
-          </Reveal>
-          <Reveal delay={0.2} className="studio-contact-links">
+          </div>
+          <div className="studio-contact-links">
             <a className="studio-contact-email" href={`mailto:${portfolio.person.email}`}>{portfolio.person.email}<ArrowUpRight size={20} /></a>
             <button type="button" className="studio-copy-button" onClick={() => copy(portfolio.person.email)}>
               {copied ? <><Check size={15} /> copied</> : copyError ? <><AlertCircle size={15} /> copy failed</> : <><Copy size={15} /> copy email</>}
@@ -77,10 +76,10 @@ export function Contact() {
                 <FileText size={16} /> View Resume <ArrowUpRight size={16} />
               </a>
             )}
-          </Reveal>
+          </div>
         </div>
 
-        <Reveal delay={0.18} className="studio-contact-form-wrap">
+        <div className="studio-contact-form-wrap">
           <div className="studio-form-heading"><h3>Message</h3><ArrowUpRight size={24} aria-hidden="true" /></div>
           <p id="contact-form-description" className="studio-form-help">{FORMSPREE_ENDPOINT ? 'Send a message directly to my inbox.' : 'This form prepares a draft in your email app. You’ll review and send it there.'}</p>
           <form className="studio-contact-form" onSubmit={handleSubmit} aria-describedby="contact-form-description" onChange={() => { if (status !== 'sending') setStatus('idle') }}>
@@ -106,7 +105,7 @@ export function Contact() {
               {status === 'invalid' && 'Please add your name, email, and a message—not just spaces.'}
             </p>
           </form>
-        </Reveal>
+        </div>
       </div>
     </section>
   )

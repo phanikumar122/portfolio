@@ -37,7 +37,6 @@ export interface Project {
   github?: string
   live?: string
   visual: ProjectVisual
-  featured: boolean
   accent: string
 }
 
@@ -72,7 +71,7 @@ export const portfolio = {
     github: 'https://github.com/phanikumar122',
     linkedin: 'https://www.linkedin.com/in/phani-kumar-999022375/',
     resumeUrl: './resume.pdf',
-    portraitUrl: '' as string,
+    portraitUrl: import.meta.env.BASE_URL + 'portrait.webp',
   },
   navigation: [
     { label: 'Intro', href: '#top' },
@@ -128,7 +127,6 @@ export const portfolio = {
       github: 'https://github.com/phanikumar122/Mentora',
       live: 'https://mentora-livid.vercel.app/',
       visual: 'mentora',
-      featured: true,
       accent: 'lime',
     },
     {
@@ -152,7 +150,6 @@ export const portfolio = {
       github: 'https://github.com/phanikumar122/Public-Transport-Demand-Prediction',
       live: 'https://public-transport-demand-prediction-nine.vercel.app/',
       visual: 'transport',
-      featured: true,
       accent: 'blue',
     },
     {
@@ -176,7 +173,6 @@ export const portfolio = {
       github: 'https://github.com/phanikumar122/GoodFind',
       live: 'https://phanikumar122.github.io/GoodFind/',
       visual: 'goodfind',
-      featured: true,
       accent: 'rose',
     },
     {
@@ -195,7 +191,6 @@ export const portfolio = {
       stack: ['Angular', 'TypeScript', 'IndexedDB', 'PDF.js', 'pdf-lib', 'Tailwind CSS'],
       github: 'https://github.com/phanikumar122/docviewer',
       visual: 'docviewer',
-      featured: false,
       accent: 'violet',
     },
     {
@@ -214,7 +209,6 @@ export const portfolio = {
       stack: ['Flutter', 'Dart', 'Arduino Nano', 'Bluetooth Classic', 'Flex sensors', 'OLED'],
       github: 'https://github.com/phanikumar122/Smart-Hand-Rehabilitation',
       visual: 'rehabilitation',
-      featured: false,
       accent: 'amber',
     },
     {
@@ -234,7 +228,6 @@ export const portfolio = {
       github: 'https://github.com/phanikumar122/Syllabus-AI',
       live: 'https://syllabus-ai-c35aa.web.app/',
       visual: 'syllabus',
-      featured: false,
       accent: 'cyan',
     },
     {
@@ -249,7 +242,6 @@ export const portfolio = {
       features: ['Student, company, and admin workflows', 'Skill, CGPA, degree, and study-year eligibility checks', 'Location and internship-type preference bonuses', 'Application tracking and company-side candidate views'],
       stack: ['Node.js', 'Express.js', 'MongoDB', 'JavaScript', 'JWT', 'MVC'],
       visual: 'skilltern',
-      featured: false,
       accent: 'orange',
     },
   ] satisfies Project[],

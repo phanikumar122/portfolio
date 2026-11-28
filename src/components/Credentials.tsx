@@ -1,13 +1,12 @@
 import { ExternalLink } from 'lucide-react'
 import { portfolio } from '../data/portfolio'
-import { Reveal } from './Reveal'
 
 export function Credentials() {
   return (
     <section className="studio-section section-shell section-padding studio-credentials" id="credentials" aria-labelledby="credentials-title">
-      <Reveal className="studio-support-head studio-ledger-heading">
+      <div className="studio-support-head studio-ledger-heading">
         <h2 className="studio-heading" id="credentials-title">Certifications</h2>
-      </Reveal>
+      </div>
 
       <div className="studio-ledger-columns" aria-hidden="true">
         <span>Record</span>
@@ -17,7 +16,7 @@ export function Credentials() {
       <ol className="studio-credential-ledger" role="list">
         {portfolio.credentials.map((credential, index) => (
           <li key={credential.url}>
-            <Reveal className="studio-ledger-row" delay={index * 0.03} y={12}>
+            <div className="studio-ledger-row">
               <div className="studio-ledger-record" aria-hidden="true">
                 <span className="studio-ledger-index">{String(index + 1).padStart(2, '0')}</span>
                 <span className="studio-ledger-mark">{credential.mark}</span>
@@ -30,7 +29,7 @@ export function Credentials() {
                 <span>Verify</span>
                 <ExternalLink size={16} aria-hidden="true" />
               </a>
-            </Reveal>
+            </div>
           </li>
         ))}
       </ol>

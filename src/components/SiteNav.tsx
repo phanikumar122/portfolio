@@ -1,11 +1,8 @@
 import { FileText, Github, Linkedin, Mail, Menu, X } from 'lucide-react'
-import { motion } from 'motion/react'
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { portfolio } from '../data/portfolio'
 import { useActiveSection } from '../hooks/useActiveSection'
-import { useScrollProgress } from '../hooks/useScrollProgress'
-import { useReducedMotion } from '../hooks/useReducedMotion'
 const loadResumeModal = () => import('./ResumeModal').then(module => ({ default: module.ResumeModal }))
 const ResumeModal = lazy(loadResumeModal)
 
@@ -19,8 +16,6 @@ export function SiteNav() {
   const menuButtonRef = useRef<HTMLButtonElement>(null)
   const menuRef = useRef<HTMLDivElement>(null)
   const activeSection = useActiveSection(sectionIds)
-  const progress = useScrollProgress()
-  const reducedMotion = useReducedMotion()
   const closeMenu = useCallback(() => {
     setMenuOpen(false)
     menuButtonRef.current?.focus()
@@ -80,14 +75,7 @@ export function SiteNav() {
   }, [menuOpen])
 
   return (
-    <motion.header
-      className="studio-nav"
-      role="banner"
-      initial={reducedMotion ? false : { opacity: 0, y: -16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-    >
-      <motion.div className="studio-nav-progress" style={{ scaleX: progress }} aria-hidden="true" />
+    <header className="studio-nav">
       <div className="studio-nav-inner">
         <a className="studio-brand" href="#top" aria-label="Phani Kumar home">
           <span className="studio-brand-symbol" aria-hidden="true">PK</span>
@@ -142,9 +130,9 @@ export function SiteNav() {
       {createPortal(<div id="mobile-navigation" ref={menuRef} className={`studio-mobile-nav ${menuOpen ? 'is-open' : ''}`} aria-hidden={!menuOpen}>
         <div className="studio-mobile-nav-top"><span>Menu</span><span>Esc to close</span></div>
         <nav aria-label="Mobile navigation">
-          {navigation.map((item, index) => (
+          {navigation.map((item) => (
             <a key={item.href} href={item.href} tabIndex={menuOpen ? 0 : -1} onClick={closeMenu} aria-current={activeSection === item.href ? 'location' : undefined}>
-              <span><span className="mobile-nav-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>{item.label}</span><span aria-hidden="true">↗</span>
+              <span>{item.label}</span><span aria-hidden="true">↗</span>
             </a>
           ))}
           {portfolio.person.resumeUrl && (
@@ -175,6 +163,6 @@ export function SiteNav() {
           resumeUrl={portfolio.person.resumeUrl}
         /></Suspense>
       )}
-    </motion.header>
+    </header>
   )
 }

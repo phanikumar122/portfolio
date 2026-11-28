@@ -4,18 +4,18 @@ A portfolio for Vinnakota Phani Kumar, a Computer Science undergraduate building
 
 ## Design
 
-The `theme-monochrome` interface uses Porcelain (`#FFFCF9`) and Black (`#050505`). A full-width black masthead pairs mixed serif and sans-serif display type with the developer role. Fine background lines drift slowly and can be paused. Reduced motion keeps the lines still.
+The monochrome interface pairs a porcelain masthead with a serif name and the supplied monochrome portrait.
 
-The page follows Intro → Projects → Skills → Education → Certifications → Awards → Contact. Projects use custom monochrome conceptual covers in ruled rows with project copy and previews side by side on wide screens; the remaining collection expands on request. Actual screenshots, descriptions, technology stacks, confirmed roles, and source limitations remain in case-study evidence galleries and dialogs.
+The page follows Intro → Projects → Skills → Education → Certifications → Awards → Contact. Projects use custom monochrome conceptual covers in a two-column grid that stacks on narrow screens. All projects appear by default. Actual screenshots, descriptions, technology stacks, confirmed roles, and source limitations remain in case-study evidence galleries and dialogs.
 
-Skills use a porcelain tab workspace. The masthead and Contact use black surfaces. Education, Certifications, and Awards use porcelain ruled layouts. Contact has readable porcelain form controls and explicit delivery help. Landing section labels stay concise.
+Skills use a porcelain tab workspace. Contact uses a black surface. Education, Certifications, and Awards use porcelain ruled layouts. Contact has readable porcelain form controls and explicit delivery help. Landing section labels stay concise.
 
-Space Grotesk and IBM Plex Mono load locally. Georgia supplies the serif headlines. The layout uses a 1392px maximum content width, fluid gutters and square controls. Motion coordinates one-time title masks, reveals, filter layout changes, and menu stagger while respecting reduced motion and native scrolling.
+Space Grotesk and IBM Plex Mono load locally. Georgia supplies the serif headlines. The layout uses a 1392px maximum content width, fluid gutters and square controls. A fixed, faceted 3D ribbon turns with scroll progress. It holds still while the page is idle or when reduced motion is enabled.
 
 ## Development
 
 - Node.js 22.23.3 (see `.nvmrc`) and npm 10+
-- React 18, TypeScript, Vite 6, Motion for React, Lucide
+- React 18, TypeScript, Vite 6, Lucide
 - Run `npm ci`, then `npm run dev`
 - Open `http://localhost:5173`
 

@@ -1,9 +1,7 @@
 import { ArrowUpRight, ExternalLink, Github, X } from 'lucide-react'
-import { motion } from 'motion/react'
 import { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import type { Project } from '../data/portfolio'
-import { useReducedMotion } from '../hooks/useReducedMotion'
 import { ProjectGallery } from './ProjectGallery'
 
 interface ProjectDialogProps {
@@ -12,7 +10,6 @@ interface ProjectDialogProps {
 }
 
 export function ProjectDialog({ project, onClose }: ProjectDialogProps) {
-  const reducedMotion = useReducedMotion()
   const dialogRef = useRef<HTMLDivElement>(null)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
   const triggerRef = useRef<HTMLElement | null>(null)
@@ -57,8 +54,8 @@ export function ProjectDialog({ project, onClose }: ProjectDialogProps) {
   if (!project) return null
 
   return createPortal(
-    <motion.div className="studio-project-backdrop" role="presentation" initial={reducedMotion ? false : { opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reducedMotion ? 0 : 0.16 }} onMouseDown={(event) => { if (event.target === event.currentTarget) onClose() }}>
-      <motion.div className="studio-project-dialog" role="dialog" aria-modal="true" aria-labelledby="project-dialog-title" aria-describedby="project-dialog-description" ref={dialogRef} initial={reducedMotion ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: reducedMotion ? 0 : 8, transition: { duration: reducedMotion ? 0 : 0.16 } }} transition={{ duration: reducedMotion ? 0 : 0.22, ease: [0.22, 1, 0.36, 1] }}>
+    <div className="studio-project-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose() }}>
+      <div className="studio-project-dialog" role="dialog" aria-modal="true" aria-labelledby="project-dialog-title" aria-describedby="project-dialog-description" ref={dialogRef}>
         <div className="studio-project-dialog-top"><span>About this project</span><button ref={closeButtonRef} type="button" className="studio-dialog-close" aria-label="Close project details" onClick={onClose}><X size={20} /></button></div>
         <div className="studio-project-dialog-grid">
           <div className="studio-project-dialog-visual"><ProjectGallery key={project.id} project={project} /></div>
@@ -76,8 +73,8 @@ export function ProjectDialog({ project, onClose }: ProjectDialogProps) {
             <div className="studio-project-dialog-actions">{project.github && <a className="studio-button studio-button--primary" href={project.github} target="_blank" rel="noreferrer"><Github size={16} /> View code <ArrowUpRight size={15} /></a>}{project.live && <a className="studio-button studio-button--outline" href={project.live} target="_blank" rel="noreferrer"><ExternalLink size={16} /> Live demo</a>}</div>
           </div>
         </div>
-      </motion.div>
-    </motion.div>,
+      </div>
+    </div>,
     document.body,
   )
 }

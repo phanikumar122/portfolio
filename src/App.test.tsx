@@ -5,17 +5,17 @@ import App from './App'
 import { portfolio } from './data/portfolio'
 
 describe('portfolio experience', () => {
-  it('reveals a hidden project when the same skill proof link is used again', async () => {
+  it('reveals a filtered-out project when its skill proof link is used', async () => {
     const user = userEvent.setup()
     const initialHash = window.location.hash
     Object.defineProperty(HTMLElement.prototype, 'scrollIntoView', { configurable: true, value: vi.fn() })
     render(<App />)
     const work = screen.getByRole('region', { name: /^Projects$/i })
-    const proof = screen.getByRole('link', { name: /^docviewer/i })
+    const proof = screen.getByRole('link', { name: /^docviewer$/i })
     try {
       await user.click(proof)
       await waitFor(() => expect(within(work).getByRole('heading', { name: /docviewer/i })).toBeInTheDocument())
-      await user.click(screen.getByRole('button', { name: 'Show selected projects' }))
+      await user.click(screen.getByRole('button', { name: 'Data & AI' }))
       await waitFor(() => expect(within(work).queryByRole('heading', { name: /docviewer/i })).not.toBeInTheDocument())
       await user.click(proof)
       await waitFor(() => expect(within(work).getByRole('heading', { name: /docviewer/i })).toBeInTheDocument())
@@ -23,16 +23,13 @@ describe('portfolio experience', () => {
       window.history.replaceState(null, '', initialHash || '/')
     }
   })
-  it('leads with selected work and lets visitors reveal all projects', async () => {
-    const user = userEvent.setup()
+  it('displays all projects on initial load', () => {
     render(<App />)
     const work = screen.getByRole('region', { name: /^Projects$/i })
-    expect(within(work).getAllByRole('button', { name: /view .* case study/i })).toHaveLength(3)
     expect(screen.getByText('Vinnakota Phani Kumar')).toBeInTheDocument()
     expect(screen.getByRole('heading', { level: 1, name: 'Phani Kumar' })).toBeInTheDocument()
-    await user.click(screen.getByRole('button', { name: /show all 7 projects/i }))
     expect(within(work).getAllByRole('button', { name: /view .* case study/i })).toHaveLength(portfolio.projects.length)
-    portfolio.projects.filter((project) => !project.featured).forEach((project) => {
+    portfolio.projects.forEach((project) => {
       expect(screen.getByRole('button', { name: `View ${project.title} details` })).toBeInTheDocument()
     })
   })
@@ -159,8 +156,8 @@ describe('portfolio experience', () => {
     expect(screen.getByText('Full-stack AI engineer')).toBeInTheDocument()
     expect(screen.getByText(/a focus on cloud infrastructure, DevOps, and agentic AI/i)).toBeInTheDocument()
     expect(screen.getByRole('tab', { name: /Agentic AI/i })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /connect on linkedin/i })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /follow on github/i })).toBeInTheDocument()
+    expect(within(screen.getByRole('navigation', { name: 'Footer links' })).getByRole('link', { name: 'LinkedIn' })).toBeInTheDocument()
+    expect(within(screen.getByRole('navigation', { name: 'Footer links' })).getByRole('link', { name: 'GitHub' })).toBeInTheDocument()
   })
 
   it('provides programmatic labels for every contact field', () => {
@@ -170,12 +167,12 @@ describe('portfolio experience', () => {
     expect(screen.getByRole('textbox', { name: /^message$/i })).toBeInTheDocument()
   })
 
-  it('keeps the intro free of project selectors and an invented portrait', () => {
-    const { container } = render(<App />)
+  it('shows the supplied portrait without the profile panel or project selectors', () => {
+    render(<App />)
     expect(screen.queryByRole('group', { name: 'Project previews' })).not.toBeInTheDocument()
     expect(screen.queryAllByRole('button', { name: /^Preview (GoodFind|Mentora|Public Transport)/i })).toHaveLength(0)
-    expect(container.querySelector('.hero-portrait img')).not.toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /show all 7 projects/i })).toHaveAttribute('aria-expanded', 'false')
+    expect(screen.getByRole('img', { name: 'Phani Kumar' })).toHaveAttribute('src', portfolio.person.portraitUrl)
+    expect(screen.queryByText('Open to opportunities')).not.toBeInTheDocument()
   })
 
   it('uses theme-matching interface concepts for project covers', () => {
